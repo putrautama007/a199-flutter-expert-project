@@ -1,4 +1,4 @@
-import 'package:ditonton/core/util/common/constants.dart';
+import 'package:ditonton/core/util/color/app_colors.dart';
 import 'package:flutter/material.dart';
 
 class AboutPage extends StatelessWidget {

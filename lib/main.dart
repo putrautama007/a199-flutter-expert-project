@@ -1,4 +1,5 @@
-import 'package:ditonton/core/util/common/constants.dart';
+import 'package:ditonton/core/util/color/app_colors.dart';
+import 'package:ditonton/core/util/theme/app_theme.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/about_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/home_movie_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/movie_detail_page.dart';

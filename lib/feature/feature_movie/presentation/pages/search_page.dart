@@ -1,4 +1,4 @@
-import 'package:ditonton/core/util/common/constants.dart';
+import 'package:ditonton/core/util/style/text_styles.dart';
 import 'package:ditonton/core/util/common/state_enum.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/movie_search_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/widgets/movie_card_list.dart';

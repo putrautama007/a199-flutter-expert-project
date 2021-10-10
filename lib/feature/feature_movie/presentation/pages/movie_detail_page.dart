@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
-import 'package:ditonton/core/util/common/constants.dart';
+import 'package:ditonton/core/util/color/app_colors.dart';
+import 'package:ditonton/core/util/style/text_styles.dart';
 import 'package:ditonton/core/util/common/state_enum.dart';
 import 'package:ditonton/feature/feature_movie/domain/entities/genre.dart';
 import 'package:ditonton/feature/feature_movie/domain/entities/movie.dart';
