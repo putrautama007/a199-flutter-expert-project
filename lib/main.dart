@@ -1,7 +1,7 @@
 import 'package:ditonton/core/util/color/app_colors.dart';
 import 'package:ditonton/core/util/theme/app_theme.dart';
+import 'package:ditonton/feature/feature_home/presentation/pages/bottom_nav_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/about_page.dart';
-import 'package:ditonton/feature/feature_movie/presentation/pages/home_movie_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/movie_detail_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/popular_movies_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/search_page.dart';
@@ -55,11 +55,11 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: kRichBlack,
           textTheme: kTextTheme,
         ),
-        home: HomeMoviePage(),
+        home: BottomNavPage(),
         onGenerateRoute: (RouteSettings settings) {
           switch (settings.name) {
             case '/home':
-              return MaterialPageRoute(builder: (_) => HomeMoviePage());
+              return MaterialPageRoute(builder: (_) => BottomNavPage());
             case PopularMoviesPage.ROUTE_NAME:
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
             case TopRatedMoviesPage.ROUTE_NAME:
