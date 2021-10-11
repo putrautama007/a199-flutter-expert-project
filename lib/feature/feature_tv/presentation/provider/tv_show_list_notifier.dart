@@ -14,7 +14,7 @@ class TvShowListNotifier extends ChangeNotifier {
 
   RequestState popularState = RequestState.Empty;
 
-  List<TvEntities> topRatedMovies = <TvEntities>[];
+  List<TvEntities> topRatedTvShows = <TvEntities>[];
 
   RequestState topRatedState = RequestState.Empty;
 
@@ -68,7 +68,7 @@ class TvShowListNotifier extends ChangeNotifier {
     );
   }
 
-  Future<void> fetchTopRatedMovies() async {
+  Future<void> fetchTopRatedTvShows() async {
     topRatedState = RequestState.Loading;
     notifyListeners();
 
@@ -81,7 +81,7 @@ class TvShowListNotifier extends ChangeNotifier {
       },
       (List<TvEntities> tvEntities) {
         topRatedState = RequestState.Loaded;
-        topRatedMovies = tvEntities;
+        topRatedTvShows = tvEntities;
         notifyListeners();
       },
     );
