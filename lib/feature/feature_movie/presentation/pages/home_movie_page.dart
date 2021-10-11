@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ditonton/core/presentation/widgets/scaffold/custom_scaffold.dart';
 import 'package:ditonton/core/util/common/state_enum.dart';
 import 'package:ditonton/core/util/constant/api_constants.dart';
 import 'package:ditonton/core/util/style/text_styles.dart';
@@ -16,18 +17,9 @@ import 'package:provider/provider.dart';
 class HomeMoviePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text('Ditonton'),
-        actions: [
-          IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, SearchPage.ROUTE_NAME);
-            },
-            icon: Icon(Icons.search),
-          )
-        ],
-      ),
+    return CustomScaffold(
+      searchRoute: SearchPage.ROUTE_NAME,
+      title: 'Ditonton Movie',
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SingleChildScrollView(
