@@ -1,4 +1,5 @@
 import 'package:ditonton/core/util/db/database_helper.dart';
+import 'package:ditonton/feature/feature_home/presentation/provider/bottom_nav_notifier.dart';
 import 'package:ditonton/feature/feature_movie/data/datasources/movie_local_data_source.dart';
 import 'package:ditonton/feature/feature_movie/data/datasources/movie_remote_data_source.dart';
 import 'package:ditonton/feature/feature_movie/data/repositories/movie_repository_impl.dart';
@@ -32,6 +33,11 @@ import 'package:get_it/get_it.dart';
 final locator = GetIt.instance;
 
 void init() {
+  /// Provider bottom nav
+  locator.registerFactory(
+    () => BottomNavNotifier(),
+  );
+
   /// Provider movie
   locator.registerFactory(
     () => MovieListNotifier(
