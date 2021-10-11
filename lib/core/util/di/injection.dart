@@ -25,13 +25,14 @@ import 'package:ditonton/feature/feature_tv/domain/repositories/tv_repositories.
 import 'package:ditonton/feature/feature_tv/domain/usecases/get_now_playing_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/domain/usecases/get_popular_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/domain/usecases/get_top_rated_tv_shows_use_case.dart';
+import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
 final locator = GetIt.instance;
 
 void init() {
-  // provider
+  /// Provider movie
   locator.registerFactory(
     () => MovieListNotifier(
       getNowPlayingMovies: locator(),
@@ -66,6 +67,15 @@ void init() {
   locator.registerFactory(
     () => WatchlistMovieNotifier(
       getWatchlistMovies: locator(),
+    ),
+  );
+
+  /// Provider tv show
+  locator.registerFactory(
+    () => TvShowListNotifier(
+      getNowPlayingTvShowsUseCase: locator(),
+      getPopularTvShowsUseCase: locator(),
+      getTopRatedTvShowsUseCase: locator(),
     ),
   );
 
