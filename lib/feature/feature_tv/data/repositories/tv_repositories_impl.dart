@@ -4,7 +4,7 @@ import 'package:dartz/dartz.dart';
 import 'package:ditonton/core/util/common/exception.dart';
 import 'package:ditonton/core/util/common/failure.dart';
 import 'package:ditonton/feature/feature_tv/data/datasources/tv_remote_data_source.dart';
-import 'package:ditonton/feature/feature_tv/data/models/tv_model.dart';
+import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
 import 'package:ditonton/feature/feature_tv/domain/repositories/tv_repositories.dart';
 
 class TvRepositoriesImpl implements TvRepositories {
@@ -15,7 +15,7 @@ class TvRepositoriesImpl implements TvRepositories {
   });
 
   @override
-  Future<Either<Failure, List<TvModel>>> getNowPlayingTvShows() async {
+  Future<Either<Failure, List<TvEntities>>> getNowPlayingTvShows() async {
     try {
       final result = await tvRemoteDataSource.getNowPlayingTvShows();
       return Right(result.map((model) => model.toEntity()).toList());
@@ -27,7 +27,7 @@ class TvRepositoriesImpl implements TvRepositories {
   }
 
   @override
-  Future<Either<Failure, List<TvModel>>> getPopularTvShows() async {
+  Future<Either<Failure, List<TvEntities>>> getPopularTvShows() async {
     try {
       final result = await tvRemoteDataSource.getPopularTvShows();
       return Right(result.map((model) => model.toEntity()).toList());
@@ -39,7 +39,7 @@ class TvRepositoriesImpl implements TvRepositories {
   }
 
   @override
-  Future<Either<Failure, List<TvModel>>> getTopRatedTvShows() async {
+  Future<Either<Failure, List<TvEntities>>> getTopRatedTvShows() async {
     try {
       final result = await tvRemoteDataSource.getTopRatedTvShows();
       return Right(result.map((model) => model.toEntity()).toList());
