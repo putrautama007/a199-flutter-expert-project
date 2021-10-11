@@ -1,3 +1,4 @@
+import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
 import 'package:equatable/equatable.dart';
 
 class TvModel extends Equatable {
@@ -44,22 +45,20 @@ class TvModel extends Equatable {
         voteCount: json["vote_count"],
       );
 
-  TvModel toEntity() {
-    return TvModel(
-      firstAirDate: this.firstAirDate,
-      backdropPath: this.backdropPath,
-      genreIds: this.genreIds,
-      originCountry: this.originCountry,
-      id: this.id,
-      originalLanguage: this.originalLanguage,
-      originalName: this.originalName,
-      overview: this.overview,
-      popularity: this.popularity,
-      posterPath: this.posterPath,
-      voteAverage: this.voteAverage,
-      voteCount: this.voteCount,
-    );
-  }
+  TvEntities toEntity() =>  TvEntities(
+    firstAirDate: this.firstAirDate,
+    backdropPath: this.backdropPath,
+    genreIds: this.genreIds,
+    originCountry: this.originCountry,
+    id: this.id,
+    originalLanguage: this.originalLanguage,
+    originalName: this.originalName,
+    overview: this.overview,
+    popularity: this.popularity,
+    posterPath: this.posterPath,
+    voteAverage: this.voteAverage,
+    voteCount: this.voteCount,
+  );
 
   @override
   List<Object?> get props => [
