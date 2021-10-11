@@ -1,6 +1,7 @@
 import 'package:ditonton/core/util/color/app_colors.dart';
 import 'package:ditonton/core/util/theme/app_theme.dart';
 import 'package:ditonton/feature/feature_home/presentation/pages/bottom_nav_page.dart';
+import 'package:ditonton/feature/feature_home/presentation/provider/bottom_nav_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/about_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/movie_detail_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/popular_movies_page.dart';
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
+        ChangeNotifierProvider(
+          create: (_) => di.locator<BottomNavNotifier>(),
+        ),
         ChangeNotifierProvider(
           create: (_) => di.locator<MovieListNotifier>(),
         ),
