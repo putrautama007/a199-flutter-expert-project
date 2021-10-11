@@ -20,6 +20,11 @@ import 'package:ditonton/feature/feature_movie/presentation/provider/popular_mov
 import 'package:ditonton/feature/feature_movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/feature/feature_tv/data/datasources/tv_remote_data_source.dart';
+import 'package:ditonton/feature/feature_tv/data/repositories/tv_repositories_impl.dart';
+import 'package:ditonton/feature/feature_tv/domain/repositories/tv_repositories.dart';
+import 'package:ditonton/feature/feature_tv/domain/usecases/get_now_playing_tv_shows_use_case.dart';
+import 'package:ditonton/feature/feature_tv/domain/usecases/get_popular_tv_shows_use_case.dart';
+import 'package:ditonton/feature/feature_tv/domain/usecases/get_top_rated_tv_shows_use_case.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
@@ -64,7 +69,7 @@ void init() {
     ),
   );
 
-  // use case
+  /// Use case movie
   locator.registerLazySingleton(() => GetNowPlayingMovies(locator()));
   locator.registerLazySingleton(() => GetPopularMovies(locator()));
   locator.registerLazySingleton(() => GetTopRatedMovies(locator()));
@@ -76,11 +81,35 @@ void init() {
   locator.registerLazySingleton(() => RemoveWatchlist(locator()));
   locator.registerLazySingleton(() => GetWatchlistMovies(locator()));
 
+  /// Use case tv show
+  locator.registerLazySingleton<GetNowPlayingTvShowsUseCase>(
+    () => GetNowPlayingTvShowsUseCaseImpl(
+      tvRepositories: locator(),
+    ),
+  );
+  locator.registerLazySingleton<GetPopularTvShowsUseCase>(
+    () => GetPopularTvShowsUseCaseImpl(
+      tvRepositories: locator(),
+    ),
+  );
+  locator.registerLazySingleton<GetTopRatedTvShowsUseCase>(
+    () => GetTopRatedTvShowsUseCaseImpl(
+      tvRepositories: locator(),
+    ),
+  );
+
   /// Repository movie
   locator.registerLazySingleton<MovieRepository>(
     () => MovieRepositoryImpl(
       remoteDataSource: locator(),
       localDataSource: locator(),
+    ),
+  );
+
+  /// Repository tv show
+  locator.registerLazySingleton<TvRepositories>(
+    () => TvRepositoriesImpl(
+      tvRemoteDataSource: locator(),
     ),
   );
 
@@ -92,7 +121,7 @@ void init() {
 
   /// Data source tv show
   locator.registerLazySingleton<TvRemoteDataSource>(
-          () => TvRemoteDataSourceImpl(client: locator()));
+      () => TvRemoteDataSourceImpl(client: locator()));
 
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
