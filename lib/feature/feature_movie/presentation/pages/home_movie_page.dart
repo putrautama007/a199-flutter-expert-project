@@ -1,4 +1,5 @@
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:ditonton/core/presentation/widgets/button/see_more_button.dart';
 import 'package:ditonton/core/presentation/widgets/scaffold/custom_scaffold.dart';
 import 'package:ditonton/core/util/common/state_enum.dart';
 import 'package:ditonton/core/util/constant/api_constants.dart';
@@ -42,7 +43,7 @@ class HomeMoviePage extends StatelessWidget {
                   return Text('Failed');
                 }
               }),
-              _buildSubHeading(
+              SeeMoreButton(
                 title: 'Popular',
                 onTap: () =>
                     Navigator.pushNamed(context, PopularMoviesPage.ROUTE_NAME),
@@ -59,7 +60,7 @@ class HomeMoviePage extends StatelessWidget {
                   return Text('Failed');
                 }
               }),
-              _buildSubHeading(
+              SeeMoreButton(
                 title: 'Top Rated',
                 onTap: () =>
                     Navigator.pushNamed(context, TopRatedMoviesPage.ROUTE_NAME),
@@ -83,28 +84,9 @@ class HomeMoviePage extends StatelessWidget {
     );
   }
 
-  Row _buildSubHeading({required String title, required Function() onTap}) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-      children: [
-        Text(
-          title,
-          style: kHeading6,
-        ),
-        InkWell(
-          onTap: onTap,
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: [Text('See More'), Icon(Icons.arrow_forward_ios)],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
 
-  Container movieList(List<Movie> movies) => Container(
+  Container movieList(List<Movie> movies) =>
+      Container(
         height: 200,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -124,9 +106,10 @@ class HomeMoviePage extends StatelessWidget {
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                   child: CachedNetworkImage(
                     imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
-                    placeholder: (context, url) => Center(
-                      child: CircularProgressIndicator(),
-                    ),
+                    placeholder: (context, url) =>
+                        Center(
+                          child: CircularProgressIndicator(),
+                        ),
                     errorWidget: (context, url, error) => Icon(Icons.error),
                   ),
                 ),
