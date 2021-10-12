@@ -14,6 +14,8 @@ import 'package:ditonton/feature/feature_movie/presentation/provider/movie_searc
 import 'package:ditonton/feature/feature_movie/presentation/provider/popular_movies_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_detail_page.dart';
+import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_detail_notfier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -54,6 +56,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<TvShowListNotifier>(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvShowDetailNotifier>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -84,6 +89,12 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
             case AboutPage.ROUTE_NAME:
               return MaterialPageRoute(builder: (_) => AboutPage());
+            case TvShowDetailPage.routeName:
+              final tvId = settings.arguments as String;
+              return MaterialPageRoute(
+                builder: (_) => TvShowDetailPage(tvId: tvId),
+                settings: settings,
+              );
             default:
               return MaterialPageRoute(builder: (_) {
                 return Scaffold(
