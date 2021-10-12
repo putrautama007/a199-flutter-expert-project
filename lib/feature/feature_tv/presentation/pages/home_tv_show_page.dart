@@ -5,6 +5,7 @@ import 'package:ditonton/core/util/common/state_enum.dart';
 import 'package:ditonton/core/util/constant/api_constants.dart';
 import 'package:ditonton/core/util/style/text_styles.dart';
 import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
+import 'package:ditonton/feature/feature_tv/presentation/pages/search_tv_show_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_detail_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:flutter/material.dart';
@@ -16,7 +17,7 @@ class HomeTVShowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      searchRoute: "",
+      searchRoute: SearchTvShowPage.routeName,
       title: 'Ditonton Tv Show',
       body: Padding(
         padding: const EdgeInsets.all(8.0),
