@@ -14,6 +14,7 @@ import 'package:ditonton/feature/feature_movie/presentation/provider/movie_searc
 import 'package:ditonton/feature/feature_movie/presentation/provider/popular_movies_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:ditonton/feature/feature_tv/presentation/pages/search_tv_show_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_detail_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_detail_notfier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
@@ -99,6 +100,8 @@ class MyApp extends StatelessWidget {
                 builder: (_) => TvShowDetailPage(tvId: tvId),
                 settings: settings,
               );
+            case SearchTvShowPage.routeName:
+              return CupertinoPageRoute(builder: (_) => SearchTvShowPage());
             default:
               return MaterialPageRoute(builder: (_) {
                 return Scaffold(
