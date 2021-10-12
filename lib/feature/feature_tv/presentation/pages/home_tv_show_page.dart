@@ -5,7 +5,9 @@ import 'package:ditonton/core/util/common/state_enum.dart';
 import 'package:ditonton/core/util/constant/api_constants.dart';
 import 'package:ditonton/core/util/style/text_styles.dart';
 import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
+import 'package:ditonton/feature/feature_tv/presentation/pages/popular_tv_show_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/pages/search_tv_show_page.dart';
+import 'package:ditonton/feature/feature_tv/presentation/pages/top_rated_tv_show_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_detail_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:flutter/material.dart';
@@ -43,7 +45,10 @@ class HomeTVShowPage extends StatelessWidget {
               }),
               _buildSubHeading(
                 title: 'Popular',
-                onTap: () => Navigator.pushNamed(context, ""),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  PopularTvShowPage.routeName,
+                ),
               ),
               Consumer<TvShowListNotifier>(builder: (context, data, child) {
                 final state = data.popularState;
@@ -59,7 +64,10 @@ class HomeTVShowPage extends StatelessWidget {
               }),
               _buildSubHeading(
                 title: 'Top Rated',
-                onTap: () => Navigator.pushNamed(context, ""),
+                onTap: () => Navigator.pushNamed(
+                  context,
+                  TopRatedTvShowPage.routeName,
+                ),
               ),
               Consumer<TvShowListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedState;
