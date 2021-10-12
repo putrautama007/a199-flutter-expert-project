@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class TvShowPopularNotifier extends ChangeNotifier {
   final GetPopularTvShowsUseCase getPopularTvShowsUseCase;
 
-  TvShowPopularNotifier(this.getPopularTvShowsUseCase);
+  TvShowPopularNotifier({required this.getPopularTvShowsUseCase});
 
   RequestState state = RequestState.Empty;
 
