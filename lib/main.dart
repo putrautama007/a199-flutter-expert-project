@@ -17,6 +17,7 @@ import 'package:ditonton/feature/feature_movie/presentation/provider/watchlist_m
 import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_detail_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_detail_notfier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
+import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_search_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -58,6 +59,9 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TvShowDetailNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvShowSearchNotifier>(),
         ),
       ],
       child: MaterialApp(
