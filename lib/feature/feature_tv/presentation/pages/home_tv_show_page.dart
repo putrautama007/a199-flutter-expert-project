@@ -5,6 +5,7 @@ import 'package:ditonton/core/util/common/state_enum.dart';
 import 'package:ditonton/core/util/constant/api_constants.dart';
 import 'package:ditonton/core/util/style/text_styles.dart';
 import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
+import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_detail_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -94,12 +95,11 @@ class HomeTVShowPage extends StatelessWidget {
               padding: const EdgeInsets.all(8),
               child: InkWell(
                 onTap: () {
-                  /// will be update after detail page create
-                  // Navigator.pushNamed(
-                  //   context,
-                  //   MovieDetailPage.ROUTE_NAME,
-                  //   arguments: movie.id,
-                  // );
+                  Navigator.pushNamed(
+                    context,
+                    TvShowDetailPage.routeName,
+                    arguments: movie.id.toString(),
+                  );
                 },
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(16)),
