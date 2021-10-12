@@ -181,6 +181,70 @@ class DetailContent extends StatelessWidget {
                             ),
                             SizedBox(height: 16),
                             Text(
+                              'Episode',
+                              style: kHeading6,
+                            ),
+                            Text(
+                              'Number of Episode : ${tvShow.numberOfEpisodes}',
+                              style: kSubtitle,
+                            ),
+                            SizedBox(height: 8),
+                            Text(
+                              'Last Episode : ${tvShow.lastEpisodeToAir.episodeNumber}',
+                              style: kSubtitle,
+                            ),
+                            SizedBox(height: 8),
+                            Container(
+                              height: 150,
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.all(
+                                  Radius.circular(8),
+                                ),
+                                child: CachedNetworkImage(
+                                  imageUrl:
+                                      'https://image.tmdb.org/t/p/w500${tvShow.lastEpisodeToAir.stillPath}',
+                                  placeholder: (context, url) => Center(
+                                    child: CircularProgressIndicator(),
+                                  ),
+                                  errorWidget: (context, url, error) =>
+                                      Icon(Icons.error),
+                                ),
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            Text(
+                              'Season',
+                              style: kHeading6,
+                            ),
+                            Container(
+                              height: 150,
+                              child: ListView.builder(
+                                scrollDirection: Axis.horizontal,
+                                itemBuilder: (context, index) {
+                                  final tvShowSeasons = tvShow.seasons[index];
+                                  return Padding(
+                                    padding: const EdgeInsets.all(4.0),
+                                    child: ClipRRect(
+                                      borderRadius: BorderRadius.all(
+                                        Radius.circular(8),
+                                      ),
+                                      child: CachedNetworkImage(
+                                        imageUrl:
+                                            'https://image.tmdb.org/t/p/w500${tvShowSeasons.posterPath}',
+                                        placeholder: (context, url) => Center(
+                                          child: CircularProgressIndicator(),
+                                        ),
+                                        errorWidget: (context, url, error) =>
+                                            Icon(Icons.error),
+                                      ),
+                                    ),
+                                  );
+                                },
+                                itemCount: tvShow.seasons.length,
+                              ),
+                            ),
+                            SizedBox(height: 16),
+                            Text(
                               'Recommendations',
                               style: kHeading6,
                             ),
@@ -209,7 +273,7 @@ class DetailContent extends StatelessWidget {
                                               Navigator.pushReplacementNamed(
                                                 context,
                                                 TvShowDetailPage.routeName,
-                                                arguments: tvShow.id,
+                                                arguments: tvShow.id.toString(),
                                               );
                                             },
                                             child: ClipRRect(
