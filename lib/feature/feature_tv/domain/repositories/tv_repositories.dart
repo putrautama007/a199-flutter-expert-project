@@ -13,4 +13,8 @@ abstract class TvRepositories {
   Future<Either<Failure, TvDetailEntities>> getDetailTvShows({
     required String tvId,
   });
+
+  Future<Either<Failure, List<TvEntities>>> getRecommendationTvShows({
+    required String tvId,
+  });
 }
