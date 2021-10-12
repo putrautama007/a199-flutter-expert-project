@@ -1,8 +1,10 @@
 import 'dart:io';
 
 import 'package:dartz/dartz.dart';
+import 'package:ditonton/core/data/models/watch_list_table.dart';
 import 'package:ditonton/core/util/common/exception.dart';
 import 'package:ditonton/core/util/common/failure.dart';
+import 'package:ditonton/feature/feature_tv/data/datasources/tv_local_data_source.dart';
 import 'package:ditonton/feature/feature_tv/data/datasources/tv_remote_data_source.dart';
 import 'package:ditonton/feature/feature_tv/domain/entities/tv_detail_entities.dart';
 import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
@@ -10,9 +12,11 @@ import 'package:ditonton/feature/feature_tv/domain/repositories/tv_repositories.
 
 class TvRepositoriesImpl implements TvRepositories {
   final TvRemoteDataSource tvRemoteDataSource;
+  final TvLocalDataSource tvLocalDataSource;
 
   TvRepositoriesImpl({
     required this.tvRemoteDataSource,
+    required this.tvLocalDataSource,
   });
 
   @override
@@ -79,6 +83,43 @@ class TvRepositoriesImpl implements TvRepositories {
       return Left(ServerFailure(''));
     } on SocketException {
       return Left(ConnectionFailure('Failed to connect to the network'));
+    }
+  }
+
+  @override
+  Future<Either<Failure, List<TvEntities>>> getWatchlistTvShows() async {
+    final result = await tvLocalDataSource.getWatchlistTvShows();
+    return Right(result.map((data) => data.toTvShowsEntity()).toList());
+  }
+
+  @override
+  Future<bool> isAddedToWatchlist(int id) async {
+    final result = await tvLocalDataSource.getTvShowById(id);
+    return result != null;
+  }
+
+  @override
+  Future<Either<Failure, String>> removeWatchlist(
+      TvDetailEntities tvShow) async {
+    try {
+      final result = await tvLocalDataSource
+          .removeWatchlist(WatchListTable.fromTvShowEntity(tvShow));
+      return Right(result);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(e.message));
+    }
+  }
+
+  @override
+  Future<Either<Failure, String>> saveWatchlist(TvDetailEntities tvShow) async {
+    try {
+      final result = await tvLocalDataSource
+          .insertWatchlist(WatchListTable.fromTvShowEntity(tvShow));
+      return Right(result);
+    } on DatabaseException catch (e) {
+      return Left(DatabaseFailure(e.message));
+    } catch (e) {
+      throw e;
     }
   }
 }

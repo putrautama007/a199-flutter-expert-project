@@ -141,6 +141,7 @@ void init() {
   locator.registerLazySingleton<TvRepositories>(
     () => TvRepositoriesImpl(
       tvRemoteDataSource: locator(),
+      tvLocalDataSource: locator(),
     ),
   );
 
