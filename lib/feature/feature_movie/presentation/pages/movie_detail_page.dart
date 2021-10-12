@@ -1,5 +1,6 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:ditonton/core/util/color/app_colors.dart';
+import 'package:ditonton/core/util/constant/watch_list_constants.dart';
 import 'package:ditonton/core/util/style/text_styles.dart';
 import 'package:ditonton/core/util/common/state_enum.dart';
 import 'package:ditonton/core/domain/entities/genre.dart';
@@ -15,6 +16,7 @@ class MovieDetailPage extends StatefulWidget {
   static const ROUTE_NAME = '/detail';
 
   final int id;
+
   MovieDetailPage({required this.id});
 
   @override
@@ -127,10 +129,10 @@ class DetailContent extends StatelessWidget {
                                         .watchlistMessage;
 
                                 if (message ==
-                                        MovieDetailNotifier
+                                        WatchListConstants
                                             .watchlistAddSuccessMessage ||
                                     message ==
-                                        MovieDetailNotifier
+                                        WatchListConstants
                                             .watchlistRemoveSuccessMessage) {
                                   ScaffoldMessenger.of(context).showSnackBar(
                                       SnackBar(content: Text(message)));
