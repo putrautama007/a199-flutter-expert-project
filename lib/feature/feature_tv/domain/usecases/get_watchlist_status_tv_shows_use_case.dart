@@ -1,13 +1,13 @@
 import 'package:ditonton/feature/feature_tv/domain/repositories/tv_repositories.dart';
 
-abstract class GetWatchListStatusTvShows {
+abstract class GetWatchListStatusTvShowsUseCase {
   Future<bool> isAddedToWatchlist(int id);
 }
 
-class GetWatchListStatusTvShowsImpl extends GetWatchListStatusTvShows {
+class GetWatchListStatusTvShowsUseCaseImpl extends GetWatchListStatusTvShowsUseCase {
   final TvRepositories tvRepositories;
 
-  GetWatchListStatusTvShowsImpl({
+  GetWatchListStatusTvShowsUseCaseImpl({
     required this.tvRepositories,
   });
 

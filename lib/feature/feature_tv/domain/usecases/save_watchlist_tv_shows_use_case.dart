@@ -3,18 +3,18 @@ import 'package:ditonton/core/util/common/failure.dart';
 import 'package:ditonton/feature/feature_tv/domain/entities/tv_detail_entities.dart';
 import 'package:ditonton/feature/feature_tv/domain/repositories/tv_repositories.dart';
 
-abstract class RemoveWatchListTvShows {
-  Future<Either<Failure, String>> removeWatchlist(TvDetailEntities tvShow);
+abstract class SaveWatchListTvShowsUseCase {
+  Future<Either<Failure, String>> saveWatchlist(TvDetailEntities tvShow);
 }
 
-class RemoveWatchListTvShowsImpl extends RemoveWatchListTvShows {
+class SaveWatchListTvShowsUseCaseImpl extends SaveWatchListTvShowsUseCase {
   final TvRepositories tvRepositories;
 
-  RemoveWatchListTvShowsImpl({
+  SaveWatchListTvShowsUseCaseImpl({
     required this.tvRepositories,
   });
 
   @override
-  Future<Either<Failure, String>> removeWatchlist(TvDetailEntities tvShow) =>
-      tvRepositories.removeWatchlist(tvShow);
+  Future<Either<Failure, String>> saveWatchlist(TvDetailEntities tvShow) =>
+      tvRepositories.saveWatchlist(tvShow);
 }

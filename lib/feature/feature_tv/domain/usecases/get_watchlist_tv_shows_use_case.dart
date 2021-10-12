@@ -3,14 +3,14 @@ import 'package:ditonton/core/util/common/failure.dart';
 import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
 import 'package:ditonton/feature/feature_tv/domain/repositories/tv_repositories.dart';
 
-abstract class GetWatchListTvShows {
+abstract class GetWatchListTvShowsUseCase {
   Future<Either<Failure, List<TvEntities>>> getWatchlistTvShows();
 }
 
-class GetWatchListTvShowsImpl extends GetWatchListTvShows {
+class GetWatchListTvShowsUseCaseImpl extends GetWatchListTvShowsUseCase {
   final TvRepositories tvRepositories;
 
-  GetWatchListTvShowsImpl({
+  GetWatchListTvShowsUseCaseImpl({
     required this.tvRepositories,
   });
 

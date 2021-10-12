@@ -29,9 +29,9 @@ import 'package:ditonton/feature/feature_tv/domain/usecases/get_now_playing_tv_s
 import 'package:ditonton/feature/feature_tv/domain/usecases/get_popular_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/domain/usecases/get_recommendation_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/domain/usecases/get_top_rated_tv_shows_use_case.dart';
-import 'package:ditonton/feature/feature_tv/domain/usecases/get_watchlist_status_tv_shows.dart';
-import 'package:ditonton/feature/feature_tv/domain/usecases/get_watchlist_tv_shows.dart';
-import 'package:ditonton/feature/feature_tv/domain/usecases/remove_watchlist_tv_shows.dart';
+import 'package:ditonton/feature/feature_tv/domain/usecases/get_watchlist_status_tv_shows_use_case.dart';
+import 'package:ditonton/feature/feature_tv/domain/usecases/get_watchlist_tv_shows_use_case.dart';
+import 'package:ditonton/feature/feature_tv/domain/usecases/remove_watchlist_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
@@ -132,20 +132,20 @@ void init() {
     ),
   );
 
-  locator.registerLazySingleton<GetWatchListStatusTvShows>(
-    () => GetWatchListStatusTvShowsImpl(
+  locator.registerLazySingleton<GetWatchListStatusTvShowsUseCase>(
+    () => GetWatchListStatusTvShowsUseCaseImpl(
       tvRepositories: locator(),
     ),
   );
 
-  locator.registerLazySingleton<GetWatchListTvShows>(
-    () => GetWatchListTvShowsImpl(
+  locator.registerLazySingleton<GetWatchListTvShowsUseCase>(
+    () => GetWatchListTvShowsUseCaseImpl(
       tvRepositories: locator(),
     ),
   );
 
-  locator.registerLazySingleton<RemoveWatchListTvShows>(
-    () => RemoveWatchListTvShowsImpl(
+  locator.registerLazySingleton<RemoveWatchListTvShowsUseCase>(
+    () => RemoveWatchListTvShowsUseCaseImpl(
       tvRepositories: locator(),
     ),
   );
