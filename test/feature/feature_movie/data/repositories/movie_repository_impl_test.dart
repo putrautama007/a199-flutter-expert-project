@@ -3,7 +3,7 @@ import 'dart:io';
 import 'package:dartz/dartz.dart';
 import 'package:ditonton/core/util/common/exception.dart';
 import 'package:ditonton/core/util/common/failure.dart';
-import 'package:ditonton/feature/feature_movie/data/models/genre_model.dart';
+import 'package:ditonton/core/data/models/genre_model.dart';
 import 'package:ditonton/feature/feature_movie/data/models/movie_detail_model.dart';
 import 'package:ditonton/feature/feature_movie/data/models/movie_model.dart';
 import 'package:ditonton/feature/feature_movie/data/repositories/movie_repository_impl.dart';
