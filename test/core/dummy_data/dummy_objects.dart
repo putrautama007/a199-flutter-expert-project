@@ -1,4 +1,4 @@
-import 'package:ditonton/feature/feature_movie/data/models/movie_table.dart';
+import 'package:ditonton/core/data/models/watch_list_table.dart';
 import 'package:ditonton/core/domain/entities/genre.dart';
 import 'package:ditonton/feature/feature_movie/domain/entities/movie.dart';
 import 'package:ditonton/feature/feature_movie/domain/entities/movie_detail.dart';
@@ -44,7 +44,7 @@ final testWatchlistMovie = Movie.watchlist(
   overview: 'overview',
 );
 
-final testMovieTable = MovieTable(
+final testMovieTable = WatchListTable(
   id: 1,
   title: 'title',
   posterPath: 'posterPath',
