@@ -4,6 +4,7 @@ import 'package:ditonton/feature/feature_movie/presentation/pages/about_page.dar
 import 'package:ditonton/feature/feature_movie/presentation/pages/home_movie_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/watchlist_movies_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/movie_list_notifier.dart';
+import 'package:ditonton/feature/feature_movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/pages/home_tv_show_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:flutter/material.dart';
@@ -23,6 +24,10 @@ class _BottomNavPageState extends State<BottomNavPage> {
           ..fetchNowPlayingMovies()
           ..fetchPopularMovies()
           ..fetchTopRatedMovies());
+
+    Future.microtask(() =>
+        Provider.of<WatchlistMovieNotifier>(context, listen: false)
+          ..fetchWatchlistMovies());
 
     Future.microtask(
         () => Provider.of<TvShowListNotifier>(context, listen: false)
