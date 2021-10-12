@@ -1,6 +1,7 @@
 import 'package:ditonton/core/data/models/genre_model.dart';
 import 'package:ditonton/feature/feature_tv/data/models/episode_model.dart';
 import 'package:ditonton/feature/feature_tv/data/models/season_model.dart';
+import 'package:ditonton/feature/feature_tv/domain/entities/tv_detail_entities.dart';
 import 'package:equatable/equatable.dart';
 
 class TvDetailModel extends Equatable {
@@ -122,4 +123,33 @@ class TvDetailModel extends Equatable {
         voteAverage,
         voteCount,
       ];
+
+  TvDetailEntities toEntity() => TvDetailEntities(
+        backdropPath: backdropPath,
+        episodeRunTime: episodeRunTime,
+        firstAirDate: firstAirDate,
+        genres: genres.map((genre) => genre.toEntity()).toList(),
+        homepage: homepage,
+        id: id,
+        inProduction: inProduction,
+        languages: languages,
+        lastAirDate: lastAirDate,
+        lastEpisodeToAir: lastEpisodeToAir.toEntity(),
+        name: name,
+        nextEpisodeToAir: nextEpisodeToAir.toEntity(),
+        numberOfEpisodes: numberOfEpisodes,
+        numberOfSeasons: numberOfSeasons,
+        originCountry: originCountry,
+        originalLanguage: originalLanguage,
+        originalName: originalName,
+        overview: overview,
+        popularity: popularity,
+        posterPath: posterPath,
+        seasons: seasons.map((seasons) => seasons.toEntity()).toList(),
+        status: status,
+        tagline: tagline,
+        type: type,
+        voteAverage: voteAverage,
+        voteCount: voteCount,
+      );
 }
