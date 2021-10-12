@@ -19,7 +19,12 @@ abstract class TvRepositories {
   });
 
   Future<Either<Failure, String>> saveWatchlist(TvDetailEntities tvShow);
+
   Future<Either<Failure, String>> removeWatchlist(TvDetailEntities tvShow);
+
   Future<bool> isAddedToWatchlist(int id);
+
   Future<Either<Failure, List<TvEntities>>> getWatchlistTvShows();
+
+  Future<Either<Failure, List<TvEntities>>> searchTvShows(String query);
 }
