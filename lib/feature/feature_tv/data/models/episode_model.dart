@@ -27,16 +27,16 @@ class EpisodeModel extends Equatable {
   final int voteCount;
 
   factory EpisodeModel.fromJson(Map<String, dynamic> json) => EpisodeModel(
-        airDate: json["air_date"],
-        episodeNumber: json["episode_number"],
-        id: json["id"],
-        name: json["name"],
-        overview: json["overview"],
-        productionCode: json["production_code"],
-        seasonNumber: json["season_number"],
-        stillPath: json["still_path"],
-        voteAverage: json["vote_average"].toDouble(),
-        voteCount: json["vote_count"],
+        airDate: json["air_date"] ?? "",
+        episodeNumber: json["episode_number"] ?? 0,
+        id: json["id"] ?? 0,
+        name: json["name"] ?? "",
+        overview: json["overview"] ?? "",
+        productionCode: json["production_code"] ?? "",
+        seasonNumber: json["season_number"] ?? 0,
+        stillPath: json["still_path"] ?? "",
+        voteAverage: json["vote_average"].toDouble() ?? 0.0,
+        voteCount: json["vote_count"] ?? 0,
       );
 
   @override
