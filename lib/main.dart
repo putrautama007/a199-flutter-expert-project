@@ -18,7 +18,9 @@ import 'package:ditonton/feature/feature_tv/presentation/pages/search_tv_show_pa
 import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_detail_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_detail_notfier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
+import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_popular_notifier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_search_notifier.dart';
+import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_top_rated_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -63,6 +65,12 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider(
           create: (_) => di.locator<TvShowSearchNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvShowPopularNotifier>(),
+        ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvShowTopRatedNotifier>(),
         ),
       ],
       child: MaterialApp(
