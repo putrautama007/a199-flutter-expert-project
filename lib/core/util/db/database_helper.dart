@@ -52,12 +52,12 @@ class DatabaseHelper {
     ''');
   }
 
-  Future<int> insertWatchlist(WatchListTable movie) async {
+  Future<int> insertMovieWatchlist(WatchListTable movie) async {
     final db = await database;
     return await db!.insert(_tblMovieWatchlist, movie.toJson());
   }
 
-  Future<int> removeWatchlist(WatchListTable movie) async {
+  Future<int> removeMovieWatchlist(WatchListTable movie) async {
     final db = await database;
     return await db!.delete(
       _tblMovieWatchlist,
