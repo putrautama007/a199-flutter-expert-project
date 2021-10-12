@@ -20,6 +20,7 @@ import 'package:ditonton/feature/feature_movie/presentation/provider/movie_searc
 import 'package:ditonton/feature/feature_movie/presentation/provider/popular_movies_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/top_rated_movies_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:ditonton/feature/feature_tv/data/datasources/tv_local_data_source.dart';
 import 'package:ditonton/feature/feature_tv/data/datasources/tv_remote_data_source.dart';
 import 'package:ditonton/feature/feature_tv/data/repositories/tv_repositories_impl.dart';
 import 'package:ditonton/feature/feature_tv/domain/repositories/tv_repositories.dart';
@@ -152,6 +153,8 @@ void init() {
   /// Data source tv show
   locator.registerLazySingleton<TvRemoteDataSource>(
       () => TvRemoteDataSourceImpl(client: locator()));
+  locator.registerLazySingleton<TvLocalDataSource>(
+      () => TvLocalDataSourceImpl(databaseHelper: locator()));
 
   // helper
   locator.registerLazySingleton<DatabaseHelper>(() => DatabaseHelper());
