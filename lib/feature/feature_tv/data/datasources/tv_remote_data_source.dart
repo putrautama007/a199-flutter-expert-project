@@ -18,6 +18,10 @@ abstract class TvRemoteDataSource {
   Future<TvDetailModel> getDetailTvShows({
     required String tvId,
   });
+
+  Future<List<TvModel>> getRecommendationTvShows({
+    required String tvId,
+  });
 }
 
 class TvRemoteDataSourceImpl implements TvRemoteDataSource {
@@ -68,6 +72,18 @@ class TvRemoteDataSourceImpl implements TvRemoteDataSource {
 
     if (response.statusCode == 200) {
       return TvDetailModel.fromJson(json.decode(response.body));
+    } else {
+      throw ServerException();
+    }
+  }
+
+  @override
+  Future<List<TvModel>> getRecommendationTvShows({required String tvId}) async {
+    final response = await client.get(Uri.parse(
+        '$baseUrl${ApiConstants.recommendationTv(tvId: tvId)}?$apiKey'));
+
+    if (response.statusCode == 200) {
+      return TvResponse.fromJson(json.decode(response.body)).tvList;
     } else {
       throw ServerException();
     }
