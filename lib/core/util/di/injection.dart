@@ -23,8 +23,10 @@ import 'package:ditonton/feature/feature_movie/presentation/provider/watchlist_m
 import 'package:ditonton/feature/feature_tv/data/datasources/tv_remote_data_source.dart';
 import 'package:ditonton/feature/feature_tv/data/repositories/tv_repositories_impl.dart';
 import 'package:ditonton/feature/feature_tv/domain/repositories/tv_repositories.dart';
+import 'package:ditonton/feature/feature_tv/domain/usecases/get_detail_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/domain/usecases/get_now_playing_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/domain/usecases/get_popular_tv_shows_use_case.dart';
+import 'package:ditonton/feature/feature_tv/domain/usecases/get_recommendation_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/domain/usecases/get_top_rated_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:http/http.dart' as http;
@@ -110,6 +112,18 @@ void init() {
   );
   locator.registerLazySingleton<GetTopRatedTvShowsUseCase>(
     () => GetTopRatedTvShowsUseCaseImpl(
+      tvRepositories: locator(),
+    ),
+  );
+
+  locator.registerLazySingleton<GetDetailTvShowsUseCase>(
+    () => GetDetailTvShowUseCaseImpl(
+      tvRepositories: locator(),
+    ),
+  );
+
+  locator.registerLazySingleton<GetRecommendationTvShowsUseCase>(
+    () => GetRecommendationTvShowsUseCaseImpl(
       tvRepositories: locator(),
     ),
   );
