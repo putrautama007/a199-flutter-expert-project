@@ -33,6 +33,7 @@ import 'package:ditonton/feature/feature_tv/domain/usecases/get_watchlist_status
 import 'package:ditonton/feature/feature_tv/domain/usecases/get_watchlist_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/domain/usecases/remove_watchlist_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/domain/usecases/save_watchlist_tv_shows_use_case.dart';
+import 'package:ditonton/feature/feature_tv/domain/usecases/search_tv_shows_use_case.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_detail_notfier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:http/http.dart' as http;
@@ -157,13 +158,19 @@ void init() {
   );
 
   locator.registerLazySingleton<SaveWatchListTvShowsUseCase>(
-        () => SaveWatchListTvShowsUseCaseImpl(
+    () => SaveWatchListTvShowsUseCaseImpl(
       tvRepositories: locator(),
     ),
   );
 
   locator.registerLazySingleton<RemoveWatchListTvShowsUseCase>(
     () => RemoveWatchListTvShowsUseCaseImpl(
+      tvRepositories: locator(),
+    ),
+  );
+
+  locator.registerLazySingleton<SearchTvShowsUseCase>(
+    () => SearchTvShowsUseCaseImpl(
       tvRepositories: locator(),
     ),
   );
