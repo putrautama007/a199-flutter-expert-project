@@ -1,5 +1,7 @@
 import 'package:ditonton/feature/feature_movie/domain/entities/movie.dart';
 import 'package:ditonton/feature/feature_movie/domain/entities/movie_detail.dart';
+import 'package:ditonton/feature/feature_tv/domain/entities/tv_detail_entities.dart';
+import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
 import 'package:equatable/equatable.dart';
 
 class WatchListTable extends Equatable {
@@ -15,11 +17,19 @@ class WatchListTable extends Equatable {
     required this.overview,
   });
 
-  factory WatchListTable.fromEntity(MovieDetail movie) => WatchListTable(
+  factory WatchListTable.fromMovieEntity(MovieDetail movie) => WatchListTable(
         id: movie.id,
         title: movie.title,
         posterPath: movie.posterPath,
         overview: movie.overview,
+      );
+
+  factory WatchListTable.fromTvShowEntity(TvDetailEntities tvShow) =>
+      WatchListTable(
+        id: tvShow.id,
+        title: tvShow.name,
+        posterPath: tvShow.posterPath,
+        overview: tvShow.overview,
       );
 
   factory WatchListTable.fromMap(Map<String, dynamic> map) => WatchListTable(
@@ -43,6 +53,18 @@ class WatchListTable extends Equatable {
         title: title,
       );
 
+  TvEntities toTvShowsEntity() => TvEntities.watchlist(
+        id: id,
+        originalName: title,
+        overview: overview,
+        posterPath: posterPath,
+      );
+
   @override
-  List<Object?> get props => [id, title, posterPath, overview];
+  List<Object?> get props => [
+        id,
+        title,
+        posterPath,
+        overview,
+      ];
 }

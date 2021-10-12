@@ -29,6 +29,21 @@ class TvEntities extends Equatable {
     required this.voteCount,
   });
 
+  TvEntities.watchlist({
+    this.backdropPath,
+    this.firstAirDate,
+    this.genreIds,
+    this.originCountry,
+    required this.id,
+    this.originalLanguage,
+    required this.originalName,
+    required this.overview,
+    this.popularity,
+    required this.posterPath,
+    this.voteAverage,
+    this.voteCount,
+  });
+
   @override
   List<Object?> get props => [
         backdropPath,
