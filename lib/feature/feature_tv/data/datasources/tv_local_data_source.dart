@@ -7,9 +7,9 @@ abstract class TvLocalDataSource {
 
   Future<String> removeWatchlist(WatchListTable tvShow);
 
-  Future<WatchListTable?> getMovieById(int id);
+  Future<WatchListTable?> getTvShowById(int id);
 
-  Future<List<WatchListTable>> getWatchlistMovies();
+  Future<List<WatchListTable>> getWatchlistTvShows();
 }
 
 class TvLocalDataSourceImpl implements TvLocalDataSource {
@@ -38,7 +38,7 @@ class TvLocalDataSourceImpl implements TvLocalDataSource {
   }
 
   @override
-  Future<WatchListTable?> getMovieById(int id) async {
+  Future<WatchListTable?> getTvShowById(int id) async {
     final result = await databaseHelper.getMovieById(id);
     if (result != null) {
       return WatchListTable.fromMap(result);
@@ -48,7 +48,7 @@ class TvLocalDataSourceImpl implements TvLocalDataSource {
   }
 
   @override
-  Future<List<WatchListTable>> getWatchlistMovies() async {
+  Future<List<WatchListTable>> getWatchlistTvShows() async {
     final result = await databaseHelper.getWatchlistMovies();
     return result.map((data) => WatchListTable.fromMap(data)).toList();
   }
