@@ -4,7 +4,7 @@ import 'package:ditonton/feature/feature_tv/domain/usecases/get_watchlist_tv_sho
 import 'package:flutter/material.dart';
 
 class TvShowWatchListNotifier extends ChangeNotifier {
-  var watchlistMovies = <TvEntities>[];
+  var watchlistTvShows = <TvEntities>[];
 
   var watchlistState = RequestState.Empty;
 
@@ -27,7 +27,7 @@ class TvShowWatchListNotifier extends ChangeNotifier {
       },
       (tvShowData) {
         watchlistState = RequestState.Loaded;
-        watchlistMovies = tvShowData;
+        watchlistTvShows = tvShowData;
         notifyListeners();
       },
     );
