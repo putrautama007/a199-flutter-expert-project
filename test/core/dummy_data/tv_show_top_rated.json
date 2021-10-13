@@ -1,0 +1,33 @@
+{
+  "dates": {
+    "maximum": "2021-05-23",
+    "minimum": "2021-04-05"
+  },
+  "page": 1,
+  "results": [
+    {
+      "backdrop_path": "/path.jpg",
+      "first_air_date": "2021-09-03",
+      "genre_ids": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "id": 1,
+      "name": "name",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "original_name",
+      "overview": "overview",
+      "popularity": 1.0,
+      "poster_path": "/path.jpg",
+      "vote_average": 9.4,
+      "vote_count": 2461
+    }
+  ],
+  "total_pages": 104,
+  "total_results": 2070
+}
