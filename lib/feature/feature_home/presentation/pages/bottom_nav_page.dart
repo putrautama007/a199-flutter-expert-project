@@ -7,6 +7,7 @@ import 'package:ditonton/feature/feature_movie/presentation/provider/movie_list_
 import 'package:ditonton/feature/feature_movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/pages/home_tv_show_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
+import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_watchlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -34,6 +35,10 @@ class _BottomNavPageState extends State<BottomNavPage> {
           ..fetchNowPlayingTvShows()
           ..fetchPopulargTvShows()
           ..fetchTopRatedTvShows());
+
+    Future.microtask(() =>
+    Provider.of<TvShowWatchListNotifier>(context, listen: false)
+      ..fetchWatchlistTvShows());
   }
 
   @override
