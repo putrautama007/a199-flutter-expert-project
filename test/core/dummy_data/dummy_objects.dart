@@ -2,6 +2,7 @@ import 'package:ditonton/core/data/models/watch_list_table.dart';
 import 'package:ditonton/core/domain/entities/genre.dart';
 import 'package:ditonton/feature/feature_movie/domain/entities/movie.dart';
 import 'package:ditonton/feature/feature_movie/domain/entities/movie_detail.dart';
+import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
 
 final testMovie = Movie(
   adult: false,
@@ -51,9 +52,45 @@ final testMovieTable = WatchListTable(
   overview: 'overview',
 );
 
+final testTvShowTable = WatchListTable(
+  id: 1,
+  title: 'title',
+  posterPath: 'posterPath',
+  overview: 'overview',
+);
+
 final testMovieMap = {
   'id': 1,
   'overview': 'overview',
   'posterPath': 'posterPath',
   'title': 'title',
 };
+
+final testTvShowMap = {
+  'id': 1,
+  'overview': 'overview',
+  'posterPath': 'posterPath',
+  'title': 'title',
+};
+
+final testTvShow = TvEntities(
+  backdropPath: "/oaGvjB0DvdhXhOAuADfHb261ZHa.jpg",
+  firstAirDate: "2021-09-17",
+  genreIds: [
+    10759,
+    9648,
+    18,
+  ],
+  originCountry: ["KR"],
+  id: 93405,
+  originalLanguage: "ko",
+  originalName: "오징어 게임",
+  overview:
+      'After being bitten by a genetically altered spider, nerdy high school student Peter Parker is endowed with amazing powers to become the Amazing superhero known as Spider-Man.',
+  popularity: 60.441,
+  posterPath: '/rweIrveL43TaxUN0akQEaAXL6x0.jpg',
+  voteAverage: 7.2,
+  voteCount: 13507,
+);
+
+final testTvShowList = [testTvShow];
