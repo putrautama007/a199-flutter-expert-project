@@ -1,8 +1,8 @@
 import 'package:ditonton/core/util/color/app_colors.dart';
+import 'package:ditonton/feature/feature_home/presentation/pages/watch_list_page.dart';
 import 'package:ditonton/feature/feature_home/presentation/provider/bottom_nav_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/about_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/home_movie_page.dart';
-import 'package:ditonton/feature/feature_movie/presentation/pages/watchlist_movies_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/movie_list_notifier.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/pages/home_tv_show_page.dart';
@@ -38,43 +38,6 @@ class _BottomNavPageState extends State<BottomNavPage> {
 
   @override
   Widget build(BuildContext context) {
-    // return Scaffold(
-    //   drawer: Drawer(
-    //     child: Column(
-    //       children: [
-    //         UserAccountsDrawerHeader(
-    //           currentAccountPicture: CircleAvatar(
-    //             backgroundImage: AssetImage('assets/circle-g.png'),
-    //           ),
-    //           accountName: Text('Ditonton'),
-    //           accountEmail: Text('ditonton@dicoding.com'),
-    //         ),
-    //         ListTile(
-    //           leading: Icon(Icons.movie),
-    //           title: Text('Movies'),
-    //           onTap: () {
-    //             Navigator.pop(context);
-    //           },
-    //         ),
-    //         ListTile(
-    //           leading: Icon(Icons.save_alt),
-    //           title: Text('Watchlist'),
-    //           onTap: () {
-    //             Navigator.pushNamed(context, WatchlistMoviesPage.ROUTE_NAME);
-    //           },
-    //         ),
-    //         ListTile(
-    //           onTap: () {
-    //             Navigator.pushNamed(context, AboutPage.ROUTE_NAME);
-    //           },
-    //           leading: Icon(Icons.info_outline),
-    //           title: Text('About'),
-    //         ),
-    //       ],
-    //     ),
-    //   ),
-    // );
-
     return Consumer<BottomNavNotifier>(
       builder: (context, bottomNavNotifier, widget) {
         return Scaffold(
@@ -86,7 +49,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
               children: [
                 HomeMoviePage(),
                 HomeTVShowPage(),
-                WatchlistMoviesPage(),
+                WatchListPage(),
                 AboutPage(),
               ],
             ),
