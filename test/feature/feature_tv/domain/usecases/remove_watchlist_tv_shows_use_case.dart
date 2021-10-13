@@ -17,7 +17,7 @@ void main() {
     );
   });
 
-  test('should remove watchlist movie from repository', () async {
+  test('should remove watchlist tv show from repository', () async {
     /// arrange
     when(mockTvRepositories.removeWatchlist(testTvShowDetail))
         .thenAnswer((_) async => Right('Removed from watchlist'));
