@@ -18,6 +18,7 @@ import 'package:ditonton/feature/feature_tv/presentation/pages/popular_tv_show_p
 import 'package:ditonton/feature/feature_tv/presentation/pages/search_tv_show_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/pages/top_rated_tv_show_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_detail_page.dart';
+import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_watch_list_page.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_detail_notfier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_popular_notifier.dart';
@@ -27,6 +28,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:ditonton/core/util/di/injection.dart' as di;
+
+import 'feature/feature_tv/presentation/provider/tv_show_watchlist_notifier.dart';
 
 void main() {
   di.init();
@@ -74,6 +77,9 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(
           create: (_) => di.locator<TvShowTopRatedNotifier>(),
         ),
+        ChangeNotifierProvider(
+          create: (_) => di.locator<TvShowWatchListNotifier>(),
+        ),
       ],
       child: MaterialApp(
         title: 'Flutter Demo',
@@ -116,6 +122,8 @@ class MyApp extends StatelessWidget {
               return CupertinoPageRoute(builder: (_) => PopularTvShowPage());
             case TopRatedTvShowPage.routeName:
               return CupertinoPageRoute(builder: (_) => TopRatedTvShowPage());
+            case TvShowWatchListPage.routeName:
+              return MaterialPageRoute(builder: (_) => TvShowWatchListPage());
             default:
               return MaterialPageRoute(builder: (_) {
                 return Scaffold(
