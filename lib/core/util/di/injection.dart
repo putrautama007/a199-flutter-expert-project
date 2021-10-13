@@ -39,6 +39,7 @@ import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_n
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_popular_notifier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_search_notifier.dart';
 import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_top_rated_notifier.dart';
+import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_watchlist_notifier.dart';
 import 'package:http/http.dart' as http;
 import 'package:get_it/get_it.dart';
 
@@ -122,6 +123,12 @@ void init() {
   locator.registerFactory(
     () => TvShowTopRatedNotifier(
       getTopRatedTvShowsUseCase: locator(),
+    ),
+  );
+
+  locator.registerFactory(
+    () => TvShowWatchListNotifier(
+      getWatchListTvShowsUseCase: locator(),
     ),
   );
 
