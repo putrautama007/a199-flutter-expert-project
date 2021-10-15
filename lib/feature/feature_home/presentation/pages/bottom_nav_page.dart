@@ -57,7 +57,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
                 HomeMoviePage(),
                 const HomeTVShowPage(),
                 const WatchListPage(),
-                AboutPage(),
+                const AboutPage(),
               ],
             ),
           ),
