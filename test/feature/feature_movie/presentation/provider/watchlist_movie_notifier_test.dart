@@ -26,24 +26,28 @@ void main() {
   });
 
   test('should change movies data when data is gotten successfully', () async {
-    // arrange
+    /// arrange
     when(mockGetWatchlistMovies.execute())
-        .thenAnswer((_) async => Right([testWatchlistMovie]));
-    // act
+        .thenAnswer((_) async => const Right([testWatchlistMovie]));
+
+    /// act
     await provider.fetchWatchlistMovies();
-    // assert
+
+    /// assert
     expect(provider.watchlistState, RequestState.loaded);
     expect(provider.watchlistMovies, [testWatchlistMovie]);
     expect(listenerCallCount, 2);
   });
 
   test('should return error when data is unsuccessful', () async {
-    // arrange
+    /// arrange
     when(mockGetWatchlistMovies.execute())
-        .thenAnswer((_) async =>const Left(DatabaseFailure("Can't get data")));
-    // act
+        .thenAnswer((_) async => const Left(DatabaseFailure("Can't get data")));
+
+    /// act
     await provider.fetchWatchlistMovies();
-    // assert
+
+    /// assert
     expect(provider.watchlistState, RequestState.error);
     expect(provider.message, "Can't get data");
     expect(listenerCallCount, 2);
