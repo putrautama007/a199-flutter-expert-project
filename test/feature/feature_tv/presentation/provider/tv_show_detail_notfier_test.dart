@@ -81,7 +81,7 @@ void main() {
       tvShowDetailNotifier.fetchTvShowDetail(tvId);
 
       /// assert
-      expect(tvShowDetailNotifier.tvShowState, RequestState.Loading);
+      expect(tvShowDetailNotifier.tvShowState, RequestState.loading);
       expect(listenerCallCount, 1);
     });
 
@@ -93,7 +93,7 @@ void main() {
       await tvShowDetailNotifier.fetchTvShowDetail(tvId);
 
       /// assert
-      expect(tvShowDetailNotifier.tvShowState, RequestState.Loaded);
+      expect(tvShowDetailNotifier.tvShowState, RequestState.loaded);
       expect(tvShowDetailNotifier.tvShow, testTvShowDetail);
       expect(listenerCallCount, 3);
     });
@@ -108,7 +108,7 @@ void main() {
       await tvShowDetailNotifier.fetchTvShowDetail(tvId);
 
       /// assert
-      expect(tvShowDetailNotifier.tvShowState, RequestState.Loaded);
+      expect(tvShowDetailNotifier.tvShowState, RequestState.loaded);
       expect(tvShowDetailNotifier.tvShowRecommendations, testTvShowList);
     });
   });
@@ -136,7 +136,7 @@ void main() {
       await tvShowDetailNotifier.fetchTvShowDetail(tvId);
 
       /// assert
-      expect(tvShowDetailNotifier.recommendationState, RequestState.Loaded);
+      expect(tvShowDetailNotifier.recommendationState, RequestState.loaded);
       expect(tvShowDetailNotifier.tvShowRecommendations, testTvShowList);
     });
 
@@ -152,7 +152,7 @@ void main() {
       await tvShowDetailNotifier.fetchTvShowDetail(tvId);
 
       /// assert
-      expect(tvShowDetailNotifier.recommendationState, RequestState.Error);
+      expect(tvShowDetailNotifier.recommendationState, RequestState.error);
       expect(tvShowDetailNotifier.message, 'Failed');
     });
   });
@@ -250,7 +250,7 @@ void main() {
       await tvShowDetailNotifier.fetchTvShowDetail(tvId);
 
       /// assert
-      expect(tvShowDetailNotifier.tvShowState, RequestState.Error);
+      expect(tvShowDetailNotifier.tvShowState, RequestState.error);
       expect(tvShowDetailNotifier.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });

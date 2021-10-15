@@ -8,14 +8,14 @@ class TvShowPopularNotifier extends ChangeNotifier {
 
   TvShowPopularNotifier({required this.getPopularTvShowsUseCase});
 
-  RequestState state = RequestState.Empty;
+  RequestState state = RequestState.empty;
 
   List<TvEntities> tvShow = [];
 
   String message = '';
 
   Future<void> fetchPopularTvShows() async {
-    state = RequestState.Loading;
+    state = RequestState.loading;
     notifyListeners();
 
     final result = await getPopularTvShowsUseCase.getPopularTvShows();
@@ -23,12 +23,12 @@ class TvShowPopularNotifier extends ChangeNotifier {
     result.fold(
       (failure) {
         message = failure.message;
-        state = RequestState.Error;
+        state = RequestState.error;
         notifyListeners();
       },
       (tvEntities) {
         tvShow = tvEntities;
-        state = RequestState.Loaded;
+        state = RequestState.loaded;
         notifyListeners();
       },
     );

@@ -8,26 +8,26 @@ class TvShowSearchNotifier extends ChangeNotifier {
 
   TvShowSearchNotifier({required this.searchTvShowsUseCase});
 
-  RequestState state = RequestState.Empty;
+  RequestState state = RequestState.empty;
 
   List<TvEntities> searchResult = [];
 
   String message = '';
 
   Future<void> fetchTvShowSearch(String query) async {
-    state = RequestState.Loading;
+    state = RequestState.loading;
     notifyListeners();
 
     final result = await searchTvShowsUseCase.searchTvShows(query);
     result.fold(
       (failure) {
         message = failure.message;
-        state = RequestState.Error;
+        state = RequestState.error;
         notifyListeners();
       },
       (data) {
         searchResult = data;
-        state = RequestState.Loaded;
+        state = RequestState.loaded;
         notifyListeners();
       },
     );

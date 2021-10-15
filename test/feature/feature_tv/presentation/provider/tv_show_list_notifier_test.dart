@@ -40,7 +40,7 @@ void main() {
 
   group('now playing tv shows', () {
     test('nowPlayingState should be Empty', () {
-      expect(tvShowListNotifier.nowPlayingState, equals(RequestState.Empty));
+      expect(tvShowListNotifier.nowPlayingState, equals(RequestState.empty));
     });
 
     test('should get data from the use case', () async {
@@ -64,7 +64,7 @@ void main() {
       tvShowListNotifier.fetchNowPlayingTvShows();
 
       /// assert
-      expect(tvShowListNotifier.nowPlayingState, RequestState.Loading);
+      expect(tvShowListNotifier.nowPlayingState, RequestState.loading);
     });
 
     test('should change movies when data is gotten successfully', () async {
@@ -76,7 +76,7 @@ void main() {
       await tvShowListNotifier.fetchNowPlayingTvShows();
 
       /// assert
-      expect(tvShowListNotifier.nowPlayingState, RequestState.Loaded);
+      expect(tvShowListNotifier.nowPlayingState, RequestState.loaded);
       expect(tvShowListNotifier.nowPlayingTvShows, testTvShowList);
       expect(listenerCallCount, 2);
     });
@@ -90,7 +90,7 @@ void main() {
       await tvShowListNotifier.fetchNowPlayingTvShows();
 
       /// assert
-      expect(tvShowListNotifier.nowPlayingState, RequestState.Error);
+      expect(tvShowListNotifier.nowPlayingState, RequestState.error);
       expect(tvShowListNotifier.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });
@@ -106,7 +106,7 @@ void main() {
       tvShowListNotifier.fetchPopulargTvShows();
 
       /// assert
-      expect(tvShowListNotifier.popularState, RequestState.Loading);
+      expect(tvShowListNotifier.popularState, RequestState.loading);
     });
 
     test('should change movies data when data is gotten successfully',
@@ -119,7 +119,7 @@ void main() {
       await tvShowListNotifier.fetchPopulargTvShows();
 
       /// assert
-      expect(tvShowListNotifier.popularState, RequestState.Loaded);
+      expect(tvShowListNotifier.popularState, RequestState.loaded);
       expect(tvShowListNotifier.popularTvShows, testTvShowList);
       expect(listenerCallCount, 2);
     });
@@ -133,7 +133,7 @@ void main() {
       await tvShowListNotifier.fetchPopulargTvShows();
 
       /// assert
-      expect(tvShowListNotifier.popularState, RequestState.Error);
+      expect(tvShowListNotifier.popularState, RequestState.error);
       expect(tvShowListNotifier.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });
@@ -149,7 +149,7 @@ void main() {
       tvShowListNotifier.fetchTopRatedTvShows();
 
       /// assert
-      expect(tvShowListNotifier.topRatedState, RequestState.Loading);
+      expect(tvShowListNotifier.topRatedState, RequestState.loading);
     });
 
     test('should change movies data when data is gotten successfully',
@@ -162,7 +162,7 @@ void main() {
       await tvShowListNotifier.fetchTopRatedTvShows();
 
       /// assert
-      expect(tvShowListNotifier.topRatedState, RequestState.Loaded);
+      expect(tvShowListNotifier.topRatedState, RequestState.loaded);
       expect(tvShowListNotifier.topRatedTvShows, testTvShowList);
       expect(listenerCallCount, 2);
     });
@@ -176,7 +176,7 @@ void main() {
       await tvShowListNotifier.fetchTopRatedTvShows();
 
       /// assert
-      expect(tvShowListNotifier.topRatedState, RequestState.Error);
+      expect(tvShowListNotifier.topRatedState, RequestState.error);
       expect(tvShowListNotifier.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });

@@ -8,14 +8,14 @@ class TvShowTopRatedNotifier extends ChangeNotifier {
 
   TvShowTopRatedNotifier({required this.getTopRatedTvShowsUseCase});
 
-  RequestState state = RequestState.Empty;
+  RequestState state = RequestState.empty;
 
   List<TvEntities> tvShow = [];
 
   String message = '';
 
   Future<void> fetchTopRatedTvShows() async {
-    state = RequestState.Loading;
+    state = RequestState.loading;
     notifyListeners();
 
     final result = await getTopRatedTvShowsUseCase.getTopRatedTvShows();
@@ -23,12 +23,12 @@ class TvShowTopRatedNotifier extends ChangeNotifier {
     result.fold(
       (failure) {
         message = failure.message;
-        state = RequestState.Error;
+        state = RequestState.error;
         notifyListeners();
       },
       (tvEntities) {
         tvShow = tvEntities;
-        state = RequestState.Loaded;
+        state = RequestState.loaded;
         notifyListeners();
       },
     );

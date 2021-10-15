@@ -8,15 +8,15 @@ import 'package:flutter/material.dart';
 class TvShowListNotifier extends ChangeNotifier {
   List<TvEntities> nowPlayingTvShows = <TvEntities>[];
 
-  RequestState nowPlayingState = RequestState.Empty;
+  RequestState nowPlayingState = RequestState.empty;
 
   List<TvEntities> popularTvShows = <TvEntities>[];
 
-  RequestState popularState = RequestState.Empty;
+  RequestState popularState = RequestState.empty;
 
   List<TvEntities> topRatedTvShows = <TvEntities>[];
 
-  RequestState topRatedState = RequestState.Empty;
+  RequestState topRatedState = RequestState.empty;
 
   String message = '';
 
@@ -31,18 +31,18 @@ class TvShowListNotifier extends ChangeNotifier {
   final GetTopRatedTvShowsUseCase getTopRatedTvShowsUseCase;
 
   Future<void> fetchNowPlayingTvShows() async {
-    nowPlayingState = RequestState.Loading;
+    nowPlayingState = RequestState.loading;
     notifyListeners();
 
     final result = await getNowPlayingTvShowsUseCase.getNowPlayingTvShows();
     result.fold(
       (failure) {
-        nowPlayingState = RequestState.Error;
+        nowPlayingState = RequestState.error;
         message = failure.message;
         notifyListeners();
       },
       (List<TvEntities> tvEntities) {
-        nowPlayingState = RequestState.Loaded;
+        nowPlayingState = RequestState.loaded;
         nowPlayingTvShows = tvEntities;
         notifyListeners();
       },
@@ -50,18 +50,18 @@ class TvShowListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetchPopulargTvShows() async {
-    popularState = RequestState.Loading;
+    popularState = RequestState.loading;
     notifyListeners();
 
     final result = await getPopularTvShowsUseCase.getPopularTvShows();
     result.fold(
       (failure) {
-        popularState = RequestState.Error;
+        popularState = RequestState.error;
         message = failure.message;
         notifyListeners();
       },
       (List<TvEntities> tvEntities) {
-        popularState = RequestState.Loaded;
+        popularState = RequestState.loaded;
         popularTvShows = tvEntities;
         notifyListeners();
       },
@@ -69,18 +69,18 @@ class TvShowListNotifier extends ChangeNotifier {
   }
 
   Future<void> fetchTopRatedTvShows() async {
-    topRatedState = RequestState.Loading;
+    topRatedState = RequestState.loading;
     notifyListeners();
 
     final result = await getTopRatedTvShowsUseCase.getTopRatedTvShows();
     result.fold(
       (failure) {
-        topRatedState = RequestState.Error;
+        topRatedState = RequestState.error;
         message = failure.message;
         notifyListeners();
       },
       (List<TvEntities> tvEntities) {
-        topRatedState = RequestState.Loaded;
+        topRatedState = RequestState.loaded;
         topRatedTvShows = tvEntities;
         notifyListeners();
       },

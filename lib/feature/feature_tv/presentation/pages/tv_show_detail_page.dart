@@ -38,11 +38,11 @@ class _TvShowDetailPageState extends State<TvShowDetailPage> {
     return Scaffold(
       body: Consumer<TvShowDetailNotifier>(
         builder: (context, provider, child) {
-          if (provider.tvShowState == RequestState.Loading) {
+          if (provider.tvShowState == RequestState.loading) {
             return Center(
               child: CircularProgressIndicator(),
             );
-          } else if (provider.tvShowState == RequestState.Loaded) {
+          } else if (provider.tvShowState == RequestState.loaded) {
             final tvShow = provider.tvShow;
             return SafeArea(
               child: DetailContent(
@@ -251,15 +251,15 @@ class DetailContent extends StatelessWidget {
                             Consumer<TvShowDetailNotifier>(
                               builder: (context, data, child) {
                                 if (data.recommendationState ==
-                                    RequestState.Loading) {
+                                    RequestState.loading) {
                                   return Center(
                                     child: CircularProgressIndicator(),
                                   );
                                 } else if (data.recommendationState ==
-                                    RequestState.Error) {
+                                    RequestState.error) {
                                   return Text(data.message);
                                 } else if (data.recommendationState ==
-                                    RequestState.Loaded) {
+                                    RequestState.loaded) {
                                   return Container(
                                     height: 150,
                                     child: ListView.builder(

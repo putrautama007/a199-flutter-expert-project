@@ -38,7 +38,7 @@ void main() {
       tvShowSearchNotifier.fetchTvShowSearch(tvQuery);
 
       /// assert
-      expect(tvShowSearchNotifier.state, RequestState.Loading);
+      expect(tvShowSearchNotifier.state, RequestState.loading);
     });
 
     test('should change search result data when data is gotten successfully',
@@ -51,7 +51,7 @@ void main() {
       await tvShowSearchNotifier.fetchTvShowSearch(tvQuery);
 
       /// assert
-      expect(tvShowSearchNotifier.state, RequestState.Loaded);
+      expect(tvShowSearchNotifier.state, RequestState.loaded);
       expect(tvShowSearchNotifier.searchResult, testTvShowList);
       expect(listenerCallCount, 2);
     });
@@ -65,7 +65,7 @@ void main() {
       await tvShowSearchNotifier.fetchTvShowSearch(tvQuery);
 
       /// assert
-      expect(tvShowSearchNotifier.state, RequestState.Error);
+      expect(tvShowSearchNotifier.state, RequestState.error);
       expect(tvShowSearchNotifier.message, 'Server Failure');
       expect(listenerCallCount, 2);
     });

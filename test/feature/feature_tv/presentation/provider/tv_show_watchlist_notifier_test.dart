@@ -35,7 +35,7 @@ void main() {
     await tvShowWatchListNotifier.fetchWatchlistTvShows();
 
     /// assert
-    expect(tvShowWatchListNotifier.watchlistState, RequestState.Loaded);
+    expect(tvShowWatchListNotifier.watchlistState, RequestState.loaded);
     expect(tvShowWatchListNotifier.watchlistTvShows, [testWatchlistTvShow]);
     expect(listenerCallCount, 2);
   });
@@ -49,7 +49,7 @@ void main() {
     await tvShowWatchListNotifier.fetchWatchlistTvShows();
 
     /// assert
-    expect(tvShowWatchListNotifier.watchlistState, RequestState.Error);
+    expect(tvShowWatchListNotifier.watchlistState, RequestState.error);
     expect(tvShowWatchListNotifier.message, "Can't get data");
     expect(listenerCallCount, 2);
   });

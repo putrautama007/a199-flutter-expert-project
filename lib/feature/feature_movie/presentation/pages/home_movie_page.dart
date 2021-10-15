@@ -33,11 +33,11 @@ class HomeMoviePage extends StatelessWidget {
               ),
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.loading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.loaded) {
                   return movieList(data.nowPlayingMovies);
                 } else {
                   return Text('Failed');
@@ -50,11 +50,11 @@ class HomeMoviePage extends StatelessWidget {
               ),
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.popularMoviesState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.loading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.loaded) {
                   return movieList(data.popularMovies);
                 } else {
                   return Text('Failed');
@@ -67,11 +67,11 @@ class HomeMoviePage extends StatelessWidget {
               ),
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedMoviesState;
-                if (state == RequestState.Loading) {
+                if (state == RequestState.loading) {
                   return Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state == RequestState.Loaded) {
+                } else if (state == RequestState.loaded) {
                   return movieList(data.topRatedMovies);
                 } else {
                   return Text('Failed');

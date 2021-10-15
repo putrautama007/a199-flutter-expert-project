@@ -6,7 +6,7 @@ import 'package:flutter/material.dart';
 class TvShowWatchListNotifier extends ChangeNotifier {
   var watchlistTvShows = <TvEntities>[];
 
-  var watchlistState = RequestState.Empty;
+  var watchlistState = RequestState.empty;
 
   String message = '';
 
@@ -15,18 +15,18 @@ class TvShowWatchListNotifier extends ChangeNotifier {
   final GetWatchListTvShowsUseCase getWatchListTvShowsUseCase;
 
   Future<void> fetchWatchlistTvShows() async {
-    watchlistState = RequestState.Loading;
+    watchlistState = RequestState.loading;
     notifyListeners();
 
     final result = await getWatchListTvShowsUseCase.getWatchlistTvShows();
     result.fold(
       (failure) {
-        watchlistState = RequestState.Error;
+        watchlistState = RequestState.error;
         message = failure.message;
         notifyListeners();
       },
       (tvShowData) {
-        watchlistState = RequestState.Loaded;
+        watchlistState = RequestState.loaded;
         watchlistTvShows = tvShowData;
         notifyListeners();
       },

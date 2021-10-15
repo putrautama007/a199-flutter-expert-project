@@ -35,7 +35,7 @@ void main() {
     tvShowPopularNotifier.fetchPopularTvShows();
 
     /// assert
-    expect(tvShowPopularNotifier.state, RequestState.Loading);
+    expect(tvShowPopularNotifier.state, RequestState.loading);
     expect(listenerCallCount, 1);
   });
 
@@ -48,7 +48,7 @@ void main() {
     await tvShowPopularNotifier.fetchPopularTvShows();
 
     /// assert
-    expect(tvShowPopularNotifier.state, RequestState.Loaded);
+    expect(tvShowPopularNotifier.state, RequestState.loaded);
     expect(tvShowPopularNotifier.tvShow, testTvShowList);
     expect(listenerCallCount, 2);
   });
@@ -62,7 +62,7 @@ void main() {
     await tvShowPopularNotifier.fetchPopularTvShows();
 
     /// assert
-    expect(tvShowPopularNotifier.state, RequestState.Error);
+    expect(tvShowPopularNotifier.state, RequestState.error);
     expect(tvShowPopularNotifier.message, 'Server Failure');
     expect(listenerCallCount, 2);
   });

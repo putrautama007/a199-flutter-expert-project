@@ -32,11 +32,11 @@ class _PopularTvShowPageState extends State<PopularTvShowPage> {
         padding: const EdgeInsets.all(8.0),
         child: Consumer<TvShowPopularNotifier>(
           builder: (context, data, child) {
-            if (data.state == RequestState.Loading) {
+            if (data.state == RequestState.loading) {
               return Center(
                 child: CircularProgressIndicator(),
               );
-            } else if (data.state == RequestState.Loaded) {
+            } else if (data.state == RequestState.loaded) {
               return ListView.builder(
                 itemBuilder: (context, index) {
                   final tvShow = data.tvShow[index];
