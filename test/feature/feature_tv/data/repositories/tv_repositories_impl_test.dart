@@ -45,9 +45,9 @@ void main() {
     originCountry: ["KR"],
   );
 
-  final tvShowEntity = TvEntities(
+  const tvShowEntity = TvEntities(
     backdropPath: "/path.jpg",
-    genreIds: const [1, 2, 3, 4],
+    genreIds: [1, 2, 3, 4],
     id: 93405,
     overview: "overview",
     popularity: 1.0,
@@ -57,7 +57,7 @@ void main() {
     originalName: 'original_name',
     firstAirDate: 'firstAirDate',
     originalLanguage: 'ko',
-    originCountry: const ["KR"],
+    originCountry: ["KR"],
   );
 
   final tvShowModelList = <TvModel>[tvShowModel];
