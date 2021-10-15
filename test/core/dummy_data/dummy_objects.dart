@@ -7,7 +7,7 @@ import 'package:ditonton/feature/feature_tv/domain/entities/season_entities.dart
 import 'package:ditonton/feature/feature_tv/domain/entities/tv_detail_entities.dart';
 import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
 
-final testMovie = Movie(
+const testMovie = Movie(
   adult: false,
   backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
   genreIds: [14, 28],
@@ -26,7 +26,7 @@ final testMovie = Movie(
 
 final testMovieList = [testMovie];
 
-final testMovieDetail = MovieDetail(
+const testMovieDetail = MovieDetail(
   adult: false,
   backdropPath: 'backdropPath',
   genres: [Genre(id: 1, name: 'Action')],
@@ -41,7 +41,7 @@ final testMovieDetail = MovieDetail(
   voteCount: 1,
 );
 
-final testTvShowDetail = TvDetailEntities(
+const testTvShowDetail = TvDetailEntities(
   backdropPath: 'backdropPath',
   genres: [Genre(id: 1, name: 'Action')],
   homepage: "https://google.com",
@@ -102,28 +102,28 @@ final testTvShowDetail = TvDetailEntities(
   name: 'title',
 );
 
-final testWatchlistMovie = Movie.watchlist(
+const testWatchlistMovie = Movie.watchlist(
   id: 1,
   title: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
 );
 
-final testWatchlistTvShow = TvEntities.watchlist(
+const testWatchlistTvShow = TvEntities.watchlist(
   id: 1,
   originalName: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
 );
 
-final testMovieTable = WatchListTable(
+const testMovieTable = WatchListTable(
   id: 1,
   title: 'title',
   posterPath: 'posterPath',
   overview: 'overview',
 );
 
-final testTvShowTable = WatchListTable(
+const testTvShowTable = WatchListTable(
   id: 1,
   title: 'title',
   posterPath: 'posterPath',
@@ -144,7 +144,7 @@ final testTvShowMap = {
   'title': 'title',
 };
 
-final testTvShow = TvEntities(
+const testTvShow = TvEntities(
   backdropPath: "/oaGvjB0DvdhXhOAuADfHb261ZHa.jpg",
   firstAirDate: "2021-09-17",
   genreIds: [
