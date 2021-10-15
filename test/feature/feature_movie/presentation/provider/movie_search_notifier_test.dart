@@ -25,7 +25,7 @@ void main() {
       });
   });
 
-  final tMovieModel = Movie(
+  const tMovieModel = Movie(
     adult: false,
     backdropPath: '/muth4OYamXf41G2evdrLEg8d3om.jpg',
     genreIds: [14, 28],
@@ -42,39 +42,45 @@ void main() {
     voteCount: 13507,
   );
   final tMovieList = <Movie>[tMovieModel];
-  final tQuery = 'spiderman';
+  const tQuery = 'spiderman';
 
   group('search movies', () {
     test('should change state to loading when usecase is called', () async {
-      // arrange
+      /// arrange
       when(mockSearchMovies.execute(tQuery))
           .thenAnswer((_) async => Right(tMovieList));
-      // act
+
+      /// act
       provider.fetchMovieSearch(tQuery);
-      // assert
+
+      /// assert
       expect(provider.state, RequestState.loading);
     });
 
     test('should change search result data when data is gotten successfully',
         () async {
-      // arrange
+      /// arrange
       when(mockSearchMovies.execute(tQuery))
           .thenAnswer((_) async => Right(tMovieList));
-      // act
+
+      /// act
       await provider.fetchMovieSearch(tQuery);
-      // assert
+
+      /// assert
       expect(provider.state, RequestState.loaded);
       expect(provider.searchResult, tMovieList);
       expect(listenerCallCount, 2);
     });
 
     test('should return error when data is unsuccessful', () async {
-      // arrange
+      /// arrange
       when(mockSearchMovies.execute(tQuery))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-      // act
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
+
+      /// act
       await provider.fetchMovieSearch(tQuery);
-      // assert
+
+      /// assert
       expect(provider.state, RequestState.error);
       expect(provider.message, 'Server Failure');
       expect(listenerCallCount, 2);
