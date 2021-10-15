@@ -30,7 +30,7 @@ void main() {
     );
   });
 
-  final tvShowModel = TvModel(
+  const tvShowModel = TvModel(
     backdropPath: "/path.jpg",
     genreIds: [1, 2, 3, 4],
     id: 93405,
@@ -47,7 +47,7 @@ void main() {
 
   final tvShowEntity = TvEntities(
     backdropPath: "/path.jpg",
-    genreIds: [1, 2, 3, 4],
+    genreIds: const [1, 2, 3, 4],
     id: 93405,
     overview: "overview",
     popularity: 1.0,
@@ -57,7 +57,7 @@ void main() {
     originalName: 'original_name',
     firstAirDate: 'firstAirDate',
     originalLanguage: 'ko',
-    originCountry: ["KR"],
+    originCountry: const ["KR"],
   );
 
   final tvShowModelList = <TvModel>[tvShowModel];
@@ -92,7 +92,7 @@ void main() {
 
       /// assert
       verify(mockTvRemoteDataSource.getNowPlayingTvShows());
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test(
@@ -100,15 +100,17 @@ void main() {
         () async {
       /// arrange
       when(mockTvRemoteDataSource.getNowPlayingTvShows())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       /// act
       final result = await tvRepositoriesImpl.getNowPlayingTvShows();
 
       /// assert
       verify(mockTvRemoteDataSource.getNowPlayingTvShows());
-      expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+      expect(
+          result,
+          equals(const Left(
+              ConnectionFailure('Failed to connect to the network'))));
     });
   });
 
@@ -138,7 +140,7 @@ void main() {
       final result = await tvRepositoriesImpl.getPopularTvShows();
 
       /// assert
-      expect(result, Left(ServerFailure('')));
+      expect(result, const Left(ServerFailure('')));
     });
 
     test(
@@ -146,14 +148,14 @@ void main() {
         () async {
       /// arrange
       when(mockTvRemoteDataSource.getPopularTvShows())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       /// act
       final result = await tvRepositoriesImpl.getPopularTvShows();
 
       /// assert
-      expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+      expect(result,
+          const Left(ConnectionFailure('Failed to connect to the network')));
     });
   });
 
@@ -182,7 +184,7 @@ void main() {
       final result = await tvRepositoriesImpl.getTopRatedTvShows();
 
       /// assert
-      expect(result, Left(ServerFailure('')));
+      expect(result, const Left(ServerFailure('')));
     });
 
     test(
@@ -190,20 +192,20 @@ void main() {
         () async {
       /// arrange
       when(mockTvRemoteDataSource.getTopRatedTvShows())
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       /// act
       final result = await tvRepositoriesImpl.getTopRatedTvShows();
 
       /// assert
-      expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+      expect(result,
+          const Left(ConnectionFailure('Failed to connect to the network')));
     });
   });
 
   group('Get Tv Show Detail', () {
-    final tvId = "1";
-    final tvShowResponse = TvDetailModel(
+    const tvId = "1";
+    const tvShowResponse = TvDetailModel(
       backdropPath: 'backdropPath',
       genres: [GenreModel(id: 1, name: 'Action')],
       homepage: "https://google.com",
@@ -291,7 +293,7 @@ void main() {
 
       /// assert
       verify(mockTvRemoteDataSource.getDetailTvShows(tvId: tvId));
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test(
@@ -299,21 +301,23 @@ void main() {
         () async {
       /// arrange
       when(mockTvRemoteDataSource.getDetailTvShows(tvId: tvId))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       /// act
       final result = await tvRepositoriesImpl.getDetailTvShows(tvId: tvId);
 
       /// assert
       verify(mockTvRemoteDataSource.getDetailTvShows(tvId: tvId));
-      expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+      expect(
+          result,
+          equals(const Left(
+              ConnectionFailure('Failed to connect to the network'))));
     });
   });
 
   group('Get Tv Show Recommendations', () {
     final tvShowList = <TvModel>[];
-    final tvId = "1";
+    const tvId = "1";
 
     test('should return data tv model list when the call is successful',
         () async {
@@ -344,7 +348,7 @@ void main() {
 
       /// assert
       verify(mockTvRemoteDataSource.getRecommendationTvShows(tvId: tvId));
-      expect(result, equals(Left(ServerFailure(''))));
+      expect(result, equals(const Left(ServerFailure(''))));
     });
 
     test(
@@ -352,7 +356,7 @@ void main() {
         () async {
       /// arrange
       when(mockTvRemoteDataSource.getRecommendationTvShows(tvId: tvId))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       /// act
       final result =
@@ -360,13 +364,15 @@ void main() {
 
       /// assert
       verify(mockTvRemoteDataSource.getRecommendationTvShows(tvId: tvId));
-      expect(result,
-          equals(Left(ConnectionFailure('Failed to connect to the network'))));
+      expect(
+          result,
+          equals(const Left(
+              ConnectionFailure('Failed to connect to the network'))));
     });
   });
 
   group('Search Tv Show', () {
-    final tvShowQuery = 'Squid Game';
+    const tvShowQuery = 'Squid Game';
 
     test('should return tv show list when call to data source is successful',
         () async {
@@ -392,7 +398,7 @@ void main() {
       final result = await tvRepositoriesImpl.searchTvShows(tvShowQuery);
 
       /// assert
-      expect(result, Left(ServerFailure('')));
+      expect(result, const Left(ServerFailure('')));
     });
 
     test(
@@ -400,14 +406,14 @@ void main() {
         () async {
       /// arrange
       when(mockTvRemoteDataSource.searchTvShows(tvShowQuery))
-          .thenThrow(SocketException('Failed to connect to the network'));
+          .thenThrow(const SocketException('Failed to connect to the network'));
 
       /// act
       final result = await tvRepositoriesImpl.searchTvShows(tvShowQuery);
 
       /// assert
-      expect(
-          result, Left(ConnectionFailure('Failed to connect to the network')));
+      expect(result,
+          const Left(ConnectionFailure('Failed to connect to the network')));
     });
   });
 
@@ -421,7 +427,7 @@ void main() {
       final result = await tvRepositoriesImpl.saveWatchlist(testTvShowDetail);
 
       /// assert
-      expect(result, Right('Added to Watchlist'));
+      expect(result, const Right('Added to Watchlist'));
     });
 
     test('should return DatabaseFailure when saving unsuccessful', () async {
@@ -433,7 +439,7 @@ void main() {
       final result = await tvRepositoriesImpl.saveWatchlist(testTvShowDetail);
 
       /// assert
-      expect(result, Left(DatabaseFailure('Failed to add watchlist')));
+      expect(result, const Left(DatabaseFailure('Failed to add watchlist')));
     });
   });
 
@@ -447,24 +453,26 @@ void main() {
       final result = await tvRepositoriesImpl.removeWatchlist(testTvShowDetail);
 
       /// assert
-      expect(result, Right('Removed from watchlist'));
+      expect(result, const Right('Removed from watchlist'));
     });
 
     test('should return DatabaseFailure when remove unsuccessful', () async {
-      // arrange
+      /// arrange
       when(mockTvLocalDataSource.removeWatchlist(testMovieTable))
           .thenThrow(DatabaseException('Failed to remove watchlist'));
-      // act
+
+      /// act
       final result = await tvRepositoriesImpl.removeWatchlist(testTvShowDetail);
-      // assert
-      expect(result, Left(DatabaseFailure('Failed to remove watchlist')));
+
+      /// assert
+      expect(result, const Left(DatabaseFailure('Failed to remove watchlist')));
     });
   });
 
   group('get tv show watchlist status', () {
     test('should return watch status whether data is found', () async {
       /// arrange
-      final tvId = 1;
+      const tvId = 1;
       when(mockTvLocalDataSource.getTvShowById(tvId))
           .thenAnswer((_) async => null);
 
