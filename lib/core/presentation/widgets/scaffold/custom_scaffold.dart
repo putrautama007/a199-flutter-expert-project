@@ -22,7 +22,7 @@ class CustomScaffold extends StatelessWidget {
             onPressed: () {
               Navigator.pushNamed(context, searchRoute);
             },
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
           )
         ],
       ),
