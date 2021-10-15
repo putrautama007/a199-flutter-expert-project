@@ -2,7 +2,7 @@ import 'package:ditonton/core/domain/entities/genre.dart';
 import 'package:equatable/equatable.dart';
 
 class GenreModel extends Equatable {
-  GenreModel({
+  const GenreModel({
     required this.id,
     required this.name,
   });
@@ -15,13 +15,8 @@ class GenreModel extends Equatable {
         name: json["name"],
       );
 
-  Map<String, dynamic> toJson() => {
-        "id": id,
-        "name": name,
-      };
-
   Genre toEntity() {
-    return Genre(id: this.id, name: this.name);
+    return Genre(id: id, name: name);
   }
 
   @override
