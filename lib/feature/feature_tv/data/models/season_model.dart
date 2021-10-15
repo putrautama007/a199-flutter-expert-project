@@ -2,7 +2,7 @@ import 'package:ditonton/feature/feature_tv/domain/entities/season_entities.dart
 import 'package:equatable/equatable.dart';
 
 class SeasonModel extends Equatable {
-  SeasonModel({
+  const SeasonModel({
     required this.airDate,
     required this.episodeCount,
     required this.id,
