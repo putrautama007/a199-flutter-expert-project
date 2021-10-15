@@ -7,7 +7,7 @@ import 'package:flutter_test/flutter_test.dart';
 import '../../../../core/json_reader.dart';
 
 void main() {
-  final tvShowModel = TvModel(
+  const tvShowModel = TvModel(
     backdropPath: "/path.jpg",
     genreIds: [1, 2, 3, 4],
     id: 93405,
@@ -21,7 +21,7 @@ void main() {
     originalLanguage: 'ko',
     originCountry: ["KR"],
   );
-  final tShowResponseModel =
+  const tShowResponseModel =
       TvResponse(tvList: <TvModel>[tvShowModel]);
   group('fromJson', () {
     test('should return a valid tv show model from JSON', () async {
