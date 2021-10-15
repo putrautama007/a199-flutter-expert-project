@@ -2,6 +2,7 @@ import 'package:ditonton/core/util/common/state_enum.dart';
 import 'package:ditonton/feature/feature_movie/domain/entities/movie.dart';
 import 'package:ditonton/feature/feature_movie/presentation/pages/popular_movies_page.dart';
 import 'package:ditonton/feature/feature_movie/presentation/provider/popular_movies_notifier.dart';
+import 'package:ditonton/feature/feature_movie/presentation/widgets/movie_card_list.dart';
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
@@ -47,6 +48,34 @@ void main() {
     when(mockNotifier.movies).thenReturn(<Movie>[]);
 
     final listViewFinder = find.byType(ListView);
+
+    await tester.pumpWidget(_makeTestableWidget(const PopularMoviesPage()));
+
+    expect(listViewFinder, findsOneWidget);
+  });
+
+  testWidgets('Page should display MovieCard when data is loaded',
+      (WidgetTester tester) async {
+    when(mockNotifier.state).thenReturn(RequestState.loaded);
+    when(mockNotifier.movies).thenReturn(<Movie>[
+      const Movie(
+        adult: false,
+        backdropPath: "backdropPath",
+        genreIds: [1, 2],
+        id: 1,
+        originalTitle: "originalTitle",
+        overview: "overview",
+        popularity: 0.0,
+        posterPath: "posterPath",
+        releaseDate: "releaseDate",
+        title: "title",
+        video: false,
+        voteAverage: 0.0,
+        voteCount: 0,
+      ),
+    ]);
+
+    final listViewFinder = find.byType(MovieCard);
 
     await tester.pumpWidget(_makeTestableWidget(const PopularMoviesPage()));
 
