@@ -188,12 +188,10 @@ class DetailContent extends StatelessWidget {
                             ),
                             Text(
                               'Number of Episode : ${tvShow.numberOfEpisodes}',
-                              style: kSubtitle,
                             ),
                             const SizedBox(height: 8),
                             Text(
                               'Last Episode : ${tvShow.lastEpisodeToAir.episodeNumber}',
-                              style: kSubtitle,
                             ),
                             const SizedBox(height: 8),
                             SizedBox(
