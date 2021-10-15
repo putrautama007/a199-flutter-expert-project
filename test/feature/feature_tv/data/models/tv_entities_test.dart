@@ -3,7 +3,7 @@ import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-  final tvShowModel = TvModel(
+  const tvShowModel = TvModel(
     backdropPath: "/path.jpg",
     genreIds: [1, 2, 3, 4],
     id: 93405,
@@ -18,7 +18,7 @@ void main() {
     originCountry: ["KR"],
   );
 
-  final tvShowEntity = TvEntities(
+  const tvShowEntity = TvEntities(
     backdropPath: "/path.jpg",
     genreIds: [1, 2, 3, 4],
     id: 93405,
