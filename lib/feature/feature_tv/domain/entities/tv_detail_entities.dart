@@ -4,7 +4,7 @@ import 'package:ditonton/feature/feature_tv/domain/entities/season_entities.dart
 import 'package:equatable/equatable.dart';
 
 class TvDetailEntities extends Equatable {
-  TvDetailEntities({
+  const TvDetailEntities({
     required this.backdropPath,
     required this.episodeRunTime,
     required this.firstAirDate,
