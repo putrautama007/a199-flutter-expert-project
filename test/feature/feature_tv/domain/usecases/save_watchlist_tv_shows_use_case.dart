@@ -20,7 +20,7 @@ void main() {
   test('should save tv show to the repository', () async {
     /// arrange
     when(mockTvRepositories.saveWatchlist(testTvShowDetail))
-        .thenAnswer((_) async => Right('Added to Watchlist'));
+        .thenAnswer((_) async => const Right('Added to Watchlist'));
 
     /// act
     final result =
@@ -28,6 +28,6 @@ void main() {
 
     /// assert
     verify(mockTvRepositories.saveWatchlist(testTvShowDetail));
-    expect(result, Right('Added to Watchlist'));
+    expect(result, const Right('Added to Watchlist'));
   });
 }
