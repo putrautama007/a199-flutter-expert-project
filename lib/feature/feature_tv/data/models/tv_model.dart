@@ -2,7 +2,7 @@ import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
 import 'package:equatable/equatable.dart';
 
 class TvModel extends Equatable {
-  TvModel({
+  const TvModel({
     required this.backdropPath,
     required this.firstAirDate,
     required this.genreIds,
@@ -46,18 +46,18 @@ class TvModel extends Equatable {
       );
 
   TvEntities toEntity() =>  TvEntities(
-    firstAirDate: this.firstAirDate,
-    backdropPath: this.backdropPath,
-    genreIds: this.genreIds,
-    originCountry: this.originCountry,
-    id: this.id,
-    originalLanguage: this.originalLanguage,
-    originalName: this.originalName,
-    overview: this.overview,
-    popularity: this.popularity,
-    posterPath: this.posterPath,
-    voteAverage: this.voteAverage,
-    voteCount: this.voteCount,
+    firstAirDate: firstAirDate,
+    backdropPath: backdropPath,
+    genreIds: genreIds,
+    originCountry: originCountry,
+    id: id,
+    originalLanguage: originalLanguage,
+    originalName: originalName,
+    overview: overview,
+    popularity: popularity,
+    posterPath: posterPath,
+    voteAverage: voteAverage,
+    voteCount: voteCount,
   );
 
   @override
