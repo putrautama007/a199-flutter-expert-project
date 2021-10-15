@@ -16,6 +16,8 @@ import 'package:flutter/widgets.dart';
 import 'package:provider/provider.dart';
 
 class HomeMoviePage extends StatelessWidget {
+  const HomeMoviePage({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
@@ -34,13 +36,13 @@ class HomeMoviePage extends StatelessWidget {
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;
                 if (state == RequestState.loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.loaded) {
                   return movieList(data.nowPlayingMovies);
                 } else {
-                  return Text('Failed');
+                  return const Text('Failed');
                 }
               }),
               SeeMoreButton(
@@ -51,13 +53,13 @@ class HomeMoviePage extends StatelessWidget {
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.popularMoviesState;
                 if (state == RequestState.loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.loaded) {
                   return movieList(data.popularMovies);
                 } else {
-                  return Text('Failed');
+                  return const Text('Failed');
                 }
               }),
               SeeMoreButton(
@@ -68,13 +70,13 @@ class HomeMoviePage extends StatelessWidget {
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedMoviesState;
                 if (state == RequestState.loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.loaded) {
                   return movieList(data.topRatedMovies);
                 } else {
-                  return Text('Failed');
+                  return const Text('Failed');
                 }
               }),
             ],
@@ -85,8 +87,8 @@ class HomeMoviePage extends StatelessWidget {
   }
 
 
-  Container movieList(List<Movie> movies) =>
-      Container(
+  SizedBox movieList(List<Movie> movies) =>
+      SizedBox(
         height: 200,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -103,14 +105,14 @@ class HomeMoviePage extends StatelessWidget {
                   );
                 },
                 child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  borderRadius: const BorderRadius.all(Radius.circular(16)),
                   child: CachedNetworkImage(
                     imageUrl: '$baseImageUrl${movie.posterPath}',
                     placeholder: (context, url) =>
-                        Center(
+                        const Center(
                           child: CircularProgressIndicator(),
                         ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    errorWidget: (context, url, error) => const Icon(Icons.error),
                   ),
                 ),
               ),
