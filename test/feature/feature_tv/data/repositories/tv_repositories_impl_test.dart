@@ -278,7 +278,7 @@ void main() {
 
       /// assert
       verify(mockTvRemoteDataSource.getDetailTvShows(tvId: tvId));
-      expect(result, equals(Right(testTvShowDetail)));
+      expect(result, equals(const Right(testTvShowDetail)));
     });
 
     test(
