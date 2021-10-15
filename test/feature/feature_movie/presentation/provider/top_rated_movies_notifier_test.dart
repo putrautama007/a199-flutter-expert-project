@@ -25,7 +25,7 @@ void main() {
       });
   });
 
-  final tMovie = Movie(
+  const tMovie = Movie(
     adult: false,
     backdropPath: 'backdropPath',
     genreIds: [1, 2, 3],
@@ -44,35 +44,35 @@ void main() {
   final tMovieList = <Movie>[tMovie];
 
   test('should change state to loading when usecase is called', () async {
-    // arrange
+    /// arrange
     when(mockGetTopRatedMovies.execute())
         .thenAnswer((_) async => Right(tMovieList));
-    // act
+    /// act
     notifier.fetchTopRatedMovies();
-    // assert
+    /// assert
     expect(notifier.state, RequestState.loading);
     expect(listenerCallCount, 1);
   });
 
   test('should change movies data when data is gotten successfully', () async {
-    // arrange
+    /// arrange
     when(mockGetTopRatedMovies.execute())
         .thenAnswer((_) async => Right(tMovieList));
-    // act
+    /// act
     await notifier.fetchTopRatedMovies();
-    // assert
+    /// assert
     expect(notifier.state, RequestState.loaded);
     expect(notifier.movies, tMovieList);
     expect(listenerCallCount, 2);
   });
 
   test('should return error when data is unsuccessful', () async {
-    // arrange
+    /// arrange
     when(mockGetTopRatedMovies.execute())
-        .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
-    // act
+        .thenAnswer((_) async =>const Left(ServerFailure('Server Failure')));
+    /// act
     await notifier.fetchTopRatedMovies();
-    // assert
+    /// assert
     expect(notifier.state, RequestState.error);
     expect(notifier.message, 'Server Failure');
     expect(listenerCallCount, 2);
