@@ -20,7 +20,7 @@ void main() {
   test('should remove watchlist tv show from repository', () async {
     /// arrange
     when(mockTvRepositories.removeWatchlist(testTvShowDetail))
-        .thenAnswer((_) async => Right('Removed from watchlist'));
+        .thenAnswer((_) async => const Right('Removed from watchlist'));
 
     /// act
     final result =
@@ -28,6 +28,6 @@ void main() {
 
     /// assert
     verify(mockTvRepositories.removeWatchlist(testTvShowDetail));
-    expect(result, Right('Removed from watchlist'));
+    expect(result, const Right('Removed from watchlist'));
   });
 }
