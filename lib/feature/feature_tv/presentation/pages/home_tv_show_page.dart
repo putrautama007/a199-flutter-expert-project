@@ -113,7 +113,7 @@ class HomeTVShowPage extends StatelessWidget {
                 child: ClipRRect(
                   borderRadius: BorderRadius.all(Radius.circular(16)),
                   child: CachedNetworkImage(
-                    imageUrl: '$BASE_IMAGE_URL${movie.posterPath}',
+                    imageUrl: '$baseImageUrl${movie.posterPath}',
                     placeholder: (context, url) => Center(
                       child: CircularProgressIndicator(),
                     ),

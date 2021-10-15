@@ -61,7 +61,7 @@ class TvShowCard extends StatelessWidget {
               ),
               child: ClipRRect(
                 child: CachedNetworkImage(
-                  imageUrl: '$BASE_IMAGE_URL${tvEntities.posterPath}',
+                  imageUrl: '$baseImageUrl${tvEntities.posterPath}',
                   width: 80,
                   placeholder: (context, url) => Center(
                     child: CircularProgressIndicator(),
