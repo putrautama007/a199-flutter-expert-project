@@ -96,7 +96,7 @@ class MyApp extends StatelessWidget {
               return MaterialPageRoute(builder: (_) => BottomNavPage());
             case PopularMoviesPage.routeName:
               return CupertinoPageRoute(builder: (_) => PopularMoviesPage());
-            case TopRatedMoviesPage.ROUTE_NAME:
+            case TopRatedMoviesPage.routeName:
               return CupertinoPageRoute(builder: (_) => TopRatedMoviesPage());
             case MovieDetailPage.routeName:
               final id = settings.arguments as int;
