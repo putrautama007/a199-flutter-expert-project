@@ -30,7 +30,7 @@ class _TvShowWatchListPageState extends State<TvShowWatchListPage> {
         child: Consumer<TvShowWatchListNotifier>(
           builder: (context, data, child) {
             if (data.watchlistState == RequestState.loading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (data.watchlistState == RequestState.loaded) {
@@ -45,7 +45,7 @@ class _TvShowWatchListPageState extends State<TvShowWatchListPage> {
               );
             } else {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(data.message),
               );
             }
