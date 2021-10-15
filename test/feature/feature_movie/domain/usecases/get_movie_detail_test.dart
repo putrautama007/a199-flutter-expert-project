@@ -6,7 +6,6 @@ import 'package:mockito/mockito.dart';
 import '../../../../core/dummy_data/dummy_objects.dart';
 import '../../../../core/helpers/test_helper.mocks.dart';
 
-
 void main() {
   late GetMovieDetail usecase;
   late MockMovieRepository mockMovieRepository;
@@ -16,15 +15,17 @@ void main() {
     usecase = GetMovieDetail(mockMovieRepository);
   });
 
-  final tId = 1;
+  const tId = 1;
 
   test('should get movie detail from the repository', () async {
-    // arrange
+    /// arrange
     when(mockMovieRepository.getMovieDetail(tId))
-        .thenAnswer((_) async => Right(testMovieDetail));
-    // act
+        .thenAnswer((_) async => const Right(testMovieDetail));
+
+    /// act
     final result = await usecase.execute(tId);
-    // assert
-    expect(result, Right(testMovieDetail));
+
+    /// assert
+    expect(result, const Right(testMovieDetail));
   });
 }
