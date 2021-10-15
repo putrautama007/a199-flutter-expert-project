@@ -146,7 +146,7 @@ void main() {
           .thenAnswer((_) async => Right(testTvShowDetail));
       when(mockGetRecommendationTvShowsUseCase.getRecommendationTvShows(
               tvId: tvId))
-          .thenAnswer((_) async => Left(ServerFailure('Failed')));
+          .thenAnswer((_) async => Left(const ServerFailure('Failed')));
 
       /// act
       await tvShowDetailNotifier.fetchTvShowDetail(tvId);
