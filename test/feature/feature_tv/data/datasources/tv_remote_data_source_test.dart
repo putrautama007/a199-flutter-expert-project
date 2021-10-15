@@ -128,7 +128,7 @@ void main() {
   });
 
   group('get tv show detail', () {
-    final tvShowId = "93405";
+    const tvShowId = "93405";
     final tvShowDetail = TvDetailModel.fromJson(
         json.decode(readJson('core/dummy_data/tv_show_detail.json')));
 
@@ -167,7 +167,7 @@ void main() {
     final tvShowList = TvResponse.fromJson(json
             .decode(readJson('core/dummy_data/tv_show_recommendations.json')))
         .tvList;
-    final tvShowId = "93405";
+    const tvShowId = "93405";
 
     test('should return list of Tv Show Model when the response code is 200',
         () async {
@@ -205,7 +205,7 @@ void main() {
     final tvShowSearchResult = TvResponse.fromJson(
             json.decode(readJson('core/dummy_data/tv_show_search.json')))
         .tvList;
-    final tQuery = 'Squid Game';
+    const tQuery = 'Squid Game';
 
     test('should return list of tv show when response code is 200', () async {
       /// arrange
