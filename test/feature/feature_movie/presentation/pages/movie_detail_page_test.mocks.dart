@@ -144,6 +144,4 @@ class MockMovieDetailNotifier extends _i1.Mock
   void notifyListeners() =>
       super.noSuchMethod(Invocation.method(#notifyListeners, []),
           returnValueForMissingStub: null);
-  @override
-  String toString() => super.toString();
 }

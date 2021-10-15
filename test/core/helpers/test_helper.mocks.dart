@@ -133,8 +133,6 @@ class MockMovieRepository extends _i1.Mock implements _i6.MovieRepository {
           returnValue: Future<_i2.Either<_i8.Failure, List<_i9.Movie>>>.value(
               _FakeEither_0<_i8.Failure, List<_i9.Movie>>())) as _i7
           .Future<_i2.Either<_i8.Failure, List<_i9.Movie>>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [MovieRemoteDataSource].
@@ -180,8 +178,6 @@ class MockMovieRemoteDataSource extends _i1.Mock
               returnValue:
                   Future<List<_i12.MovieModel>>.value(<_i12.MovieModel>[]))
           as _i7.Future<List<_i12.MovieModel>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [MovieLocalDataSource].
@@ -212,8 +208,6 @@ class MockMovieLocalDataSource extends _i1.Mock
               returnValue: Future<List<_i14.WatchListTable>>.value(
                   <_i14.WatchListTable>[]))
           as _i7.Future<List<_i14.WatchListTable>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [DatabaseHelper].
@@ -267,8 +261,6 @@ class MockDatabaseHelper extends _i1.Mock implements _i15.DatabaseHelper {
               returnValue: Future<List<Map<String, dynamic>>>.value(
                   <Map<String, dynamic>>[]))
           as _i7.Future<List<Map<String, dynamic>>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [TvRemoteDataSource].
@@ -312,8 +304,6 @@ class MockTvRemoteDataSource extends _i1.Mock
       (super.noSuchMethod(Invocation.method(#searchTvShows, [query]),
               returnValue: Future<List<_i18.TvModel>>.value(<_i18.TvModel>[]))
           as _i7.Future<List<_i18.TvModel>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [TvRepositories].
@@ -399,8 +389,6 @@ class MockTvRepositories extends _i1.Mock implements _i19.TvRepositories {
                   Future<_i2.Either<_i8.Failure, List<_i20.TvEntities>>>.value(
                       _FakeEither_0<_i8.Failure, List<_i20.TvEntities>>()))
           as _i7.Future<_i2.Either<_i8.Failure, List<_i20.TvEntities>>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [TvLocalDataSource].
@@ -430,8 +418,6 @@ class MockTvLocalDataSource extends _i1.Mock implements _i22.TvLocalDataSource {
               returnValue: Future<List<_i14.WatchListTable>>.value(
                   <_i14.WatchListTable>[]))
           as _i7.Future<List<_i14.WatchListTable>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [Client].
@@ -512,6 +498,4 @@ class MockHttpClient extends _i1.Mock implements _i5.Client {
   @override
   void close() => super.noSuchMethod(Invocation.method(#close, []),
       returnValueForMissingStub: null);
-  @override
-  String toString() => super.toString();
 }

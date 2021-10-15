@@ -55,8 +55,6 @@ class MockGetMovieDetail extends _i1.Mock implements _i4.GetMovieDetail {
           returnValue: Future<_i3.Either<_i6.Failure, _i7.MovieDetail>>.value(
               _FakeEither_1<_i6.Failure, _i7.MovieDetail>())) as _i5
           .Future<_i3.Either<_i6.Failure, _i7.MovieDetail>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [GetMovieRecommendations].
@@ -78,8 +76,6 @@ class MockGetMovieRecommendations extends _i1.Mock
           returnValue: Future<_i3.Either<_i6.Failure, List<_i9.Movie>>>.value(
               _FakeEither_1<_i6.Failure, List<_i9.Movie>>())) as _i5
           .Future<_i3.Either<_i6.Failure, List<_i9.Movie>>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [GetWatchListStatus].
@@ -99,8 +95,6 @@ class MockGetWatchListStatus extends _i1.Mock
   _i5.Future<bool> execute(int? id) =>
       (super.noSuchMethod(Invocation.method(#execute, [id]),
           returnValue: Future<bool>.value(false)) as _i5.Future<bool>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [SaveWatchlist].
@@ -121,8 +115,6 @@ class MockSaveWatchlist extends _i1.Mock implements _i11.SaveWatchlist {
               returnValue: Future<_i3.Either<_i6.Failure, String>>.value(
                   _FakeEither_1<_i6.Failure, String>()))
           as _i5.Future<_i3.Either<_i6.Failure, String>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [RemoveWatchlist].
@@ -143,6 +135,4 @@ class MockRemoveWatchlist extends _i1.Mock implements _i12.RemoveWatchlist {
               returnValue: Future<_i3.Either<_i6.Failure, String>>.value(
                   _FakeEither_1<_i6.Failure, String>()))
           as _i5.Future<_i3.Either<_i6.Failure, String>>);
-  @override
-  String toString() => super.toString();
 }

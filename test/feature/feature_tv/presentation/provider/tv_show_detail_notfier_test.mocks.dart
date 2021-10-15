@@ -51,8 +51,6 @@ class MockGetDetailTvShowsUseCase extends _i1.Mock
                   Future<_i2.Either<_i5.Failure, _i6.TvDetailEntities>>.value(
                       _FakeEither_0<_i5.Failure, _i6.TvDetailEntities>()))
           as _i4.Future<_i2.Either<_i5.Failure, _i6.TvDetailEntities>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [GetRecommendationTvShowsUseCase].
@@ -72,8 +70,6 @@ class MockGetRecommendationTvShowsUseCase extends _i1.Mock
                   Future<_i2.Either<_i5.Failure, List<_i8.TvEntities>>>.value(
                       _FakeEither_0<_i5.Failure, List<_i8.TvEntities>>()))
           as _i4.Future<_i2.Either<_i5.Failure, List<_i8.TvEntities>>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [GetWatchListStatusTvShowsUseCase].
@@ -89,8 +85,6 @@ class MockGetWatchListStatusTvShowsUseCase extends _i1.Mock
   _i4.Future<bool> isAddedToWatchlist(int? id) =>
       (super.noSuchMethod(Invocation.method(#isAddedToWatchlist, [id]),
           returnValue: Future<bool>.value(false)) as _i4.Future<bool>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [SaveWatchListTvShowsUseCase].
@@ -109,8 +103,6 @@ class MockSaveWatchListTvShowsUseCase extends _i1.Mock
               returnValue: Future<_i2.Either<_i5.Failure, String>>.value(
                   _FakeEither_0<_i5.Failure, String>()))
           as _i4.Future<_i2.Either<_i5.Failure, String>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [RemoveWatchListTvShowsUseCase].
@@ -129,6 +121,4 @@ class MockRemoveWatchListTvShowsUseCase extends _i1.Mock
               returnValue: Future<_i2.Either<_i5.Failure, String>>.value(
                   _FakeEither_0<_i5.Failure, String>()))
           as _i4.Future<_i2.Either<_i5.Failure, String>>);
-  @override
-  String toString() => super.toString();
 }

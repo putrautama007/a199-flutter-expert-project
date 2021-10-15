@@ -44,8 +44,6 @@ class MockGetNowPlayingTvShowsUseCase extends _i1.Mock
                   Future<_i2.Either<_i5.Failure, List<_i6.TvEntities>>>.value(
                       _FakeEither_0<_i5.Failure, List<_i6.TvEntities>>()))
           as _i4.Future<_i2.Either<_i5.Failure, List<_i6.TvEntities>>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [GetPopularTvShowsUseCase].
@@ -65,8 +63,6 @@ class MockGetPopularTvShowsUseCase extends _i1.Mock
                   Future<_i2.Either<_i5.Failure, List<_i6.TvEntities>>>.value(
                       _FakeEither_0<_i5.Failure, List<_i6.TvEntities>>()))
           as _i4.Future<_i2.Either<_i5.Failure, List<_i6.TvEntities>>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [GetTopRatedTvShowsUseCase].
@@ -86,6 +82,4 @@ class MockGetTopRatedTvShowsUseCase extends _i1.Mock
                   Future<_i2.Either<_i5.Failure, List<_i6.TvEntities>>>.value(
                       _FakeEither_0<_i5.Failure, List<_i6.TvEntities>>()))
           as _i4.Future<_i2.Either<_i5.Failure, List<_i6.TvEntities>>>);
-  @override
-  String toString() => super.toString();
 }
