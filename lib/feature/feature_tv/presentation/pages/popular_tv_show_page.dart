@@ -26,14 +26,14 @@ class _PopularTvShowPageState extends State<PopularTvShowPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Popular Tv Shows'),
+        title: const Text('Popular Tv Shows'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Consumer<TvShowPopularNotifier>(
           builder: (context, data, child) {
             if (data.state == RequestState.loading) {
-              return Center(
+              return const Center(
                 child: CircularProgressIndicator(),
               );
             } else if (data.state == RequestState.loaded) {
@@ -48,7 +48,7 @@ class _PopularTvShowPageState extends State<PopularTvShowPage> {
               );
             } else {
               return Center(
-                key: Key('error_message'),
+                key: const Key('error_message'),
                 child: Text(data.message),
               );
             }
