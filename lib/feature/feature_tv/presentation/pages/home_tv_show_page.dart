@@ -34,13 +34,13 @@ class HomeTVShowPage extends StatelessWidget {
               Consumer<TvShowListNotifier>(builder: (context, data, child) {
                 final state = data.nowPlayingState;
                 if (state == RequestState.loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.loaded) {
                   return tvShowList(data.nowPlayingTvShows);
                 } else {
-                  return Text('Failed');
+                  return const Text('Failed');
                 }
               }),
               _buildSubHeading(
@@ -53,13 +53,13 @@ class HomeTVShowPage extends StatelessWidget {
               Consumer<TvShowListNotifier>(builder: (context, data, child) {
                 final state = data.popularState;
                 if (state == RequestState.loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.loaded) {
                   return tvShowList(data.popularTvShows);
                 } else {
-                  return Text('Failed');
+                  return const Text('Failed');
                 }
               }),
               _buildSubHeading(
@@ -72,13 +72,13 @@ class HomeTVShowPage extends StatelessWidget {
               Consumer<TvShowListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedState;
                 if (state == RequestState.loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (state == RequestState.loaded) {
                   return tvShowList(data.topRatedTvShows);
                 } else {
-                  return Text('Failed');
+                  return const Text('Failed');
                 }
               }),
             ],
@@ -94,7 +94,7 @@ class HomeTVShowPage extends StatelessWidget {
         onTap: onTap,
       );
 
-  Container tvShowList(List<TvEntities> tvShows) => Container(
+  SizedBox tvShowList(List<TvEntities> tvShows) => SizedBox(
         height: 200,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -111,13 +111,14 @@ class HomeTVShowPage extends StatelessWidget {
                   );
                 },
                 child: ClipRRect(
-                  borderRadius: BorderRadius.all(Radius.circular(16)),
+                  borderRadius: const BorderRadius.all(Radius.circular(16)),
                   child: CachedNetworkImage(
                     imageUrl: '$baseImageUrl${movie.posterPath}',
-                    placeholder: (context, url) => Center(
+                    placeholder: (context, url) => const Center(
                       child: CircularProgressIndicator(),
                     ),
-                    errorWidget: (context, url, error) => Icon(Icons.error),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
               ),
