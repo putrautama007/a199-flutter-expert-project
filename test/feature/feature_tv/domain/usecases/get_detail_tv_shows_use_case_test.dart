@@ -16,17 +16,17 @@ void main() {
         GetDetailTvShowUseCaseImpl(tvRepositories: mockTvRepositories);
   });
 
-  final tvId = "1";
+  const tvId = "1";
 
   test('should get tv show detail from the tv repository', () async {
     /// arrange
     when(mockTvRepositories.getDetailTvShows(tvId: tvId))
-        .thenAnswer((_) async => Right(testTvShowDetail));
+        .thenAnswer((_) async => const Right(testTvShowDetail));
 
     /// act
     final result = await getDetailTvShowsUseCase.getDetailTvShows(tvId: tvId);
 
     /// assert
-    expect(result, Right(testTvShowDetail));
+    expect(result, const Right(testTvShowDetail));
   });
 }
