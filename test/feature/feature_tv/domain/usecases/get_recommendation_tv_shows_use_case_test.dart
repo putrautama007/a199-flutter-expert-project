@@ -16,7 +16,7 @@ void main() {
         GetRecommendationTvShowsUseCaseImpl(tvRepositories: mockTvRepositories);
   });
 
-  final tvId = "1";
+  const tvId = "1";
   final tvShows = <TvEntities>[];
 
   test('should get list of tv shows recommendations from the tv repository',
