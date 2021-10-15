@@ -106,7 +106,7 @@ class MyApp extends StatelessWidget {
               );
             case SearchPage.routeName:
               return CupertinoPageRoute(builder: (_) => SearchPage());
-            case WatchlistMoviesPage.ROUTE_NAME:
+            case WatchlistMoviesPage.routeName:
               return MaterialPageRoute(builder: (_) => WatchlistMoviesPage());
             case AboutPage.routeName:
               return MaterialPageRoute(builder: (_) => AboutPage());
