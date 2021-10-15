@@ -16,13 +16,13 @@ void main() {
   });
 
   test('should save movie to the repository', () async {
-    // arrange
+    /// arrange
     when(mockMovieRepository.saveWatchlist(testMovieDetail))
-        .thenAnswer((_) async => Right('Added to Watchlist'));
-    // act
+        .thenAnswer((_) async =>const Right('Added to Watchlist'));
+    /// act
     final result = await usecase.execute(testMovieDetail);
-    // assert
+    /// assert
     verify(mockMovieRepository.saveWatchlist(testMovieDetail));
-    expect(result, Right('Added to Watchlist'));
+    expect(result,const Right('Added to Watchlist'));
   });
 }
