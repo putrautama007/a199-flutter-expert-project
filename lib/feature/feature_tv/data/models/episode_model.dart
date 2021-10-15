@@ -2,7 +2,7 @@ import 'package:ditonton/feature/feature_tv/domain/entities/episode_entities.dar
 import 'package:equatable/equatable.dart';
 
 class EpisodeModel extends Equatable {
-  EpisodeModel({
+  const EpisodeModel({
     required this.airDate,
     required this.episodeNumber,
     required this.id,
