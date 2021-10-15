@@ -53,11 +53,11 @@ class _BottomNavPageState extends State<BottomNavPage> {
             height: MediaQuery.of(context).size.height,
             child: IndexedStack(
               index: bottomNavNotifier.tabIndex,
-              children: [
+              children: const [
                 HomeMoviePage(),
-                const HomeTVShowPage(),
-                const WatchListPage(),
-                const AboutPage(),
+                HomeTVShowPage(),
+                WatchListPage(),
+                AboutPage(),
               ],
             ),
           ),
