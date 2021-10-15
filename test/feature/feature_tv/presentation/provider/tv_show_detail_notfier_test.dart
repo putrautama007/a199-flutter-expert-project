@@ -146,7 +146,7 @@ void main() {
           .thenAnswer((_) async => Right(testTvShowDetail));
       when(mockGetRecommendationTvShowsUseCase.getRecommendationTvShows(
               tvId: tvId))
-          .thenAnswer((_) async => Left(const ServerFailure('Failed')));
+          .thenAnswer((_) async => const Left(ServerFailure('Failed')));
 
       /// act
       await tvShowDetailNotifier.fetchTvShowDetail(tvId);
@@ -173,7 +173,7 @@ void main() {
     test('should execute save watchlist when function called', () async {
       /// arrange
       when(mockSaveWatchListTvShowsUseCase.saveWatchlist(testTvShowDetail))
-          .thenAnswer((_) async => Right('Success'));
+          .thenAnswer((_) async => const Right('Success'));
       when(mockGetWatchListStatusTvShowsUseCase
               .isAddedToWatchlist(testTvShowDetail.id))
           .thenAnswer((_) async => true);
@@ -188,7 +188,7 @@ void main() {
     test('should execute remove watchlist when function called', () async {
       /// arrange
       when(mockRemoveWatchListTvShowsUseCase.removeWatchlist(testTvShowDetail))
-          .thenAnswer((_) async => Right('Removed'));
+          .thenAnswer((_) async => const Right('Removed'));
       when(mockGetWatchListStatusTvShowsUseCase
               .isAddedToWatchlist(testTvShowDetail.id))
           .thenAnswer((_) async => false);
@@ -204,7 +204,7 @@ void main() {
     test('should update watchlist status when add watchlist success', () async {
       /// arrange
       when(mockSaveWatchListTvShowsUseCase.saveWatchlist(testTvShowDetail))
-          .thenAnswer((_) async => Right('Added to Watchlist'));
+          .thenAnswer((_) async => const Right('Added to Watchlist'));
       when(mockGetWatchListStatusTvShowsUseCase
               .isAddedToWatchlist(testTvShowDetail.id))
           .thenAnswer((_) async => true);
@@ -223,7 +223,7 @@ void main() {
     test('should update watchlist message when add watchlist failed', () async {
       /// arrange
       when(mockSaveWatchListTvShowsUseCase.saveWatchlist(testTvShowDetail))
-          .thenAnswer((_) async => Left(DatabaseFailure('Failed')));
+          .thenAnswer((_) async => const Left(DatabaseFailure('Failed')));
       when(mockGetWatchListStatusTvShowsUseCase
               .isAddedToWatchlist(testTvShowDetail.id))
           .thenAnswer((_) async => false);
@@ -241,7 +241,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       /// arrange
       when(mockGetDetailTvShowsUseCase.getDetailTvShows(tvId: tvId))
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
       when(mockGetRecommendationTvShowsUseCase.getRecommendationTvShows(
               tvId: tvId))
           .thenAnswer((_) async => Right(testTvShowList));
