@@ -14,7 +14,7 @@ class TvEntities extends Equatable {
   final double? voteAverage;
   final int? voteCount;
 
-  TvEntities({
+  const TvEntities({
     required this.backdropPath,
     required this.firstAirDate,
     required this.genreIds,
@@ -29,7 +29,7 @@ class TvEntities extends Equatable {
     required this.voteCount,
   });
 
-  TvEntities.watchlist({
+  const TvEntities.watchlist({
     this.backdropPath,
     this.firstAirDate,
     this.genreIds,
