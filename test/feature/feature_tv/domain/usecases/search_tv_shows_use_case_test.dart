@@ -18,7 +18,7 @@ void main() {
   });
 
   final tvShows = <TvEntities>[];
-  final tvShowQuery = 'Squide Game';
+  const tvShowQuery = 'Squide Game';
 
   test('should get list of tv shows from the tv repository', () async {
     /// arrange
