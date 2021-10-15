@@ -12,6 +12,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class BottomNavPage extends StatefulWidget {
+  const BottomNavPage({Key? key}) : super(key: key);
+
   @override
   _BottomNavPageState createState() => _BottomNavPageState();
 }
@@ -46,21 +48,21 @@ class _BottomNavPageState extends State<BottomNavPage> {
     return Consumer<BottomNavNotifier>(
       builder: (context, bottomNavNotifier, widget) {
         return Scaffold(
-          body: Container(
+          body: SizedBox(
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: IndexedStack(
               index: bottomNavNotifier.tabIndex,
               children: [
                 HomeMoviePage(),
-                HomeTVShowPage(),
-                WatchListPage(),
+                const HomeTVShowPage(),
+                const WatchListPage(),
                 AboutPage(),
               ],
             ),
           ),
           bottomNavigationBar: Container(
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               boxShadow: [
                 BoxShadow(
                   color: Colors.black38,
@@ -77,7 +79,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
               onTap: bottomNavNotifier.changeTabIndex,
               currentIndex: bottomNavNotifier.tabIndex,
               type: BottomNavigationBarType.fixed,
-              items: <BottomNavigationBarItem>[
+              items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
                   icon: Icon(Icons.movie),
                   label: "Movies",
