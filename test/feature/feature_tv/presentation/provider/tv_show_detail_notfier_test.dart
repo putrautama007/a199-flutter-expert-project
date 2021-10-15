@@ -49,11 +49,11 @@ void main() {
       });
   });
 
-  final tvId = "1";
+  const tvId = "1";
 
   void _arrangeUseCase() {
     when(mockGetDetailTvShowsUseCase.getDetailTvShows(tvId: tvId))
-        .thenAnswer((_) async => Right(testTvShowDetail));
+        .thenAnswer((_) async => const Right(testTvShowDetail));
     when(mockGetRecommendationTvShowsUseCase.getRecommendationTvShows(
             tvId: tvId))
         .thenAnswer((_) async => Right(testTvShowList));
@@ -143,7 +143,7 @@ void main() {
     test('should update error message when request in successful', () async {
       /// arrange
       when(mockGetDetailTvShowsUseCase.getDetailTvShows(tvId: tvId))
-          .thenAnswer((_) async => Right(testTvShowDetail));
+          .thenAnswer((_) async => const Right(testTvShowDetail));
       when(mockGetRecommendationTvShowsUseCase.getRecommendationTvShows(
               tvId: tvId))
           .thenAnswer((_) async => const Left(ServerFailure('Failed')));
