@@ -18,23 +18,27 @@ void main() {
   group('save watchlist', () {
     test('should return success message when insert to database is success',
         () async {
-      // arrange
+      /// arrange
       when(mockDatabaseHelper.insertMovieWatchlist(testMovieTable))
           .thenAnswer((_) async => 1);
-      // act
+
+      /// act
       final result = await dataSource.insertWatchlist(testMovieTable);
-      // assert
+
+      /// assert
       expect(result, 'Added to Watchlist');
     });
 
     test('should throw DatabaseException when insert to database is failed',
         () async {
-      // arrange
+      /// arrange
       when(mockDatabaseHelper.insertMovieWatchlist(testMovieTable))
           .thenThrow(Exception());
-      // act
+
+      /// act
       final call = dataSource.insertWatchlist(testMovieTable);
-      // assert
+
+      /// assert
       expect(() => call, throwsA(isA<DatabaseException>()));
     });
   });
@@ -42,58 +46,68 @@ void main() {
   group('remove watchlist', () {
     test('should return success message when remove from database is success',
         () async {
-      // arrange
+      /// arrange
       when(mockDatabaseHelper.removeMovieWatchlist(testMovieTable))
           .thenAnswer((_) async => 1);
-      // act
+
+      /// act
       final result = await dataSource.removeWatchlist(testMovieTable);
-      // assert
+
+      /// assert
       expect(result, 'Removed from Watchlist');
     });
 
     test('should throw DatabaseException when remove from database is failed',
         () async {
-      // arrange
+      /// arrange
       when(mockDatabaseHelper.removeMovieWatchlist(testMovieTable))
           .thenThrow(Exception());
-      // act
+
+      /// act
       final call = dataSource.removeWatchlist(testMovieTable);
-      // assert
+
+      /// assert
       expect(() => call, throwsA(isA<DatabaseException>()));
     });
   });
 
   group('Get Movie Detail By Id', () {
-    final tId = 1;
+    const tId = 1;
 
     test('should return Movie Detail Table when data is found', () async {
-      // arrange
+      /// arrange
       when(mockDatabaseHelper.getMovieById(tId))
           .thenAnswer((_) async => testMovieMap);
-      // act
+
+      /// act
       final result = await dataSource.getMovieById(tId);
-      // assert
+
+      /// assert
       expect(result, testMovieTable);
     });
 
     test('should return null when data is not found', () async {
-      // arrange
+      /// arrange
       when(mockDatabaseHelper.getMovieById(tId)).thenAnswer((_) async => null);
-      // act
+
+      /// act
       final result = await dataSource.getMovieById(tId);
-      // assert
+
+      /// assert
       expect(result, null);
     });
   });
 
   group('get watchlist movies', () {
     test('should return list of MovieTable from database', () async {
-      // arrange
+      /// arrange
       when(mockDatabaseHelper.getWatchlistMovies())
           .thenAnswer((_) async => [testMovieMap]);
-      // act
+
+      /// act
       final result = await dataSource.getWatchlistMovies();
-      // assert
+
+      /// assert
       expect(result, [testMovieTable]);
     });
   });
