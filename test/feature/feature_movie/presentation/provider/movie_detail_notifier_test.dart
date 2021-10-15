@@ -69,7 +69,7 @@ void main() {
 
   void _arrangeUsecase() {
     when(mockGetMovieDetail.execute(tId))
-        .thenAnswer((_) async => Right(testMovieDetail));
+        .thenAnswer((_) async => const Right(testMovieDetail));
     when(mockGetMovieRecommendations.execute(tId))
         .thenAnswer((_) async => Right(tMovies));
   }
@@ -143,7 +143,7 @@ void main() {
     test('should update error message when request in successful', () async {
       /// arrange
       when(mockGetMovieDetail.execute(tId))
-          .thenAnswer((_) async => Right(testMovieDetail));
+          .thenAnswer((_) async => const Right(testMovieDetail));
       when(mockGetMovieRecommendations.execute(tId))
           .thenAnswer((_) async => const Left(ServerFailure('Failed')));
       /// act
