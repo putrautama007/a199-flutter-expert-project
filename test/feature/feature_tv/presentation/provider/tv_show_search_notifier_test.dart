@@ -26,7 +26,7 @@ void main() {
       });
   });
 
-  final tvQuery = 'Squid Game';
+  const tvQuery = 'Squid Game';
 
   group('search tv shows', () {
     test('should change state to loading when use case is called', () async {
