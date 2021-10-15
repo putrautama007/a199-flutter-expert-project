@@ -21,7 +21,7 @@ class HomeMoviePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      searchRoute: SearchPage.ROUTE_NAME,
+      searchRoute: SearchPage.routeName,
       title: 'Ditonton Movie',
       body: Padding(
         padding: const EdgeInsets.all(8.0),
