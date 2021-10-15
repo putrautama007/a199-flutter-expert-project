@@ -14,7 +14,7 @@ class SearchTvShowPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Search'),
+        title: const Text('Search'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -26,14 +26,14 @@ class SearchTvShowPage extends StatelessWidget {
                 Provider.of<TvShowSearchNotifier>(context, listen: false)
                     .fetchTvShowSearch(query);
               },
-              decoration: InputDecoration(
+              decoration: const InputDecoration(
                 hintText: 'Search title',
                 prefixIcon: Icon(Icons.search),
                 border: OutlineInputBorder(),
               ),
               textInputAction: TextInputAction.search,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Text(
               'Search Result',
               style: kHeading6,
@@ -41,7 +41,7 @@ class SearchTvShowPage extends StatelessWidget {
             Consumer<TvShowSearchNotifier>(
               builder: (context, data, child) {
                 if (data.state == RequestState.loading) {
-                  return Center(
+                  return const Center(
                     child: CircularProgressIndicator(),
                   );
                 } else if (data.state == RequestState.loaded) {
