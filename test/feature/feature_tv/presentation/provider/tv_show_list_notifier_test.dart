@@ -84,7 +84,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       /// arrange
       when(mockGetNowPlayingTvShowsUseCase.getNowPlayingTvShows())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
 
       /// act
       await tvShowListNotifier.fetchNowPlayingTvShows();
@@ -127,7 +127,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       /// arrange
       when(mockGetPopularTvShowsUseCase.getPopularTvShows())
-          .thenAnswer((_) async => Left(ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
 
       /// act
       await tvShowListNotifier.fetchPopulargTvShows();
@@ -170,7 +170,7 @@ void main() {
     test('should return error when data is unsuccessful', () async {
       /// arrange
       when(mockGetTopRatedTvShowsUseCase.getTopRatedTvShows())
-          .thenAnswer((_) async => Left(const ServerFailure('Server Failure')));
+          .thenAnswer((_) async => const Left(ServerFailure('Server Failure')));
 
       /// act
       await tvShowListNotifier.fetchTopRatedTvShows();
