@@ -9,7 +9,7 @@ class SeasonEntities extends Equatable {
   final String posterPath;
   final int seasonNumber;
 
-  SeasonEntities({
+  const SeasonEntities({
     required this.airDate,
     required this.episodeCount,
     required this.id,
