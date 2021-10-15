@@ -29,7 +29,7 @@ void main() {
   test('should change movies data when data is gotten successfully', () async {
     /// arrange
     when(mockGetWatchListTvShowsUseCase.getWatchlistTvShows())
-        .thenAnswer((_) async => Right([testWatchlistTvShow]));
+        .thenAnswer((_) async => const Right([testWatchlistTvShow]));
 
     /// act
     await tvShowWatchListNotifier.fetchWatchlistTvShows();
