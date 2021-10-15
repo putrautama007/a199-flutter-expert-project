@@ -5,7 +5,7 @@ import 'package:ditonton/feature/feature_tv/domain/entities/tv_detail_entities.d
 import 'package:equatable/equatable.dart';
 
 class TvDetailModel extends Equatable {
-  TvDetailModel({
+  const TvDetailModel({
     required this.backdropPath,
     required this.episodeRunTime,
     required this.firstAirDate,
@@ -62,20 +62,18 @@ class TvDetailModel extends Equatable {
   final int voteCount;
 
   factory TvDetailModel.fromJson(Map<String, dynamic> json) => TvDetailModel(
-        backdropPath:
-            json["backdrop_path"] == null ? null : json["backdrop_path"],
+        backdropPath: json["backdrop_path"],
         episodeRunTime: List<int>.from(json["episode_run_time"].map((x) => x)),
         firstAirDate: json["first_air_date"],
         genres: List<GenreModel>.from(
             json["genres"].map((x) => GenreModel.fromJson(x))),
-        homepage: json["homepage"] == null ? null : json["homepage"],
-        id: json["id"] == null ? null : json["id"],
-        inProduction:
-            json["in_production"] == null ? null : json["in_production"],
+        homepage: json["homepage"],
+        id: json["id"],
+        inProduction: json["in_production"],
         languages: List<String>.from(json["languages"].map((x) => x)),
         lastAirDate: json["last_air_date"],
         lastEpisodeToAir: EpisodeModel.fromJson(json["last_episode_to_air"]),
-        name: json["name"] == null ? null : json["name"],
+        name: json["name"],
         nextEpisodeToAir: EpisodeModel.fromJson(json["last_episode_to_air"]),
         numberOfEpisodes: json["number_of_episodes"],
         numberOfSeasons: json["number_of_seasons"],
