@@ -12,14 +12,14 @@ class WatchListPage extends StatelessWidget {
       length: 2,
       child: Scaffold(
         appBar: AppBar(
-          title: Text('Watchlist'),
-          bottom: TabBar(
+          title: const Text('Watchlist'),
+          bottom: const TabBar(
             indicatorColor: Colors.white,
             indicatorWeight: 5.0,
             labelColor: kWhite,
-            labelPadding: const EdgeInsets.only(top: 10.0),
+            labelPadding: EdgeInsets.only(top: 10.0),
             unselectedLabelColor: kDavysGrey,
-            tabs: const [
+            tabs: [
               Tab(
                 text: 'Movie',
                 iconMargin: EdgeInsets.only(bottom: 10.0),
@@ -34,7 +34,7 @@ class WatchListPage extends StatelessWidget {
         body: TabBarView(
           children: [
             WatchlistMoviesPage(),
-            TvShowWatchListPage(),
+            const TvShowWatchListPage(),
           ],
         ),
       ),
