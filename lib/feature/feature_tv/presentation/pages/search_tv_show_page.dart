@@ -14,7 +14,7 @@ class SearchTvShowPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Search'),
+        title: const Text('Search TV Show'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
