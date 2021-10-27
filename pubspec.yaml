@@ -32,6 +32,12 @@ dependencies:
     path: lib/module/core
   libraries:
     path: lib/module/libraries
+  feature_home:
+    path: lib/module/feature_home
+  feature_movie:
+    path: lib/module/feature_movie
+  feature_tv:
+    path: lib/module/feature_tv
 
 dev_dependencies:
   mockito: ^5.0.16

@@ -14,6 +14,10 @@ dependencies:
     path: ../core
   libraries:
     path: ../libraries
+  feature_movie:
+    path: ../feature_movie
+  feature_tv:
+    path: ../feature_tv
 
 dev_dependencies:
   flutter_test:
