@@ -1,11 +1,10 @@
-import 'package:ditonton/core/data/models/watch_list_table.dart';
-import 'package:ditonton/core/domain/entities/genre.dart';
-import 'package:ditonton/feature/feature_movie/domain/entities/movie.dart';
-import 'package:ditonton/feature/feature_movie/domain/entities/movie_detail.dart';
-import 'package:ditonton/feature/feature_tv/domain/entities/episode_entities.dart';
-import 'package:ditonton/feature/feature_tv/domain/entities/season_entities.dart';
-import 'package:ditonton/feature/feature_tv/domain/entities/tv_detail_entities.dart';
-import 'package:ditonton/feature/feature_tv/domain/entities/tv_entities.dart';
+import 'package:core/core.dart';
+import 'package:feature_movie/domain/entities/movie.dart';
+import 'package:feature_movie/domain/entities/movie_detail.dart';
+import 'package:feature_tv/domain/entities/episode_entities.dart';
+import 'package:feature_tv/domain/entities/season_entities.dart';
+import 'package:feature_tv/domain/entities/tv_detail_entities.dart';
+import 'package:feature_tv/domain/entities/tv_entities.dart';
 
 const testMovie = Movie(
   adult: false,
