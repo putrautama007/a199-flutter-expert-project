@@ -6,3 +6,4 @@ export 'package:cached_network_image/cached_network_image.dart';
 export 'package:sqflite/sqflite.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
+export 'package:provider/provider.dart';

@@ -1,7 +1,21 @@
 library core;
-
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
-}
+export 'package:core/data/models/genre_model.dart';
+export 'package:core/data/models/watch_list_table.dart';
+export 'package:core/domain/entities/genre.dart';
+export 'package:core/presentation/widgets/button/see_more_button.dart';
+export 'package:core/presentation/widgets/scaffold/custom_scaffold.dart';
+export 'package:core/util/color/app_colors.dart';
+export 'package:core/util/common/mapper/mapper.dart';
+export 'package:core/util/common/mapper/list_mapper.dart';
+export 'package:core/util/common/mapper/nullable_input_list_mapper.dart';
+export 'package:core/util/common/mapper/nullable_output_list_mapper.dart';
+export 'package:core/util/common/exception.dart';
+export 'package:core/util/common/failure.dart';
+export 'package:core/util/common/state_enum.dart';
+export 'package:core/util/constant/api_constants.dart';
+export 'package:core/util/constant/watch_list_constants.dart';
+export 'package:core/util/db/database_helper.dart';
+export 'package:core/util/style/text_styles.dart';
+export 'package:core/util/theme/app_theme.dart';
+export 'package:core/util/route/main_routes.dart';
+export 'package:core/util/json_reader/json_reader.dart';

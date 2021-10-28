@@ -1,7 +1,16 @@
-library feature_home;
+import 'package:core/core.dart';
+import 'package:libraries/libraries.dart';
+import 'presentation/pages/bottom_nav_page.dart';
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+class FeatureHome extends Module {
+  @override
+  List<Bind<Object>> get binds => [];
+
+  @override
+  List<ModularRoute> get routes => [
+        ChildRoute(
+          MainRoutes.home,
+          child: (_, __) => const BottomNavPage(),
+        ),
+      ];
 }

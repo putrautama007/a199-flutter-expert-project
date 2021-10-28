@@ -1,39 +1,284 @@
-import 'package:ditonton/core/util/color/app_colors.dart';
-import 'package:ditonton/core/util/theme/app_theme.dart';
-import 'package:ditonton/feature/feature_home/presentation/pages/bottom_nav_page.dart';
-import 'package:ditonton/feature/feature_home/presentation/provider/bottom_nav_notifier.dart';
-import 'package:ditonton/feature/feature_movie/presentation/pages/about_page.dart';
-import 'package:ditonton/feature/feature_movie/presentation/pages/movie_detail_page.dart';
-import 'package:ditonton/feature/feature_movie/presentation/pages/popular_movies_page.dart';
-import 'package:ditonton/feature/feature_movie/presentation/pages/search_page.dart';
-import 'package:ditonton/feature/feature_movie/presentation/pages/top_rated_movies_page.dart';
-import 'package:ditonton/feature/feature_movie/presentation/pages/watchlist_movies_page.dart';
-import 'package:ditonton/feature/feature_movie/presentation/provider/movie_detail_notifier.dart';
-import 'package:ditonton/feature/feature_movie/presentation/provider/movie_list_notifier.dart';
-import 'package:ditonton/feature/feature_movie/presentation/provider/movie_search_notifier.dart';
-import 'package:ditonton/feature/feature_movie/presentation/provider/popular_movies_notifier.dart';
-import 'package:ditonton/feature/feature_movie/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:ditonton/feature/feature_movie/presentation/provider/watchlist_movie_notifier.dart';
-import 'package:ditonton/feature/feature_tv/presentation/pages/popular_tv_show_page.dart';
-import 'package:ditonton/feature/feature_tv/presentation/pages/search_tv_show_page.dart';
-import 'package:ditonton/feature/feature_tv/presentation/pages/top_rated_tv_show_page.dart';
-import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_detail_page.dart';
-import 'package:ditonton/feature/feature_tv/presentation/pages/tv_show_watch_list_page.dart';
-import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_detail_notfier.dart';
-import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_list_notifier.dart';
-import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_popular_notifier.dart';
-import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_search_notifier.dart';
-import 'package:ditonton/feature/feature_tv/presentation/provider/tv_show_top_rated_notifier.dart';
+import 'package:core/core.dart';
+import 'package:feature_home/feature_home.dart';
+import 'package:feature_home/presentation/provider/bottom_nav_notifier.dart';
+import 'package:feature_movie/data/datasources/movie_local_data_source.dart';
+import 'package:feature_movie/data/datasources/movie_remote_data_source.dart';
+import 'package:feature_movie/data/repositories/movie_repository_impl.dart';
+import 'package:feature_movie/domain/repositories/movie_repository.dart';
+import 'package:feature_movie/domain/usecases/get_movie_detail.dart';
+import 'package:feature_movie/domain/usecases/get_movie_recommendations.dart';
+import 'package:feature_movie/domain/usecases/get_now_playing_movies.dart';
+import 'package:feature_movie/domain/usecases/get_popular_movies.dart';
+import 'package:feature_movie/domain/usecases/get_top_rated_movies.dart';
+import 'package:feature_movie/domain/usecases/get_watchlist_movies.dart';
+import 'package:feature_movie/domain/usecases/get_watchlist_status.dart';
+import 'package:feature_movie/domain/usecases/remove_watchlist.dart';
+import 'package:feature_movie/domain/usecases/save_watchlist.dart';
+import 'package:feature_movie/domain/usecases/search_movies.dart';
+import 'package:feature_movie/feature_movie.dart';
+import 'package:feature_movie/presentation/provider/movie_detail_notifier.dart';
+import 'package:feature_movie/presentation/provider/movie_list_notifier.dart';
+import 'package:feature_movie/presentation/provider/movie_search_notifier.dart';
+import 'package:feature_movie/presentation/provider/popular_movies_notifier.dart';
+import 'package:feature_movie/presentation/provider/top_rated_movies_notifier.dart';
+import 'package:feature_movie/presentation/provider/watchlist_movie_notifier.dart';
+import 'package:feature_tv/data/datasources/tv_local_data_source.dart';
+import 'package:feature_tv/data/datasources/tv_remote_data_source.dart';
+import 'package:feature_tv/data/repositories/tv_repositories_impl.dart';
+import 'package:feature_tv/domain/repositories/tv_repositories.dart';
+import 'package:feature_tv/domain/usecases/get_detail_tv_shows_use_case.dart';
+import 'package:feature_tv/domain/usecases/get_now_playing_tv_shows_use_case.dart';
+import 'package:feature_tv/domain/usecases/get_popular_tv_shows_use_case.dart';
+import 'package:feature_tv/domain/usecases/get_recommendation_tv_shows_use_case.dart';
+import 'package:feature_tv/domain/usecases/get_top_rated_tv_shows_use_case.dart';
+import 'package:feature_tv/domain/usecases/get_watchlist_status_tv_shows_use_case.dart';
+import 'package:feature_tv/domain/usecases/get_watchlist_tv_shows_use_case.dart';
+import 'package:feature_tv/domain/usecases/remove_watchlist_tv_shows_use_case.dart';
+import 'package:feature_tv/domain/usecases/save_watchlist_tv_shows_use_case.dart';
+import 'package:feature_tv/domain/usecases/search_tv_shows_use_case.dart';
+import 'package:feature_tv/presentation/provider/tv_show_detail_notfier.dart';
+import 'package:feature_tv/presentation/provider/tv_show_list_notifier.dart';
+import 'package:feature_tv/presentation/provider/tv_show_popular_notifier.dart';
+import 'package:feature_tv/presentation/provider/tv_show_search_notifier.dart';
+import 'package:feature_tv/presentation/provider/tv_show_top_rated_notifier.dart';
+import 'package:feature_tv/presentation/provider/tv_show_watchlist_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
-import 'package:ditonton/core/util/di/injection.dart' as di;
-
-import 'feature/feature_tv/presentation/provider/tv_show_watchlist_notifier.dart';
+import 'package:libraries/libraries.dart';
+import 'package:http/http.dart' as http;
 
 void main() {
-  di.init();
-  runApp(const MyApp());
+  runApp(
+    ModularApp(
+      module: AppModule(),
+      child: const MyApp(),
+    ),
+  );
+}
+
+class AppModule extends Module {
+  @override
+  List<Bind<Object>> get binds => [
+        Bind.lazySingleton((injector) => http.Client()),
+        Bind.lazySingleton<DatabaseHelper>((injector) => DatabaseHelper()),
+        Bind.lazySingleton<MovieRemoteDataSource>(
+          (injector) => MovieRemoteDataSourceImpl(
+            client: injector(),
+          ),
+        ),
+        Bind.lazySingleton<MovieLocalDataSource>(
+          (injector) => MovieLocalDataSourceImpl(
+            databaseHelper: injector(),
+          ),
+        ),
+        Bind.lazySingleton<TvRemoteDataSource>(
+          (injector) => TvRemoteDataSourceImpl(
+            client: injector(),
+          ),
+        ),
+        Bind.lazySingleton<TvLocalDataSource>(
+          (injector) => TvLocalDataSourceImpl(
+            databaseHelper: injector(),
+          ),
+        ),
+        Bind.lazySingleton<TvRepositories>(
+          (injector) => TvRepositoriesImpl(
+            tvLocalDataSource: injector(),
+            tvRemoteDataSource: injector(),
+          ),
+        ),
+        Bind.lazySingleton<MovieRepository>(
+          (injector) => MovieRepositoryImpl(
+            remoteDataSource: injector(),
+            localDataSource: injector(),
+          ),
+        ),
+        Bind.lazySingleton<SearchTvShowsUseCase>(
+          (injector) => SearchTvShowsUseCaseImpl(
+            tvRepositories: injector(),
+          ),
+        ),
+        Bind.lazySingleton<RemoveWatchListTvShowsUseCase>(
+          (injector) => RemoveWatchListTvShowsUseCaseImpl(
+            tvRepositories: injector(),
+          ),
+        ),
+        Bind.lazySingleton<SaveWatchListTvShowsUseCase>(
+          (injector) => SaveWatchListTvShowsUseCaseImpl(
+            tvRepositories: injector(),
+          ),
+        ),
+        Bind.lazySingleton<GetWatchListTvShowsUseCase>(
+          (injector) => GetWatchListTvShowsUseCaseImpl(
+            tvRepositories: injector(),
+          ),
+        ),
+        Bind.lazySingleton<GetWatchListStatusTvShowsUseCase>(
+          (injector) => GetWatchListStatusTvShowsUseCaseImpl(
+            tvRepositories: injector(),
+          ),
+        ),
+        Bind.lazySingleton<GetRecommendationTvShowsUseCase>(
+          (injector) => GetRecommendationTvShowsUseCaseImpl(
+            tvRepositories: injector(),
+          ),
+        ),
+        Bind.lazySingleton<GetDetailTvShowsUseCase>(
+          (injector) => GetDetailTvShowUseCaseImpl(
+            tvRepositories: injector(),
+          ),
+        ),
+        Bind.lazySingleton<GetTopRatedTvShowsUseCase>(
+          (injector) => GetTopRatedTvShowsUseCaseImpl(
+            tvRepositories: injector(),
+          ),
+        ),
+        Bind.lazySingleton<GetPopularTvShowsUseCase>(
+          (injector) => GetPopularTvShowsUseCaseImpl(
+            tvRepositories: injector(),
+          ),
+        ),
+        Bind.lazySingleton<GetNowPlayingTvShowsUseCase>(
+          (injector) => GetNowPlayingTvShowsUseCaseImpl(
+            tvRepositories: injector(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (injector) => GetWatchlistMovies(
+            injector(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (injector) => RemoveWatchlist(
+            injector(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (injector) => SaveWatchlist(
+            injector(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (injector) => GetWatchListStatus(
+            injector(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (injector) => SearchMovies(
+            injector(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (injector) => GetMovieRecommendations(
+            injector(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (injector) => GetMovieDetail(
+            injector(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (injector) => GetTopRatedMovies(
+            injector(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (injector) => GetPopularMovies(
+            injector(),
+          ),
+        ),
+        Bind.lazySingleton(
+          (injector) => GetNowPlayingMovies(
+            injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => TvShowWatchListNotifier(
+            getWatchListTvShowsUseCase: injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => TvShowTopRatedNotifier(
+            getTopRatedTvShowsUseCase: injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => TvShowPopularNotifier(
+            getPopularTvShowsUseCase: injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => TvShowSearchNotifier(
+            searchTvShowsUseCase: injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => TvShowDetailNotifier(
+            getDetailTvShowsUseCase: injector(),
+            getRecommendationTvShowsUseCase: injector(),
+            getWatchListStatusTvShowsUseCase: injector(),
+            saveWatchListTvShowsUseCase: injector(),
+            removeWatchListTvShowsUseCase: injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => TvShowListNotifier(
+            getNowPlayingTvShowsUseCase: injector(),
+            getPopularTvShowsUseCase: injector(),
+            getTopRatedTvShowsUseCase: injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => WatchlistMovieNotifier(
+            getWatchlistMovies: injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => TopRatedMoviesNotifier(
+            getTopRatedMovies: injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => PopularMoviesNotifier(
+            injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => MovieSearchNotifier(
+            searchMovies: injector(),
+          ),
+        ),
+        Bind.factory(
+          (injector) => MovieDetailNotifier(
+            getMovieDetail: injector(),
+            getMovieRecommendations: injector(),
+            getWatchListStatus: injector(),
+            saveWatchlist: injector(),
+            removeWatchlist: injector(),
+          ),
+        ),
+        Bind.factory((injector) => BottomNavNotifier()),
+        Bind.factory<MovieListNotifier>(
+          (injector) => MovieListNotifier(
+            getNowPlayingMovies: injector(),
+            getPopularMovies: injector(),
+            getTopRatedMovies: injector(),
+          ),
+        ),
+      ];
+
+  @override
+  List<ModularRoute> get routes => [
+        ModuleRoute(
+          MainRoutes.home,
+          module: FeatureHome(),
+        ),
+        ModuleRoute(
+          MainRoutes.featureMovie,
+          module: FeatureMovie(),
+        ),
+      ];
 }
 
 class MyApp extends StatelessWidget {
@@ -44,43 +289,43 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(
-          create: (_) => di.locator<BottomNavNotifier>(),
+          create: (_) => Modular.get<BottomNavNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<MovieListNotifier>(),
+          create: (_) => Modular.get<MovieListNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<MovieDetailNotifier>(),
+          create: (_) => Modular.get<MovieDetailNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<MovieSearchNotifier>(),
+          create: (_) => Modular.get<MovieSearchNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<TopRatedMoviesNotifier>(),
+          create: (_) => Modular.get<TopRatedMoviesNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<PopularMoviesNotifier>(),
+          create: (_) => Modular.get<PopularMoviesNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<WatchlistMovieNotifier>(),
+          create: (_) => Modular.get<WatchlistMovieNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<TvShowListNotifier>(),
+          create: (_) => Modular.get<TvShowListNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<TvShowDetailNotifier>(),
+          create: (_) => Modular.get<TvShowDetailNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<TvShowSearchNotifier>(),
+          create: (_) => Modular.get<TvShowSearchNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<TvShowPopularNotifier>(),
+          create: (_) => Modular.get<TvShowPopularNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<TvShowTopRatedNotifier>(),
+          create: (_) => Modular.get<TvShowTopRatedNotifier>(),
         ),
         ChangeNotifierProvider(
-          create: (_) => di.locator<TvShowWatchListNotifier>(),
+          create: (_) => Modular.get<TvShowWatchListNotifier>(),
         ),
       ],
       child: MaterialApp(
@@ -91,52 +336,8 @@ class MyApp extends StatelessWidget {
           scaffoldBackgroundColor: kRichBlack,
           textTheme: kTextTheme,
         ),
-        home: const BottomNavPage(),
-        onGenerateRoute: (RouteSettings settings) {
-          switch (settings.name) {
-            case '/home':
-              return MaterialPageRoute(builder: (_) => const BottomNavPage());
-            case PopularMoviesPage.routeName:
-              return CupertinoPageRoute(builder: (_) => const PopularMoviesPage());
-            case TopRatedMoviesPage.routeName:
-              return CupertinoPageRoute(builder: (_) => const TopRatedMoviesPage());
-            case MovieDetailPage.routeName:
-              final id = settings.arguments as int;
-              return MaterialPageRoute(
-                builder: (_) => MovieDetailPage(id: id),
-                settings: settings,
-              );
-            case SearchPage.routeName:
-              return CupertinoPageRoute(builder: (_) => const SearchPage());
-            case WatchlistMoviesPage.routeName:
-              return MaterialPageRoute(builder: (_) => const WatchlistMoviesPage());
-            case AboutPage.routeName:
-              return MaterialPageRoute(builder: (_) => const AboutPage());
-            case TvShowDetailPage.routeName:
-              final tvId = settings.arguments as String;
-              return MaterialPageRoute(
-                builder: (_) => TvShowDetailPage(tvId: tvId),
-                settings: settings,
-              );
-            case SearchTvShowPage.routeName:
-              return CupertinoPageRoute(builder: (_) => const SearchTvShowPage());
-            case PopularTvShowPage.routeName:
-              return CupertinoPageRoute(builder: (_) => const PopularTvShowPage());
-            case TopRatedTvShowPage.routeName:
-              return CupertinoPageRoute(builder: (_) => const TopRatedTvShowPage());
-            case TvShowWatchListPage.routeName:
-              return MaterialPageRoute(builder: (_) => const TvShowWatchListPage());
-            default:
-              return MaterialPageRoute(builder: (_) {
-                return const Scaffold(
-                  body: Center(
-                    child: Text('Page not found :('),
-                  ),
-                );
-              });
-          }
-        },
-      ),
+        initialRoute: MainRoutes.home,
+      ).modular(),
     );
   }
 }

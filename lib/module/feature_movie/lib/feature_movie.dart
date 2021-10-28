@@ -1,7 +1,13 @@
-library feature_movie;
+import 'package:core/core.dart';
+import 'package:feature_movie/presentation/pages/home_movie_page.dart';
+import 'package:libraries/libraries.dart';
 
-/// A Calculator.
-class Calculator {
-  /// Returns [value] plus 1.
-  int addOne(int value) => value + 1;
+class FeatureMovie extends Module{
+  @override
+  List<ModularRoute> get routes => [
+    ChildRoute(
+      MainRoutes.featureMovie,
+      child: (_, __) => const HomeMoviePage(),
+    ),
+  ];
 }
