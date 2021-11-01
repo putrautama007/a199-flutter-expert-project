@@ -1,12 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:feature_tv/domain/entities/tv_entities.dart';
-import 'package:feature_tv/presentation/pages/popular_tv_show_page.dart';
-import 'package:feature_tv/presentation/pages/search_tv_show_page.dart';
-import 'package:feature_tv/presentation/pages/top_rated_tv_show_page.dart';
-import 'package:feature_tv/presentation/pages/tv_show_detail_page.dart';
+import 'package:feature_tv/external/route/tv_routes.dart';
 import 'package:feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:flutter/material.dart';
+import 'package:libraries/libraries.dart';
 import 'package:provider/provider.dart';
 
 class HomeTVShowPage extends StatelessWidget {
@@ -16,7 +14,7 @@ class HomeTVShowPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return CustomScaffold(
       moduleRoute: MainRoutes.featureMovie,
-      searchRoute: SearchTvShowPage.routeName,
+      searchRoute: TvRoutes.tvShowSearch,
       title: 'Ditonton Tv Show',
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -42,10 +40,7 @@ class HomeTVShowPage extends StatelessWidget {
               }),
               _buildSubHeading(
                 title: 'Popular',
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  PopularTvShowPage.routeName,
-                ),
+                onTap: () => Modular.to.pushNamed("${MainRoutes.featureTv}${TvRoutes.tvShowPopular}"),
               ),
               Consumer<TvShowListNotifier>(builder: (context, data, child) {
                 final state = data.popularState;
@@ -61,10 +56,7 @@ class HomeTVShowPage extends StatelessWidget {
               }),
               _buildSubHeading(
                 title: 'Top Rated',
-                onTap: () => Navigator.pushNamed(
-                  context,
-                  TopRatedTvShowPage.routeName,
-                ),
+                onTap: () => Modular.to.pushNamed("${MainRoutes.featureTv}${TvRoutes.tvShowTopRated}"),
               ),
               Consumer<TvShowListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedState;
@@ -100,13 +92,10 @@ class HomeTVShowPage extends StatelessWidget {
             return Container(
               padding: const EdgeInsets.all(8),
               child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    TvShowDetailPage.routeName,
-                    arguments: movie.id.toString(),
-                  );
-                },
+                onTap: () =>Modular.to.pushNamed(
+                  "${MainRoutes.featureTv}${TvRoutes.tvShowDetail}",
+                  arguments: movie.id.toString(),
+                ),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(16)),
                   child: CachedNetworkImage(

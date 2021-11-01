@@ -2,14 +2,14 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:feature_tv/domain/entities/tv_detail_entities.dart';
 import 'package:feature_tv/domain/entities/tv_entities.dart';
+import 'package:feature_tv/external/route/tv_routes.dart';
 import 'package:feature_tv/presentation/provider/tv_show_detail_notfier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:libraries/libraries.dart';
 import 'package:provider/provider.dart';
 
 class TvShowDetailPage extends StatefulWidget {
-  static const routeName = '/tvShowDetailPage';
-
   final String tvId;
 
   const TvShowDetailPage({required this.tvId, Key? key}) : super(key: key);
@@ -266,13 +266,11 @@ class DetailContent extends StatelessWidget {
                                         return Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: InkWell(
-                                            onTap: () {
-                                              Navigator.pushReplacementNamed(
-                                                context,
-                                                TvShowDetailPage.routeName,
-                                                arguments: tvShow.id.toString(),
-                                              );
-                                            },
+                                            onTap: () =>
+                                                Modular.to.pushReplacementNamed(
+                                              "${MainRoutes.featureTv}${TvRoutes.tvShowDetail}",
+                                              arguments: tvShow.id.toString(),
+                                            ),
                                             child: ClipRRect(
                                               borderRadius:
                                                   const BorderRadius.all(

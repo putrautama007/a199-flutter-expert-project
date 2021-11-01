@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SearchTvShowPage extends StatelessWidget {
-  static const routeName = '/searchTvShow';
 
   const SearchTvShowPage({Key? key}) : super(key: key);
 

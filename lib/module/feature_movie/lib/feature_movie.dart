@@ -27,7 +27,7 @@ class FeatureMovie extends Module {
           child: (_, __) => const PopularMoviesPage(),
         ),
         ChildRoute(
-          MovieRoute.popularMovie,
+          MovieRoute.topRatedMovie,
           child: (_, __) => const TopRatedMoviesPage(),
         ),
       ];

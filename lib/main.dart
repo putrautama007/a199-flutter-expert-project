@@ -36,6 +36,7 @@ import 'package:feature_tv/domain/usecases/get_watchlist_tv_shows_use_case.dart'
 import 'package:feature_tv/domain/usecases/remove_watchlist_tv_shows_use_case.dart';
 import 'package:feature_tv/domain/usecases/save_watchlist_tv_shows_use_case.dart';
 import 'package:feature_tv/domain/usecases/search_tv_shows_use_case.dart';
+import 'package:feature_tv/feature_tv.dart';
 import 'package:feature_tv/presentation/provider/tv_show_detail_notfier.dart';
 import 'package:feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:feature_tv/presentation/provider/tv_show_popular_notifier.dart';
@@ -277,6 +278,10 @@ class AppModule extends Module {
         ModuleRoute(
           MainRoutes.featureMovie,
           module: FeatureMovie(),
+        ),
+        ModuleRoute(
+          MainRoutes.featureTv,
+          module: FeatureTvShow(),
         ),
       ];
 }
