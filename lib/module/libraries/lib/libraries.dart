@@ -7,3 +7,4 @@ export 'package:sqflite/sqflite.dart';
 export 'package:path_provider/path_provider.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:provider/provider.dart';
+export 'package:http/io_client.dart';

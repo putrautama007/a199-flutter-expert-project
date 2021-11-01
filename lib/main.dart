@@ -61,6 +61,7 @@ class AppModule extends Module {
   @override
   List<Bind<Object>> get binds => [
         Bind.lazySingleton((injector) => http.Client()),
+        Bind.lazySingleton<ApiHelper>((injector) => ApiHelperImpl()),
         Bind.lazySingleton<DatabaseHelper>((injector) => DatabaseHelper()),
         Bind.lazySingleton<MovieRemoteDataSource>(
           (injector) => MovieRemoteDataSourceImpl(

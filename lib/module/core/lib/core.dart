@@ -19,3 +19,5 @@ export 'package:core/util/style/text_styles.dart';
 export 'package:core/util/theme/app_theme.dart';
 export 'package:core/util/route/main_routes.dart';
 export 'package:core/util/json_reader/json_reader.dart';
+export 'package:core/util/ssl_pinning/ssl_pinning.dart';
+export 'package:core/util/network/api_helper.dart';
