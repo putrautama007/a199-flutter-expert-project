@@ -8,3 +8,5 @@ export 'package:path_provider/path_provider.dart';
 export 'package:flutter_bloc/flutter_bloc.dart';
 export 'package:provider/provider.dart';
 export 'package:http/io_client.dart';
+export 'package:firebase_crashlytics/firebase_crashlytics.dart';
+export 'package:firebase_core/firebase_core.dart';

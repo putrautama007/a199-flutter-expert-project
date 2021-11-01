@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "949579364915",
+    "project_id": "dicoding-movie",
+    "storage_bucket": "dicoding-movie.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:949579364915:android:f495f036a05ef56c21c146",
+        "android_client_info": {
+          "package_name": "com.dicoding.ditonton"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "949579364915-06fi2pajgov6ihe3uerre91cgar5saav.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAIUo8fOS5Uch65QuxeMqvN7v-CfKxMvjQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "949579364915-06fi2pajgov6ihe3uerre91cgar5saav.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

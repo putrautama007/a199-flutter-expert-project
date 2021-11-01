@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:core/core.dart';
 import 'package:feature_home/feature_home.dart';
 import 'package:feature_home/presentation/provider/bottom_nav_notifier.dart';
@@ -47,13 +49,19 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:libraries/libraries.dart';
 
-void main() {
-  runApp(
-    ModularApp(
-      module: AppModule(),
-      child: const MyApp(),
-    ),
-  );
+void main() async {
+  runZonedGuarded<Future<void>>(() async {
+    WidgetsFlutterBinding.ensureInitialized();
+    await Firebase.initializeApp();
+    FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterError;
+
+    runApp(
+      ModularApp(
+        module: AppModule(),
+        child: const MyApp(),
+      ),
+    );
+  }, (error, stack) => FirebaseCrashlytics.instance.recordError(error, stack));
 }
 
 class AppModule extends Module {
