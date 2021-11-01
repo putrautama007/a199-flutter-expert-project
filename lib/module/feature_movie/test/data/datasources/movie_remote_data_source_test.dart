@@ -11,11 +11,11 @@ import '../../helper/test_helper.mocks.dart';
 
 void main() {
   late MovieRemoteDataSourceImpl dataSource;
-  late MockHttpClient mockHttpClient;
+  late MockApiHelper mockApiHelper;
 
   setUp(() {
-    mockHttpClient = MockHttpClient();
-    dataSource = MovieRemoteDataSourceImpl(client: mockHttpClient);
+    mockApiHelper = MockApiHelper();
+    dataSource = MovieRemoteDataSourceImpl(client: mockApiHelper);
   });
 
   group('get Now Playing Movies', () {
@@ -26,9 +26,9 @@ void main() {
     test('should return list of Movie Model when the response code is 200',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse('$baseUrl/movie/now_playing?$apiKey')))
-          .thenAnswer((_) async =>
-              http.Response(readJson('helper/dummy_data/now_playing.json'), 200));
+      when(mockApiHelper.get(url: '$baseUrl/movie/now_playing?$apiKey'))
+          .thenAnswer((_) async => http.Response(
+              readJson('helper/dummy_data/now_playing.json'), 200));
 
       /// act
       final result = await dataSource.getNowPlayingMovies();
@@ -41,7 +41,7 @@ void main() {
         'should throw a ServerException when the response code is 404 or other',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse('$baseUrl/movie/now_playing?$apiKey')))
+      when(mockApiHelper.get(url: '$baseUrl/movie/now_playing?$apiKey'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act
@@ -60,8 +60,8 @@ void main() {
     test('should return list of movies when response is success (200)',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse('$baseUrl/movie/popular?$apiKey')))
-          .thenAnswer((_) async =>
+      when(mockApiHelper.get(url: '$baseUrl/movie/popular?$apiKey')).thenAnswer(
+          (_) async =>
               http.Response(readJson('helper/dummy_data/popular.json'), 200));
 
       /// act
@@ -75,7 +75,7 @@ void main() {
         'should throw a ServerException when the response code is 404 or other',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse('$baseUrl/movie/popular?$apiKey')))
+      when(mockApiHelper.get(url: '$baseUrl/movie/popular?$apiKey'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act
@@ -93,7 +93,7 @@ void main() {
 
     test('should return list of movies when response code is 200 ', () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse('$baseUrl/movie/top_rated?$apiKey')))
+      when(mockApiHelper.get(url: '$baseUrl/movie/top_rated?$apiKey'))
           .thenAnswer((_) async =>
               http.Response(readJson('helper/dummy_data/top_rated.json'), 200));
 
@@ -107,7 +107,7 @@ void main() {
     test('should throw ServerException when response code is other than 200',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse('$baseUrl/movie/top_rated?$apiKey')))
+      when(mockApiHelper.get(url: '$baseUrl/movie/top_rated?$apiKey'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act
@@ -125,8 +125,8 @@ void main() {
 
     test('should return movie detail when the response code is 200', () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse('$baseUrl/movie/$tId?$apiKey')))
-          .thenAnswer((_) async => http.Response(
+      when(mockApiHelper.get(url: '$baseUrl/movie/$tId?$apiKey')).thenAnswer(
+          (_) async => http.Response(
               readJson('helper/dummy_data/movie_detail.json'), 200));
 
       /// act
@@ -139,7 +139,7 @@ void main() {
     test('should throw Server Exception when the response code is 404 or other',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse('$baseUrl/movie/$tId?$apiKey')))
+      when(mockApiHelper.get(url: '$baseUrl/movie/$tId?$apiKey'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act
@@ -151,16 +151,16 @@ void main() {
   });
 
   group('get movie recommendations', () {
-    final tMovieList = MovieResponse.fromJson(
-            json.decode(readJson('helper/dummy_data/movie_recommendations.json')))
+    final tMovieList = MovieResponse.fromJson(json
+            .decode(readJson('helper/dummy_data/movie_recommendations.json')))
         .movieList;
     const tId = 1;
 
     test('should return list of Movie Model when the response code is 200',
         () async {
       /// arrange
-      when(mockHttpClient
-              .get(Uri.parse('$baseUrl/movie/$tId/recommendations?$apiKey')))
+      when(mockApiHelper.get(
+              url: '$baseUrl/movie/$tId/recommendations?$apiKey'))
           .thenAnswer((_) async => http.Response(
               readJson('helper/dummy_data/movie_recommendations.json'), 200));
 
@@ -174,8 +174,8 @@ void main() {
     test('should throw Server Exception when the response code is 404 or other',
         () async {
       /// arrange
-      when(mockHttpClient
-              .get(Uri.parse('$baseUrl/movie/$tId/recommendations?$apiKey')))
+      when(mockApiHelper.get(
+              url: '$baseUrl/movie/$tId/recommendations?$apiKey'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act
@@ -194,8 +194,8 @@ void main() {
 
     test('should return list of movies when response code is 200', () async {
       /// arrange
-      when(mockHttpClient
-              .get(Uri.parse('$baseUrl/search/movie?$apiKey&query=$tQuery')))
+      when(mockApiHelper.get(
+              url: '$baseUrl/search/movie?$apiKey&query=$tQuery'))
           .thenAnswer((_) async => http.Response(
               readJson('helper/dummy_data/search_spiderman_movie.json'), 200));
 
@@ -209,8 +209,8 @@ void main() {
     test('should throw ServerException when response code is other than 200',
         () async {
       /// arrange
-      when(mockHttpClient
-              .get(Uri.parse('$baseUrl/search/movie?$apiKey&query=$tQuery')))
+      when(mockApiHelper.get(
+              url: '$baseUrl/search/movie?$apiKey&query=$tQuery'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act

@@ -1,9 +1,9 @@
-
+import 'package:core/core.dart';
 import 'package:core/util/db/database_helper.dart';
 import 'package:feature_movie/data/datasources/movie_local_data_source.dart';
 import 'package:feature_movie/data/datasources/movie_remote_data_source.dart';
 import 'package:feature_movie/domain/repositories/movie_repository.dart';
-import 'package:http/http.dart' as http;
+
 import 'package:mockito/annotations.dart';
 
 @GenerateMocks([
@@ -11,7 +11,6 @@ import 'package:mockito/annotations.dart';
   MovieRemoteDataSource,
   MovieLocalDataSource,
   DatabaseHelper,
-], customMocks: [
-  MockSpec<http.Client>(as: #MockHttpClient)
+  ApiHelper,
 ])
 void main() {}
