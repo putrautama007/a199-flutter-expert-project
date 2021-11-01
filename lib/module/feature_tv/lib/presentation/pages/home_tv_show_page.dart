@@ -15,6 +15,7 @@ class HomeTVShowPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
+      moduleRoute: MainRoutes.featureMovie,
       searchRoute: SearchTvShowPage.routeName,
       title: 'Ditonton Tv Show',
       body: Padding(

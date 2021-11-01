@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SearchPage extends StatelessWidget {
-  static const routeName = '/search';
 
   const SearchPage({Key? key}) : super(key: key);
 

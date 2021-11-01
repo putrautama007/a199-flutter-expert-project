@@ -1,14 +1,12 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:feature_movie/domain/entities/movie.dart';
-import 'package:feature_movie/presentation/pages/movie_detail_page.dart';
-import 'package:feature_movie/presentation/pages/popular_movies_page.dart';
-import 'package:feature_movie/presentation/pages/search_page.dart';
-import 'package:feature_movie/presentation/pages/top_rated_movies_page.dart';
+import 'package:feature_movie/external/route/movie_route.dart';
 import 'package:feature_movie/presentation/provider/movie_list_notifier.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:libraries/libraries.dart';
 import 'package:provider/provider.dart';
 
 class HomeMoviePage extends StatelessWidget {
@@ -17,7 +15,8 @@ class HomeMoviePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return CustomScaffold(
-      searchRoute: SearchPage.routeName,
+      moduleRoute: MainRoutes.featureMovie,
+      searchRoute: MovieRoute.searchMovie,
       title: 'Ditonton Movie',
       body: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -43,8 +42,7 @@ class HomeMoviePage extends StatelessWidget {
               }),
               SeeMoreButton(
                 title: 'Popular',
-                onTap: () =>
-                    Navigator.pushNamed(context, PopularMoviesPage.routeName),
+                onTap: () => Modular.to.pushNamed("${MainRoutes.featureMovie}${MovieRoute.popularMovie}"),
               ),
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.popularMoviesState;
@@ -60,8 +58,7 @@ class HomeMoviePage extends StatelessWidget {
               }),
               SeeMoreButton(
                 title: 'Top Rated',
-                onTap: () =>
-                    Navigator.pushNamed(context, TopRatedMoviesPage.routeName),
+                onTap: () => Modular.to.pushNamed("${MainRoutes.featureMovie}${MovieRoute.topRatedMovie}"),
               ),
               Consumer<MovieListNotifier>(builder: (context, data, child) {
                 final state = data.topRatedMoviesState;
@@ -82,9 +79,7 @@ class HomeMoviePage extends StatelessWidget {
     );
   }
 
-
-  SizedBox movieList(List<Movie> movies) =>
-      SizedBox(
+  SizedBox movieList(List<Movie> movies) => SizedBox(
         height: 200,
         child: ListView.builder(
           scrollDirection: Axis.horizontal,
@@ -93,22 +88,19 @@ class HomeMoviePage extends StatelessWidget {
             return Container(
               padding: const EdgeInsets.all(8),
               child: InkWell(
-                onTap: () {
-                  Navigator.pushNamed(
-                    context,
-                    MovieDetailPage.routeName,
-                    arguments: movie.id,
-                  );
-                },
+                onTap: () =>Modular.to.pushNamed(
+                  "${MainRoutes.featureMovie}${MovieRoute.detailMovie}",
+                  arguments: movie.id,
+                ),
                 child: ClipRRect(
                   borderRadius: const BorderRadius.all(Radius.circular(16)),
                   child: CachedNetworkImage(
                     imageUrl: '$baseImageUrl${movie.posterPath}',
-                    placeholder: (context, url) =>
-                        const Center(
-                          child: CircularProgressIndicator(),
-                        ),
-                    errorWidget: (context, url, error) => const Icon(Icons.error),
+                    placeholder: (context, url) => const Center(
+                      child: CircularProgressIndicator(),
+                    ),
+                    errorWidget: (context, url, error) =>
+                        const Icon(Icons.error),
                   ),
                 ),
               ),

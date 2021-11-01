@@ -1,13 +1,16 @@
 import 'package:flutter/material.dart';
+import 'package:libraries/libraries.dart';
 
 class CustomScaffold extends StatelessWidget {
   final String title;
   final String searchRoute;
+  final String moduleRoute;
   final Widget body;
 
   const CustomScaffold({
     required this.title,
     required this.searchRoute,
+    required this.moduleRoute,
     required this.body,
     Key? key,
   }) : super(key: key);
@@ -19,9 +22,7 @@ class CustomScaffold extends StatelessWidget {
         title: Text(title),
         actions: [
           IconButton(
-            onPressed: () {
-              Navigator.pushNamed(context, searchRoute);
-            },
+            onPressed: () => Modular.to.pushNamed("$moduleRoute$searchRoute",),
             icon: const Icon(Icons.search),
           )
         ],

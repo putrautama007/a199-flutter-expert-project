@@ -2,15 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:feature_movie/domain/entities/movie.dart';
 import 'package:feature_movie/domain/entities/movie_detail.dart';
+import 'package:feature_movie/external/route/movie_route.dart';
 import 'package:feature_movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:libraries/libraries.dart';
 import 'package:provider/provider.dart';
 
 class MovieDetailPage extends StatefulWidget {
-  static const routeName = '/detail';
-
   final int id;
 
   const MovieDetailPage({Key? key, required this.id}) : super(key: key);
@@ -208,13 +208,11 @@ class DetailContent extends StatelessWidget {
                                         return Padding(
                                           padding: const EdgeInsets.all(4.0),
                                           child: InkWell(
-                                            onTap: () {
-                                              Navigator.pushReplacementNamed(
-                                                context,
-                                                MovieDetailPage.routeName,
-                                                arguments: movie.id,
-                                              );
-                                            },
+                                            onTap: () =>
+                                                Modular.to.pushReplacementNamed(
+                                              "${MainRoutes.featureMovie}${MovieRoute.detailMovie}",
+                                              arguments: movie.id,
+                                            ),
                                             child: ClipRRect(
                                               borderRadius:
                                                   const BorderRadius.all(
