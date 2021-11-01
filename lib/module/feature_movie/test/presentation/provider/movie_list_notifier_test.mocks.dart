@@ -46,8 +46,6 @@ class MockGetNowPlayingMovies extends _i1.Mock
           returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Movie>>>.value(
               _FakeEither_1<_i6.Failure, List<_i7.Movie>>())) as _i5
           .Future<_i3.Either<_i6.Failure, List<_i7.Movie>>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [GetPopularMovies].
@@ -68,8 +66,6 @@ class MockGetPopularMovies extends _i1.Mock implements _i8.GetPopularMovies {
           returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Movie>>>.value(
               _FakeEither_1<_i6.Failure, List<_i7.Movie>>())) as _i5
           .Future<_i3.Either<_i6.Failure, List<_i7.Movie>>>);
-  @override
-  String toString() => super.toString();
 }
 
 /// A class which mocks [GetTopRatedMovies].
@@ -90,6 +86,4 @@ class MockGetTopRatedMovies extends _i1.Mock implements _i9.GetTopRatedMovies {
           returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Movie>>>.value(
               _FakeEither_1<_i6.Failure, List<_i7.Movie>>())) as _i5
           .Future<_i3.Either<_i6.Failure, List<_i7.Movie>>>);
-  @override
-  String toString() => super.toString();
 }

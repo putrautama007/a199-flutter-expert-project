@@ -12,11 +12,11 @@ import '../../helper/test_helper.mocks.dart';
 
 void main() {
   late TvRemoteDataSourceImpl tvRemoteDataSourceImpl;
-  late MockHttpClient mockHttpClient;
+  late MockApiHelper mockApiHelper;
 
   setUp(() {
-    mockHttpClient = MockHttpClient();
-    tvRemoteDataSourceImpl = TvRemoteDataSourceImpl(client: mockHttpClient);
+    mockApiHelper = MockApiHelper();
+    tvRemoteDataSourceImpl = TvRemoteDataSourceImpl(client: mockApiHelper);
   });
 
   group('get On The Air Tv Shows', () {
@@ -27,10 +27,9 @@ void main() {
     test('should return list of tv show model when the response code is 200',
         () async {
       /// arrange
-      when(mockHttpClient
-              .get(Uri.parse('$baseUrl${ApiConstants.tvOnAir}?$apiKey')))
-          .thenAnswer((_) async =>
-              http.Response(readJson('helper/dummy_data/on_the_air.json'), 200));
+      when(mockApiHelper.get(url: '$baseUrl${ApiConstants.tvOnAir}?$apiKey'))
+          .thenAnswer((_) async => http.Response(
+              readJson('helper/dummy_data/on_the_air.json'), 200));
 
       /// act
       final result = await tvRemoteDataSourceImpl.getNowPlayingTvShows();
@@ -43,8 +42,7 @@ void main() {
         'should throw a ServerException when the response code is 404 or other',
         () async {
       /// arrange
-      when(mockHttpClient
-              .get(Uri.parse('$baseUrl${ApiConstants.tvOnAir}?$apiKey')))
+      when(mockApiHelper.get(url: '$baseUrl${ApiConstants.tvOnAir}?$apiKey'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act
@@ -63,8 +61,7 @@ void main() {
     test('should return list of tv show model when response is success (200)',
         () async {
       /// arrange
-      when(mockHttpClient
-              .get(Uri.parse('$baseUrl${ApiConstants.tvPopular}?$apiKey')))
+      when(mockApiHelper.get(url: '$baseUrl${ApiConstants.tvPopular}?$apiKey'))
           .thenAnswer((_) async => http.Response(
               readJson('helper/dummy_data/tv_show_popular.json'), 200));
 
@@ -79,8 +76,7 @@ void main() {
         'should throw a ServerException when the response code is 404 or other',
         () async {
       /// arrange
-      when(mockHttpClient
-              .get(Uri.parse('$baseUrl${ApiConstants.tvPopular}?$apiKey')))
+      when(mockApiHelper.get(url: '$baseUrl${ApiConstants.tvPopular}?$apiKey'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act
@@ -99,8 +95,7 @@ void main() {
     test('should return list of tv show model when response code is 200 ',
         () async {
       /// arrange
-      when(mockHttpClient
-              .get(Uri.parse('$baseUrl${ApiConstants.tvTopRated}?$apiKey')))
+      when(mockApiHelper.get(url: '$baseUrl${ApiConstants.tvTopRated}?$apiKey'))
           .thenAnswer((_) async => http.Response(
               readJson('helper/dummy_data/tv_show_top_rated.json'), 200));
 
@@ -114,8 +109,7 @@ void main() {
     test('should throw ServerException when response code is other than 200',
         () async {
       /// arrange
-      when(mockHttpClient
-              .get(Uri.parse('$baseUrl${ApiConstants.tvTopRated}?$apiKey')))
+      when(mockApiHelper.get(url: '$baseUrl${ApiConstants.tvTopRated}?$apiKey'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act
@@ -134,8 +128,8 @@ void main() {
     test('should return tv show detail when the response code is 200',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse(
-              '$baseUrl${ApiConstants.detailTv(tvId: tvShowId)}?$apiKey')))
+      when(mockApiHelper.get(
+              url: '$baseUrl${ApiConstants.detailTv(tvId: tvShowId)}?$apiKey'))
           .thenAnswer((_) async => http.Response(
               readJson('helper/dummy_data/tv_show_detail.json'), 200));
 
@@ -150,8 +144,8 @@ void main() {
     test('should throw Server Exception when the response code is 404 or other',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse(
-              '$baseUrl${ApiConstants.detailTv(tvId: tvShowId)}?$apiKey')))
+      when(mockApiHelper.get(
+              url: '$baseUrl${ApiConstants.detailTv(tvId: tvShowId)}?$apiKey'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act
@@ -171,8 +165,9 @@ void main() {
     test('should return list of Tv Show Model when the response code is 200',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse(
-              '$baseUrl${ApiConstants.recommendationTv(tvId: tvShowId)}?$apiKey')))
+      when(mockApiHelper.get(
+              url:
+                  '$baseUrl${ApiConstants.recommendationTv(tvId: tvShowId)}?$apiKey'))
           .thenAnswer((_) async => http.Response(
               readJson('helper/dummy_data/tv_show_recommendations.json'), 200));
 
@@ -187,8 +182,9 @@ void main() {
     test('should throw Server Exception when the response code is 404 or other',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse(
-              '$baseUrl${ApiConstants.recommendationTv(tvId: tvShowId)}?$apiKey')))
+      when(mockApiHelper.get(
+              url:
+                  '$baseUrl${ApiConstants.recommendationTv(tvId: tvShowId)}?$apiKey'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act
@@ -208,8 +204,8 @@ void main() {
 
     test('should return list of tv show when response code is 200', () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse(
-              '$baseUrl${ApiConstants.tvSearch}?$apiKey&query=$tQuery')))
+      when(mockApiHelper.get(
+              url: '$baseUrl${ApiConstants.tvSearch}?$apiKey&query=$tQuery'))
           .thenAnswer((_) async => http.Response(
               readJson('helper/dummy_data/tv_show_search.json'), 200));
 
@@ -223,8 +219,8 @@ void main() {
     test('should throw ServerException when response code is other than 200',
         () async {
       /// arrange
-      when(mockHttpClient.get(Uri.parse(
-              '$baseUrl${ApiConstants.tvSearch}?$apiKey&query=$tQuery')))
+      when(mockApiHelper.get(
+              url: '$baseUrl${ApiConstants.tvSearch}?$apiKey&query=$tQuery'))
           .thenAnswer((_) async => http.Response('Not Found', 404));
 
       /// act

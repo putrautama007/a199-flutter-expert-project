@@ -46,7 +46,6 @@ import 'package:feature_tv/presentation/provider/tv_show_watchlist_notifier.dart
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:libraries/libraries.dart';
-import 'package:http/http.dart' as http;
 
 void main() {
   runApp(
@@ -60,7 +59,6 @@ void main() {
 class AppModule extends Module {
   @override
   List<Bind<Object>> get binds => [
-        Bind.lazySingleton((injector) => http.Client()),
         Bind.lazySingleton<ApiHelper>((injector) => ApiHelperImpl()),
         Bind.lazySingleton<DatabaseHelper>((injector) => DatabaseHelper()),
         Bind.lazySingleton<MovieRemoteDataSource>(
