@@ -1,22 +1,22 @@
 import 'package:feature_movie/domain/entities/movie.dart';
 import 'package:libraries/libraries.dart';
 
-abstract class NowPlayingState extends Equatable {}
+abstract class PopularState extends Equatable {}
 
-class NowPlayingInitialState extends NowPlayingState {
+class PopularInitialState extends PopularState {
   @override
   List<Object?> get props => [];
 }
 
-class NowPlayingLoadingState extends NowPlayingState {
+class PopularLoadingState extends PopularState {
   @override
   List<Object?> get props => [];
 }
 
-class NowPlayingLoadedState extends NowPlayingState {
+class PopularLoadedState extends PopularState {
   final List<Movie> movieList;
 
-  NowPlayingLoadedState({
+  PopularLoadedState({
     required this.movieList,
   });
 
@@ -26,7 +26,7 @@ class NowPlayingLoadedState extends NowPlayingState {
       ];
 }
 
-class PopularErrorState extends NowPlayingState {
+class PopularErrorState extends PopularState {
   final String message;
 
   PopularErrorState({

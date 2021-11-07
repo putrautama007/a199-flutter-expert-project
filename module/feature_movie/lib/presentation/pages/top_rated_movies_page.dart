@@ -1,25 +1,11 @@
-import 'package:core/core.dart';
-import 'package:feature_movie/presentation/provider/top_rated_movies_notifier.dart';
+import 'package:feature_movie/presentation/bloc/top_rated_movie/top_rated_cubit.dart';
+import 'package:feature_movie/presentation/bloc/top_rated_movie/top_rated_state.dart';
 import 'package:feature_movie/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:libraries/libraries.dart';
 
-class TopRatedMoviesPage extends StatefulWidget {
-
+class TopRatedMoviesPage extends StatelessWidget {
   const TopRatedMoviesPage({Key? key}) : super(key: key);
-
-  @override
-  _TopRatedMoviesPageState createState() => _TopRatedMoviesPageState();
-}
-
-class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() =>
-        Provider.of<TopRatedMoviesNotifier>(context, listen: false)
-            .fetchTopRatedMovies());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -29,24 +15,24 @@ class _TopRatedMoviesPageState extends State<TopRatedMoviesPage> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(8.0),
-        child: Consumer<TopRatedMoviesNotifier>(
-          builder: (context, data, child) {
-            if (data.state == RequestState.loading) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            } else if (data.state == RequestState.loaded) {
-              return ListView.builder(
-                itemBuilder: (context, index) {
-                  final movie = data.movies[index];
-                  return MovieCard(movie);
-                },
-                itemCount: data.movies.length,
-              );
-            } else {
+        child: BlocBuilder<TopRatedCubit, TopRatedState>(
+          builder: (context, state) {
+            if (state is TopRatedErrorState) {
               return Center(
                 key: const Key('error_message'),
-                child: Text(data.message),
+                child: Text(state.message),
+              );
+            } else if (state is TopRatedLoadedState) {
+              return ListView.builder(
+                itemBuilder: (context, index) {
+                  final movie = state.movieList[index];
+                  return MovieCard(movie);
+                },
+                itemCount: state.movieList.length,
+              );
+            } else {
+              return const Center(
+                child: CircularProgressIndicator(),
               );
             }
           },

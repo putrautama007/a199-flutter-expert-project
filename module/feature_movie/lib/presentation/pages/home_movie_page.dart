@@ -5,6 +5,7 @@ import 'package:feature_movie/external/route/movie_route.dart';
 import 'package:feature_movie/presentation/bloc/now_playing_movie/now_playing_cubit.dart';
 import 'package:feature_movie/presentation/bloc/now_playing_movie/now_playing_state.dart';
 import 'package:feature_movie/presentation/bloc/popular_movie/popular_cubit.dart';
+import 'package:feature_movie/presentation/bloc/popular_movie/popular_state.dart';
 import 'package:feature_movie/presentation/bloc/top_rated_movie/top_rated_cubit.dart';
 import 'package:feature_movie/presentation/bloc/top_rated_movie/top_rated_state.dart';
 import 'package:flutter/cupertino.dart';
@@ -31,13 +32,13 @@ class HomeMoviePage extends StatelessWidget {
                 'Now Playing',
                 style: kHeading6,
               ),
-              BlocBuilder<NowPlayingCubit, PopularState>(
+              BlocBuilder<NowPlayingCubit, NowPlayingState>(
                   builder: (context, state) {
-                if (state is PopularLoadingState) {
+                if (state is NowPlayingLoadingState) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state is PopularLoadedState) {
+                } else if (state is NowPlayingLoadedState) {
                   return movieList(state.movieList);
                 } else {
                   return const Text('Failed');

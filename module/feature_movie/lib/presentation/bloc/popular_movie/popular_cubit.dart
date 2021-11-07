@@ -1,5 +1,5 @@
 import 'package:feature_movie/domain/usecases/get_popular_movies.dart';
-import 'package:feature_movie/presentation/bloc/now_playing_movie/now_playing_state.dart';
+import 'package:feature_movie/presentation/bloc/popular_movie/popular_state.dart';
 import 'package:libraries/libraries.dart';
 
 class PopularCubit extends Cubit<PopularState> {
@@ -14,7 +14,7 @@ class PopularCubit extends Cubit<PopularState> {
     final result = await getPopularMovies.execute();
     result.fold(
       (failure) async {
-        emit(NowPlayingErrorState(message: failure.message));
+        emit(PopularErrorState(message: failure.message));
       },
       (moviesData) async {
         emit(PopularLoadedState(movieList: moviesData));
