@@ -29,15 +29,15 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   core:
-    path: lib/module/core
+    path: module/core
   libraries:
-    path: lib/module/libraries
+    path: module/libraries
   feature_home:
-    path: lib/module/feature_home
+    path: module/feature_home
   feature_movie:
-    path: lib/module/feature_movie
+    path: module/feature_movie
   feature_tv:
-    path: lib/module/feature_tv
+    path: module/feature_tv
 
 dev_dependencies:
   mockito: ^5.0.16
