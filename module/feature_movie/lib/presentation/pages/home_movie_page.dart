@@ -2,13 +2,15 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:core/core.dart';
 import 'package:feature_movie/domain/entities/movie.dart';
 import 'package:feature_movie/external/route/movie_route.dart';
-import 'package:feature_movie/presentation/bloc/movie_list/movie_list_bloc.dart';
-import 'package:feature_movie/presentation/bloc/movie_list/movie_list_state.dart';
+import 'package:feature_movie/presentation/bloc/now_playing_movie/now_playing_cubit.dart';
+import 'package:feature_movie/presentation/bloc/now_playing_movie/now_playing_state.dart';
+import 'package:feature_movie/presentation/bloc/popular_movie/popular_cubit.dart';
+import 'package:feature_movie/presentation/bloc/top_rated_movie/top_rated_cubit.dart';
+import 'package:feature_movie/presentation/bloc/top_rated_movie/top_rated_state.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:libraries/libraries.dart';
-import 'package:provider/provider.dart';
 
 class HomeMoviePage extends StatelessWidget {
   const HomeMoviePage({Key? key}) : super(key: key);
@@ -29,14 +31,13 @@ class HomeMoviePage extends StatelessWidget {
                 'Now Playing',
                 style: kHeading6,
               ),
-              BlocBuilder<MovieListBloc, MovieListState>(
+              BlocBuilder<NowPlayingCubit, PopularState>(
                   builder: (context, state) {
-                final state = context.read<MovieListBloc>().state;
-                if (state is MovieListLoadingState) {
+                if (state is PopularLoadingState) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (state is MovieListNowPlayingLoadedState) {
+                } else if (state is PopularLoadedState) {
                   return movieList(state.movieList);
                 } else {
                   return const Text('Failed');
@@ -47,37 +48,35 @@ class HomeMoviePage extends StatelessWidget {
                 onTap: () => Modular.to.pushNamed(
                     "${MainRoutes.featureMovie}${MovieRoute.popularMovie}"),
               ),
-              BlocBuilder<MovieListBloc, MovieListState>(
+              BlocBuilder<PopularCubit, PopularState>(
                   builder: (context, state) {
-                    final state = context.read<MovieListBloc>().state;
-                    if (state is MovieListLoadingState) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is MovieListPopularLoadedState) {
-                      return movieList(state.movieList);
-                    } else {
-                      return const Text('Failed');
-                    }
-                  }),
+                if (state is PopularLoadingState) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is PopularLoadedState) {
+                  return movieList(state.movieList);
+                } else {
+                  return const Text('Failed');
+                }
+              }),
               SeeMoreButton(
                 title: 'Top Rated',
                 onTap: () => Modular.to.pushNamed(
                     "${MainRoutes.featureMovie}${MovieRoute.topRatedMovie}"),
               ),
-              BlocBuilder<MovieListBloc, MovieListState>(
+              BlocBuilder<TopRatedCubit, TopRatedState>(
                   builder: (context, state) {
-                    final state = context.read<MovieListBloc>().state;
-                    if (state is MovieListLoadingState) {
-                      return const Center(
-                        child: CircularProgressIndicator(),
-                      );
-                    } else if (state is MovieListTopRatedLoadedState) {
-                      return movieList(state.movieList);
-                    } else {
-                      return const Text('Failed');
-                    }
-                  }),
+                if (state is TopRatedLoadingState) {
+                  return const Center(
+                    child: CircularProgressIndicator(),
+                  );
+                } else if (state is TopRatedLoadedState) {
+                  return movieList(state.movieList);
+                } else {
+                  return const Text('Failed');
+                }
+              }),
             ],
           ),
         ),

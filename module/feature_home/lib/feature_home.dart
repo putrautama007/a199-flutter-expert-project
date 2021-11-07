@@ -3,8 +3,9 @@ import 'package:feature_home/presentation/bloc/bottom_nav_bloc.dart';
 import 'package:feature_movie/domain/usecases/get_now_playing_movies.dart';
 import 'package:feature_movie/domain/usecases/get_popular_movies.dart';
 import 'package:feature_movie/domain/usecases/get_top_rated_movies.dart';
-import 'package:feature_movie/presentation/bloc/movie_list/movie_list_bloc.dart';
-import 'package:feature_movie/presentation/bloc/movie_list/movie_list_event.dart';
+import 'package:feature_movie/presentation/bloc/now_playing_movie/now_playing_cubit.dart';
+import 'package:feature_movie/presentation/bloc/popular_movie/popular_cubit.dart';
+import 'package:feature_movie/presentation/bloc/top_rated_movie/top_rated_cubit.dart';
 import 'package:libraries/libraries.dart';
 import 'presentation/pages/bottom_nav_page.dart';
 
@@ -22,14 +23,17 @@ class FeatureHome extends Module {
                 create: (_) => BottomNavBloc(initialState: 0),
               ),
               BlocProvider(
-                create: (_) => MovieListBloc(
-                  getTopRatedMovies: Modular.get<GetTopRatedMovies>(),
-                  getPopularMovies: Modular.get<GetPopularMovies>(),
+                create: (_) => NowPlayingCubit(
                   getNowPlayingMovies: Modular.get<GetNowPlayingMovies>(),
-                )
-                  ..add(FetchNowPlayingMovies())
-                  ..add(FetchPopularMovies())
-                  ..add(FetchTopRatedMovies()),
+                )..fetchNowPlayingMovies(),
+              ),BlocProvider(
+                create: (_) => PopularCubit(
+                  getPopularMovies: Modular.get<GetPopularMovies>(),
+                )..fetchPopularMovies(),
+              ),BlocProvider(
+                create: (_) => TopRatedCubit(
+                  getTopRatedMovies: Modular.get<GetTopRatedMovies>(),
+                )..fetchTopRatedMovies(),
               ),
             ],
             child: const BottomNavPage(),
