@@ -2,7 +2,6 @@ import 'dart:async';
 
 import 'package:core/core.dart';
 import 'package:feature_home/feature_home.dart';
-import 'package:feature_home/presentation/provider/bottom_nav_notifier.dart';
 import 'package:feature_movie/data/datasources/movie_local_data_source.dart';
 import 'package:feature_movie/data/datasources/movie_remote_data_source.dart';
 import 'package:feature_movie/data/repositories/movie_repository_impl.dart';
@@ -266,7 +265,6 @@ class AppModule extends Module {
             removeWatchlist: injector(),
           ),
         ),
-        Bind.factory((injector) => BottomNavNotifier()),
         Bind.factory<MovieListNotifier>(
           (injector) => MovieListNotifier(
             getNowPlayingMovies: injector(),
@@ -300,9 +298,6 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<BottomNavNotifier>(),
-        ),
         ChangeNotifierProvider(
           create: (_) => Modular.get<MovieListNotifier>(),
         ),
