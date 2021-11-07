@@ -1,5 +1,7 @@
 import 'package:core/core.dart';
+import 'package:feature_movie/domain/usecases/search_movies.dart';
 import 'package:feature_movie/external/route/movie_route.dart';
+import 'package:feature_movie/presentation/bloc/search_movie/search_cubit.dart';
 import 'package:feature_movie/presentation/pages/home_movie_page.dart';
 import 'package:feature_movie/presentation/pages/movie_detail_page.dart';
 import 'package:feature_movie/presentation/pages/popular_movies_page.dart';
@@ -20,7 +22,12 @@ class FeatureMovie extends Module {
         ),
         ChildRoute(
           MovieRoute.searchMovie,
-          child: (_, __) => const SearchPage(),
+          child: (_, __) => BlocProvider(
+            create: (_) => SearchCubit(
+              searchMovies: Modular.get<SearchMovies>(),
+            ),
+            child: const SearchPage(),
+          ),
         ),
         ChildRoute(
           MovieRoute.popularMovie,

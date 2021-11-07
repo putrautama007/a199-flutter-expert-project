@@ -1,11 +1,11 @@
 import 'package:core/core.dart';
-import 'package:feature_movie/presentation/provider/movie_search_notifier.dart';
+import 'package:feature_movie/presentation/bloc/search_movie/search_cubit.dart';
+import 'package:feature_movie/presentation/bloc/search_movie/search_state.dart';
 import 'package:feature_movie/presentation/widgets/movie_card_list.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:libraries/libraries.dart';
 
 class SearchPage extends StatelessWidget {
-
   const SearchPage({Key? key}) : super(key: key);
 
   @override
@@ -21,8 +21,7 @@ class SearchPage extends StatelessWidget {
           children: [
             TextField(
               onSubmitted: (query) {
-                Provider.of<MovieSearchNotifier>(context, listen: false)
-                    .fetchMovieSearch(query);
+                BlocProvider.of<SearchCubit>(context).fetchMovieSearch(query);
               },
               decoration: const InputDecoration(
                 hintText: 'Search title',
@@ -36,20 +35,19 @@ class SearchPage extends StatelessWidget {
               'Search Result',
               style: kHeading6,
             ),
-            Consumer<MovieSearchNotifier>(
-              builder: (context, data, child) {
-                if (data.state == RequestState.loading) {
+            BlocBuilder<SearchCubit, SearchState>(
+              builder: (context, state) {
+                if (state is SearchLoadingState) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (data.state == RequestState.loaded) {
-                  final result = data.searchResult;
+                } else if (state is SearchLoadedState) {
+                  final result = state.movieList;
                   return Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.all(8),
                       itemBuilder: (context, index) {
-                        final movie = data.searchResult[index];
-                        return MovieCard(movie);
+                        return MovieCard(result[index]);
                       },
                       itemCount: result.length,
                     ),
