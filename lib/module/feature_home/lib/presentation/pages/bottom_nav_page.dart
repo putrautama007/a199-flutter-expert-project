@@ -54,7 +54,7 @@ class _BottomNavPageState extends State<BottomNavPage> {
             width: MediaQuery.of(context).size.width,
             height: MediaQuery.of(context).size.height,
             child: IndexedStack(
-              index: BlocProvider.of<BottomNavBloc>(context).state,
+              index: context.read<BottomNavBloc>().state,
               children: const [
                 HomeMoviePage(),
                 HomeTVShowPage(),
@@ -79,9 +79,9 @@ class _BottomNavPageState extends State<BottomNavPage> {
               selectedItemColor: kWhite,
               unselectedItemColor: kDavysGrey,
               onTap: (value){
-                BlocProvider.of<BottomNavBloc>(context).add(ChangeTabEvent(state: value));
+                context.read<BottomNavBloc>().add(ChangeTabEvent(state: value));
               },
-              currentIndex: BlocProvider.of<BottomNavBloc>(context).state,
+              currentIndex: context.read<BottomNavBloc>().state,
               type: BottomNavigationBarType.fixed,
               items: const <BottomNavigationBarItem>[
                 BottomNavigationBarItem(
