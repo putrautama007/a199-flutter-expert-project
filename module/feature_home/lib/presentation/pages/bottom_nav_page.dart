@@ -4,7 +4,6 @@ import 'package:feature_home/presentation/bloc/bottom_nav_event.dart';
 import 'package:feature_home/presentation/pages/watch_list_page.dart';
 import 'package:feature_movie/presentation/pages/about_page.dart';
 import 'package:feature_movie/presentation/pages/home_movie_page.dart';
-import 'package:feature_movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:feature_tv/presentation/pages/home_tv_show_page.dart';
 import 'package:feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:feature_tv/presentation/provider/tv_show_watchlist_notifier.dart';
@@ -23,9 +22,6 @@ class _BottomNavPageState extends State<BottomNavPage> {
   @override
   void initState() {
     super.initState();
-    Future.microtask(() =>
-        Provider.of<WatchlistMovieNotifier>(context, listen: false)
-          ..fetchWatchlistMovies());
 
     Future.microtask(
         () => Provider.of<TvShowListNotifier>(context, listen: false)
