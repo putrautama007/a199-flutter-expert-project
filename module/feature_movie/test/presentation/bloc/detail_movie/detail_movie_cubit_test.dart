@@ -9,7 +9,8 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dartz/dartz.dart';
-import 'detail_movie_cubit.mocks.dart';
+
+import 'detail_movie_cubit_test.mocks.dart';
 
 @GenerateMocks([
   GetMovieDetail,
