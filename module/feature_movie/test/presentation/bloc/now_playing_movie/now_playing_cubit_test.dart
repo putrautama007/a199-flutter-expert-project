@@ -33,7 +33,7 @@ void main() {
   );
 
   blocTest<NowPlayingCubit, NowPlayingState>(
-    'Should emit [DetailMovieInitialState,DetailMovieLoadedState] when call fetchMovieDetail successfully',
+    'Should emit [NowPlayingLoadingState,NowPlayingLoadedState] when call fetchNowPlayingMovies successfully',
     build: () {
       when(mockGetNowPlayingMovies.execute()).thenAnswer(
         (_) async => const Right(
@@ -63,7 +63,7 @@ void main() {
   );
 
   blocTest<NowPlayingCubit, NowPlayingState>(
-    'Should emit [DetailMovieInitialState,DetailMovieErrorState] when call fetchMovieDetail unsuccessfully',
+    'Should emit [NowPlayingLoadingState,NowPlayingErrorState] when call fetchNowPlayingMovies unsuccessfully',
     build: () {
       when(mockGetNowPlayingMovies.execute()).thenAnswer(
         (_) async => const Left(
