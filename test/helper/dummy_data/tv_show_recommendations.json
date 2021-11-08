@@ -1,0 +1,29 @@
+{
+  "page": 1,
+  "results": [
+    {
+      "adult": false,
+      "backdrop_path": "/uAWB8qOs7L6zGTwxAbeT97AsJk6.jpg",
+      "genre_ids": [
+        10765,
+        18
+      ],
+      "id": 93740,
+      "media_type": "tv",
+      "name": "Foundation",
+      "origin_country": [
+        "US"
+      ],
+      "original_language": "en",
+      "original_name": "Foundation",
+      "overview": "Follow a band of exiles on their monumental journey to save humanity and rebuild civilization amid the fall of the Galactic Empire.",
+      "popularity": 232.175,
+      "poster_path": "/A1fXGFxDifQzj08OlaGTVcnXHyd.jpg",
+      "first_air_date": "2021-09-23",
+      "vote_average": 8.175,
+      "vote_count": 186
+    }
+  ],
+  "total_pages": 2,
+  "total_results": 40
+}
