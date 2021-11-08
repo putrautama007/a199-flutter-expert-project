@@ -22,12 +22,6 @@ import 'package:feature_movie/presentation/bloc/now_playing_movie/now_playing_cu
 import 'package:feature_movie/presentation/bloc/popular_movie/popular_cubit.dart';
 import 'package:feature_movie/presentation/bloc/top_rated_movie/top_rated_cubit.dart';
 import 'package:feature_movie/presentation/bloc/watch_list/watch_list_movie_cubit.dart';
-import 'package:feature_movie/presentation/provider/movie_detail_notifier.dart';
-import 'package:feature_movie/presentation/provider/movie_list_notifier.dart';
-import 'package:feature_movie/presentation/provider/movie_search_notifier.dart';
-import 'package:feature_movie/presentation/provider/popular_movies_notifier.dart';
-import 'package:feature_movie/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:feature_movie/presentation/provider/watchlist_movie_notifier.dart';
 import 'package:feature_tv/data/datasources/tv_local_data_source.dart';
 import 'package:feature_tv/data/datasources/tv_remote_data_source.dart';
 import 'package:feature_tv/data/repositories/tv_repositories_impl.dart';
@@ -239,42 +233,6 @@ class AppModule extends Module {
             getNowPlayingTvShowsUseCase: injector(),
             getPopularTvShowsUseCase: injector(),
             getTopRatedTvShowsUseCase: injector(),
-          ),
-        ),
-        Bind.factory(
-          (injector) => WatchlistMovieNotifier(
-            getWatchlistMovies: injector(),
-          ),
-        ),
-        Bind.factory(
-          (injector) => TopRatedMoviesNotifier(
-            getTopRatedMovies: injector(),
-          ),
-        ),
-        Bind.factory(
-          (injector) => PopularMoviesNotifier(
-            injector(),
-          ),
-        ),
-        Bind.factory(
-          (injector) => MovieSearchNotifier(
-            searchMovies: injector(),
-          ),
-        ),
-        Bind.factory(
-          (injector) => MovieDetailNotifier(
-            getMovieDetail: injector(),
-            getMovieRecommendations: injector(),
-            getWatchListStatus: injector(),
-            saveWatchlist: injector(),
-            removeWatchlist: injector(),
-          ),
-        ),
-        Bind.factory<MovieListNotifier>(
-          (injector) => MovieListNotifier(
-            getNowPlayingMovies: injector(),
-            getPopularMovies: injector(),
-            getTopRatedMovies: injector(),
           ),
         ),
       ];
