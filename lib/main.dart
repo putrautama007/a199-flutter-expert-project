@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:core/core.dart';
 import 'package:feature_home/feature_home.dart';
+import 'package:feature_home/presentation/bloc/bottom_nav_bloc.dart';
 import 'package:feature_movie/data/datasources/movie_local_data_source.dart';
 import 'package:feature_movie/data/datasources/movie_remote_data_source.dart';
 import 'package:feature_movie/data/repositories/movie_repository_impl.dart';
@@ -17,6 +18,10 @@ import 'package:feature_movie/domain/usecases/remove_watchlist.dart';
 import 'package:feature_movie/domain/usecases/save_watchlist.dart';
 import 'package:feature_movie/domain/usecases/search_movies.dart';
 import 'package:feature_movie/feature_movie.dart';
+import 'package:feature_movie/presentation/bloc/now_playing_movie/now_playing_cubit.dart';
+import 'package:feature_movie/presentation/bloc/popular_movie/popular_cubit.dart';
+import 'package:feature_movie/presentation/bloc/top_rated_movie/top_rated_cubit.dart';
+import 'package:feature_movie/presentation/bloc/watch_list/watch_list_movie_cubit.dart';
 import 'package:feature_movie/presentation/provider/movie_detail_notifier.dart';
 import 'package:feature_movie/presentation/provider/movie_list_notifier.dart';
 import 'package:feature_movie/presentation/provider/movie_search_notifier.dart';
@@ -296,55 +301,64 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
+    return MultiBlocProvider(
       providers: [
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<MovieListNotifier>(),
+        BlocProvider(
+          create: (_) => BottomNavBloc(initialState: 0),
         ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<MovieDetailNotifier>(),
+        BlocProvider(
+          create: (_) => NowPlayingCubit(
+            getNowPlayingMovies: Modular.get<GetNowPlayingMovies>(),
+          )..fetchNowPlayingMovies(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<MovieSearchNotifier>(),
+        BlocProvider(
+          create: (_) => PopularCubit(
+            getPopularMovies: Modular.get<GetPopularMovies>(),
+          )..fetchPopularMovies(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<TopRatedMoviesNotifier>(),
+        BlocProvider(
+          create: (_) => TopRatedCubit(
+            getTopRatedMovies: Modular.get<GetTopRatedMovies>(),
+          )..fetchTopRatedMovies(),
         ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<PopularMoviesNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<WatchlistMovieNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<TvShowListNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<TvShowDetailNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<TvShowSearchNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<TvShowPopularNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<TvShowTopRatedNotifier>(),
-        ),
-        ChangeNotifierProvider(
-          create: (_) => Modular.get<TvShowWatchListNotifier>(),
+        BlocProvider(
+          create: (_) => WatchListMovieCubit(
+            getWatchlistMovies: Modular.get<GetWatchlistMovies>(),
+          )..fetchWatchlistMovies(),
         ),
       ],
-      child: MaterialApp(
-        title: 'Flutter Demo',
-        theme: ThemeData.dark().copyWith(
-          colorScheme: kColorScheme,
-          primaryColor: kRichBlack,
-          scaffoldBackgroundColor: kRichBlack,
-          textTheme: kTextTheme,
-        ),
-        initialRoute: MainRoutes.home,
-      ).modular(),
+      child: MultiProvider(
+        providers: [
+          ChangeNotifierProvider(
+            create: (_) => Modular.get<TvShowListNotifier>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => Modular.get<TvShowDetailNotifier>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => Modular.get<TvShowSearchNotifier>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => Modular.get<TvShowPopularNotifier>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => Modular.get<TvShowTopRatedNotifier>(),
+          ),
+          ChangeNotifierProvider(
+            create: (_) => Modular.get<TvShowWatchListNotifier>(),
+          ),
+        ],
+        child: MaterialApp(
+          title: 'Flutter Demo',
+          theme: ThemeData.dark().copyWith(
+            colorScheme: kColorScheme,
+            primaryColor: kRichBlack,
+            scaffoldBackgroundColor: kRichBlack,
+            textTheme: kTextTheme,
+          ),
+          initialRoute: MainRoutes.home,
+        ).modular(),
+      ),
     );
   }
 }

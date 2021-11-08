@@ -1,9 +1,17 @@
 import 'package:core/core.dart';
+import 'package:feature_movie/domain/usecases/get_movie_detail.dart';
+import 'package:feature_movie/domain/usecases/get_movie_recommendations.dart';
 import 'package:feature_movie/domain/usecases/get_popular_movies.dart';
 import 'package:feature_movie/domain/usecases/get_top_rated_movies.dart';
+import 'package:feature_movie/domain/usecases/get_watchlist_status.dart';
+import 'package:feature_movie/domain/usecases/remove_watchlist.dart';
+import 'package:feature_movie/domain/usecases/save_watchlist.dart';
 import 'package:feature_movie/domain/usecases/search_movies.dart';
 import 'package:feature_movie/external/route/movie_route.dart';
+import 'package:feature_movie/presentation/bloc/detail_movie/detail_movie_cubit.dart';
+import 'package:feature_movie/presentation/bloc/is_add_watch_list/is_add_watch_list_cubit.dart';
 import 'package:feature_movie/presentation/bloc/popular_movie/popular_cubit.dart';
+import 'package:feature_movie/presentation/bloc/recommendation_movie/recommendation_movie_cubit.dart';
 import 'package:feature_movie/presentation/bloc/search_movie/search_cubit.dart';
 import 'package:feature_movie/presentation/bloc/top_rated_movie/top_rated_cubit.dart';
 import 'package:feature_movie/presentation/pages/home_movie_page.dart';
@@ -22,7 +30,29 @@ class FeatureMovie extends Module {
         ),
         ChildRoute(
           MovieRoute.detailMovie,
-          child: (_, args) => MovieDetailPage(id: args.data),
+          child: (_, args) => MultiBlocProvider(
+            providers: [
+              BlocProvider(
+                create: (_) => DetailMovieCubit(
+                  getMovieDetail: Modular.get<GetMovieDetail>(),
+                )..fetchMovieDetail(args.data),
+              ),
+              BlocProvider(
+                create: (_) => RecommendationMovieCubit(
+                  getMovieRecommendations:
+                      Modular.get<GetMovieRecommendations>(),
+                )..fetchRecommendationMovie(args.data),
+              ),
+              BlocProvider(
+                create: (_) => IsAddWatchlistCubit(
+                  getWatchListStatus: Modular.get<GetWatchListStatus>(),
+                  removeWatchlist: Modular.get<RemoveWatchlist>(),
+                  saveWatchlist: Modular.get<SaveWatchlist>(),
+                )..loadWatchlistStatus(args.data),
+              ),
+            ],
+            child: MovieDetailPage(id: args.data),
+          ),
         ),
         ChildRoute(
           MovieRoute.searchMovie,
