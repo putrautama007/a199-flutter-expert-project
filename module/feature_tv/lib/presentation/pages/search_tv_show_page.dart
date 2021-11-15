@@ -1,11 +1,11 @@
 import 'package:core/core.dart';
-import 'package:feature_tv/presentation/provider/tv_show_search_notifier.dart';
+import 'package:feature_tv/presentation/bloc/search_tv_show/search_tv_show_cubit.dart';
+import 'package:feature_tv/presentation/bloc/search_tv_show/search_tv_show_state.dart';
 import 'package:feature_tv/presentation/widgets/tv_show_card.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:libraries/libraries.dart';
 
 class SearchTvShowPage extends StatelessWidget {
-
   const SearchTvShowPage({Key? key}) : super(key: key);
 
   @override
@@ -21,7 +21,7 @@ class SearchTvShowPage extends StatelessWidget {
           children: [
             TextField(
               onSubmitted: (query) {
-                Provider.of<TvShowSearchNotifier>(context, listen: false)
+                BlocProvider.of<SearchTvShowCubit>(context)
                     .fetchTvShowSearch(query);
               },
               decoration: const InputDecoration(
@@ -36,22 +36,19 @@ class SearchTvShowPage extends StatelessWidget {
               'Search Result',
               style: kHeading6,
             ),
-            Consumer<TvShowSearchNotifier>(
-              builder: (context, data, child) {
-                if (data.state == RequestState.loading) {
+            BlocBuilder<SearchTvShowCubit, SearchTvShowState>(
+              builder: (context, state) {
+                if (state is SearchTvShowLoadingState) {
                   return const Center(
                     child: CircularProgressIndicator(),
                   );
-                } else if (data.state == RequestState.loaded) {
-                  final result = data.searchResult;
+                } else if (state is SearchTvShowLoadedState) {
+                  final result = state.tvShowList;
                   return Expanded(
                     child: ListView.builder(
                       padding: const EdgeInsets.all(8),
                       itemBuilder: (context, index) {
-                        final tvEntities = data.searchResult[index];
-                        return TvShowCard(
-                          tvEntities: tvEntities,
-                        );
+                        return TvShowCard(tvEntities: result[index]);
                       },
                       itemCount: result.length,
                     ),

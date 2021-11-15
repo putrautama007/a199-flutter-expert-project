@@ -37,12 +37,10 @@ import 'package:feature_tv/domain/usecases/remove_watchlist_tv_shows_use_case.da
 import 'package:feature_tv/domain/usecases/save_watchlist_tv_shows_use_case.dart';
 import 'package:feature_tv/domain/usecases/search_tv_shows_use_case.dart';
 import 'package:feature_tv/feature_tv.dart';
-import 'package:feature_tv/presentation/provider/tv_show_detail_notfier.dart';
-import 'package:feature_tv/presentation/provider/tv_show_list_notifier.dart';
-import 'package:feature_tv/presentation/provider/tv_show_popular_notifier.dart';
-import 'package:feature_tv/presentation/provider/tv_show_search_notifier.dart';
-import 'package:feature_tv/presentation/provider/tv_show_top_rated_notifier.dart';
-import 'package:feature_tv/presentation/provider/tv_show_watchlist_notifier.dart';
+import 'package:feature_tv/presentation/bloc/now_playing_tv_show/now_playing_tv_show_cubit.dart';
+import 'package:feature_tv/presentation/bloc/popular_tv_show/popular_tv_show_cubit.dart';
+import 'package:feature_tv/presentation/bloc/top_rated_tv_show/top_rated_tv_show_cubit.dart';
+import 'package:feature_tv/presentation/bloc/watch_list_tv_show/watch_list_tv_show_cubit.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:libraries/libraries.dart';
@@ -199,42 +197,6 @@ class AppModule extends Module {
             injector(),
           ),
         ),
-        Bind.factory(
-          (injector) => TvShowWatchListNotifier(
-            getWatchListTvShowsUseCase: injector(),
-          ),
-        ),
-        Bind.factory(
-          (injector) => TvShowTopRatedNotifier(
-            getTopRatedTvShowsUseCase: injector(),
-          ),
-        ),
-        Bind.factory(
-          (injector) => TvShowPopularNotifier(
-            getPopularTvShowsUseCase: injector(),
-          ),
-        ),
-        Bind.factory(
-          (injector) => TvShowSearchNotifier(
-            searchTvShowsUseCase: injector(),
-          ),
-        ),
-        Bind.factory(
-          (injector) => TvShowDetailNotifier(
-            getDetailTvShowsUseCase: injector(),
-            getRecommendationTvShowsUseCase: injector(),
-            getWatchListStatusTvShowsUseCase: injector(),
-            saveWatchListTvShowsUseCase: injector(),
-            removeWatchListTvShowsUseCase: injector(),
-          ),
-        ),
-        Bind.factory(
-          (injector) => TvShowListNotifier(
-            getNowPlayingTvShowsUseCase: injector(),
-            getPopularTvShowsUseCase: injector(),
-            getTopRatedTvShowsUseCase: injector(),
-          ),
-        ),
       ];
 
   @override
@@ -284,39 +246,39 @@ class MyApp extends StatelessWidget {
             getWatchlistMovies: Modular.get<GetWatchlistMovies>(),
           )..fetchWatchlistMovies(),
         ),
+        BlocProvider(
+          create: (_) => NowPlayingTvShowCubit(
+            getNowPlayingTvShowsUseCase:
+                Modular.get<GetNowPlayingTvShowsUseCase>(),
+          )..fetchNowPlayingTvShow(),
+        ),
+        BlocProvider(
+          create: (_) => PopularTvShowCubit(
+            getPopularTvShowsUseCase: Modular.get<GetPopularTvShowsUseCase>(),
+          )..fetchPopularTvShow(),
+        ),
+        BlocProvider(
+          create: (_) => TopRatedTvShowCubit(
+            getTopRatedTvShowsUseCase: Modular.get<GetTopRatedTvShowsUseCase>(),
+          )..fetchTopRatedTvShow(),
+        ),
+        BlocProvider(
+          create: (_) => WatchListTvShowCubit(
+            getWatchListTvShowsUseCase:
+                Modular.get<GetWatchListTvShowsUseCase>(),
+          )..fetchWatchlistTvShow(),
+        ),
       ],
-      child: MultiProvider(
-        providers: [
-          ChangeNotifierProvider(
-            create: (_) => Modular.get<TvShowListNotifier>(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => Modular.get<TvShowDetailNotifier>(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => Modular.get<TvShowSearchNotifier>(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => Modular.get<TvShowPopularNotifier>(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => Modular.get<TvShowTopRatedNotifier>(),
-          ),
-          ChangeNotifierProvider(
-            create: (_) => Modular.get<TvShowWatchListNotifier>(),
-          ),
-        ],
-        child: MaterialApp(
-          title: 'Flutter Demo',
-          theme: ThemeData.dark().copyWith(
-            colorScheme: kColorScheme,
-            primaryColor: kRichBlack,
-            scaffoldBackgroundColor: kRichBlack,
-            textTheme: kTextTheme,
-          ),
-          initialRoute: MainRoutes.home,
-        ).modular(),
-      ),
+      child: MaterialApp(
+        title: 'Flutter Demo',
+        theme: ThemeData.dark().copyWith(
+          colorScheme: kColorScheme,
+          primaryColor: kRichBlack,
+          scaffoldBackgroundColor: kRichBlack,
+          textTheme: kTextTheme,
+        ),
+        initialRoute: MainRoutes.home,
+      ).modular(),
     );
   }
 }

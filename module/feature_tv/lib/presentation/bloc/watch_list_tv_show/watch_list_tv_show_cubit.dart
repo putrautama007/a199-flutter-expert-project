@@ -2,10 +2,10 @@ import 'package:feature_tv/domain/usecases/get_watchlist_tv_shows_use_case.dart'
 import 'package:feature_tv/presentation/bloc/watch_list_tv_show/watch_list_tv_show_state.dart';
 import 'package:libraries/libraries.dart';
 
-class WatchListMovieCubit extends Cubit<WatchListTvShowState> {
+class WatchListTvShowCubit extends Cubit<WatchListTvShowState> {
   final GetWatchListTvShowsUseCase getWatchListTvShowsUseCase;
 
-  WatchListMovieCubit({
+  WatchListTvShowCubit({
     required this.getWatchListTvShowsUseCase,
   }) : super(WatchListTvShowInitialState());
 

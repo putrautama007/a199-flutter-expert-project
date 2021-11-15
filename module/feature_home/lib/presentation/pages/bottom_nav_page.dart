@@ -5,34 +5,12 @@ import 'package:feature_home/presentation/pages/watch_list_page.dart';
 import 'package:feature_movie/presentation/pages/about_page.dart';
 import 'package:feature_movie/presentation/pages/home_movie_page.dart';
 import 'package:feature_tv/presentation/pages/home_tv_show_page.dart';
-import 'package:feature_tv/presentation/provider/tv_show_list_notifier.dart';
-import 'package:feature_tv/presentation/provider/tv_show_watchlist_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:libraries/libraries.dart';
 import 'package:provider/provider.dart';
 
-class BottomNavPage extends StatefulWidget {
+class BottomNavPage extends StatelessWidget {
   const BottomNavPage({Key? key}) : super(key: key);
-
-  @override
-  _BottomNavPageState createState() => _BottomNavPageState();
-}
-
-class _BottomNavPageState extends State<BottomNavPage> {
-  @override
-  void initState() {
-    super.initState();
-
-    Future.microtask(
-        () => Provider.of<TvShowListNotifier>(context, listen: false)
-          ..fetchNowPlayingTvShows()
-          ..fetchPopulargTvShows()
-          ..fetchTopRatedTvShows());
-
-    Future.microtask(() =>
-    Provider.of<TvShowWatchListNotifier>(context, listen: false)
-      ..fetchWatchlistTvShows());
-  }
 
   @override
   Widget build(BuildContext context) {

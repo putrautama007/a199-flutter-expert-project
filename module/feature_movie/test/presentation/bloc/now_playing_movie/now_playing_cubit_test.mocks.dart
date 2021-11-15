@@ -44,6 +44,4 @@ class MockGetNowPlayingMovies extends _i1.Mock
           returnValue: Future<_i3.Either<_i6.Failure, List<_i7.Movie>>>.value(
               _FakeEither_1<_i6.Failure, List<_i7.Movie>>())) as _i5
           .Future<_i3.Either<_i6.Failure, List<_i7.Movie>>>);
-  @override
-  String toString() => super.toString();
 }

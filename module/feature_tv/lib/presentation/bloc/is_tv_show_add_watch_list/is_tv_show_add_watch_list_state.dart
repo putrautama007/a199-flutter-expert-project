@@ -12,12 +12,12 @@ class IsTvShowAddWatchListLoadingState extends IsTvShowAddWatchListState {
   List<Object?> get props => [];
 }
 
-class IsTvShowAddWatchListAddMovieState extends IsTvShowAddWatchListState {
+class IsTvShowAddWatchListAddTvShowState extends IsTvShowAddWatchListState {
   @override
   List<Object?> get props => [];
 }
 
-class IsTvShowAddWatchListRemoveMovieState extends IsTvShowAddWatchListState {
+class IsTvShowAddWatchListRemoveTvShowState extends IsTvShowAddWatchListState {
   @override
   List<Object?> get props => [];
 }

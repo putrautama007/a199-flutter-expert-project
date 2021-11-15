@@ -25,11 +25,11 @@ class IsTvShowAddWatchlistCubit extends Cubit<IsTvShowAddWatchListState> {
         emit(IsTvShowAddWatchListErrorState());
       },
       (successMessage) async {
-        emit(IsTvShowAddWatchListAddMovieState());
+        emit(IsTvShowAddWatchListAddTvShowState());
       },
     );
 
-    await loadWatchlistStatus(tvDetailEntities.id);
+    await loadWatchlistStatus(tvDetailEntities.id.toString());
   }
 
   Future<void> removeFromWatchlist(TvDetailEntities tvDetailEntities) async {
@@ -41,21 +41,21 @@ class IsTvShowAddWatchlistCubit extends Cubit<IsTvShowAddWatchListState> {
         emit(IsTvShowAddWatchListErrorState());
       },
       (successMessage) async {
-        emit(IsTvShowAddWatchListRemoveMovieState());
+        emit(IsTvShowAddWatchListRemoveTvShowState());
       },
     );
 
-    await loadWatchlistStatus(tvDetailEntities.id);
+    await loadWatchlistStatus(tvDetailEntities.id.toString());
   }
 
-  Future<void> loadWatchlistStatus(int id) async {
+  Future<void> loadWatchlistStatus(String id) async {
     emit(IsTvShowAddWatchListLoadingState());
     final result =
-        await getWatchListStatusTvShowsUseCase.isAddedToWatchlist(id);
+        await getWatchListStatusTvShowsUseCase.isAddedToWatchlist(int.parse(id));
     if (result) {
-      emit(IsTvShowAddWatchListRemoveMovieState());
+      emit(IsTvShowAddWatchListRemoveTvShowState());
     } else {
-      emit(IsTvShowAddWatchListAddMovieState());
+      emit(IsTvShowAddWatchListAddTvShowState());
     }
   }
 }

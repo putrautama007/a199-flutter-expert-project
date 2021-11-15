@@ -2,10 +2,10 @@ import 'package:feature_tv/domain/usecases/get_popular_tv_shows_use_case.dart';
 import 'package:feature_tv/presentation/bloc/popular_tv_show/popular_tv_show_state.dart';
 import 'package:libraries/libraries.dart';
 
-class PopularCubit extends Cubit<PopularTvShowState> {
+class PopularTvShowCubit extends Cubit<PopularTvShowState> {
   final GetPopularTvShowsUseCase getPopularTvShowsUseCase;
 
-  PopularCubit({
+  PopularTvShowCubit({
     required this.getPopularTvShowsUseCase,
   }) : super(PopularTvShowInitialState());
 
