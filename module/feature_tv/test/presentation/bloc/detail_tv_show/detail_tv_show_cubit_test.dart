@@ -12,7 +12,7 @@ import 'package:mockito/annotations.dart';
 import 'package:mockito/mockito.dart';
 import 'package:dartz/dartz.dart';
 
-import '../../provider/tv_show_detail_notfier_test.mocks.dart';
+import 'detail_tv_show_cubit_test.mocks.dart';
 
 @GenerateMocks([
   GetDetailTvShowsUseCase,
