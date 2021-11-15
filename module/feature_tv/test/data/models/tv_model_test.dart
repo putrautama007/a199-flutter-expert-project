@@ -25,7 +25,7 @@ void main() {
     test('should return a valid tv show model from JSON', () async {
       /// arrange
       final Map<String, dynamic> jsonMap =
-          json.decode(readJson('core/dummy_data/tv_show_popular.json'));
+          json.decode(readJson('helper/dummy_data/tv_show_popular.json'));
 
       /// act
       final result = TvResponse.fromJson(jsonMap);
