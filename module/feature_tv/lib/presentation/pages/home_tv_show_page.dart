@@ -8,10 +8,8 @@ import 'package:feature_tv/presentation/bloc/popular_tv_show/popular_tv_show_cub
 import 'package:feature_tv/presentation/bloc/popular_tv_show/popular_tv_show_state.dart';
 import 'package:feature_tv/presentation/bloc/top_rated_tv_show/top_rated_tv_show_cubit.dart';
 import 'package:feature_tv/presentation/bloc/top_rated_tv_show/top_rated_tv_show_state.dart';
-import 'package:feature_tv/presentation/provider/tv_show_list_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:libraries/libraries.dart';
-import 'package:provider/provider.dart';
 
 class HomeTVShowPage extends StatelessWidget {
   const HomeTVShowPage({Key? key}) : super(key: key);
@@ -76,18 +74,6 @@ class HomeTVShowPage extends StatelessWidget {
                       return const Text('Failed');
                     }
                   }),
-              Consumer<TvShowListNotifier>(builder: (context, data, child) {
-                final state = data.topRatedState;
-                if (state == RequestState.loading) {
-                  return const Center(
-                    child: CircularProgressIndicator(),
-                  );
-                } else if (state == RequestState.loaded) {
-                  return tvShowList(data.topRatedTvShows);
-                } else {
-                  return const Text('Failed');
-                }
-              }),
             ],
           ),
         ),

@@ -9,31 +9,14 @@ import 'package:feature_tv/presentation/bloc/is_tv_show_add_watch_list/is_tv_sho
 import 'package:feature_tv/presentation/bloc/recommendation_tv_show/recommendation_tv_show_cubit.dart';
 import 'package:feature_tv/presentation/bloc/recommendation_tv_show/recommendation_tv_show_state.dart';
 import 'package:feature_tv/presentation/bloc/watch_list_tv_show/watch_list_tv_show_cubit.dart';
-import 'package:feature_tv/presentation/provider/tv_show_detail_notfier.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:libraries/libraries.dart';
-import 'package:provider/provider.dart';
 
-class TvShowDetailPage extends StatefulWidget {
+class TvShowDetailPage extends StatelessWidget {
   final String tvId;
 
   const TvShowDetailPage({required this.tvId, Key? key}) : super(key: key);
-
-  @override
-  State<TvShowDetailPage> createState() => _TvShowDetailPageState();
-}
-
-class _TvShowDetailPageState extends State<TvShowDetailPage> {
-  @override
-  void initState() {
-    super.initState();
-    Future.microtask(() {
-      Provider.of<TvShowDetailNotifier>(context, listen: false)
-        ..fetchTvShowDetail(widget.tvId)
-        ..loadWatchlistStatus(int.parse(widget.tvId));
-    });
-  }
 
   @override
   Widget build(BuildContext context) {
