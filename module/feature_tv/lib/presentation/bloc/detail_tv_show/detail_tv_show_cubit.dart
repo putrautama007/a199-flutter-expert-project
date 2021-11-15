@@ -10,7 +10,7 @@ class DetailTVShowCubit extends Cubit<DetailTvShowState> {
   }) : super(DetailTvShowInitialState());
 
   Future<void> fetchTvShowDetail(String id) async {
-    emit(DetailTvShowInitialState());
+    emit(DetailTvShowLoadingState());
     final detailResult =
         await getDetailTvShowsUseCase.getDetailTvShows(tvId: id);
     detailResult.fold(
